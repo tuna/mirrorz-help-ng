@@ -40,7 +40,7 @@ mirrorid: wine-builds
 {{sudo}}wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 </tmpl>
 <p>新增 <code>/etc/apt/sources.list.d/winehq.list</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="5ba97f87" title>发行版</label><select id="5ba97f87" name="release" title><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-path="/etc/apt/sources.list.d/winehq.list">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="61c8c97e" title>发行版</label><select id="61c8c97e" name="release" title><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-path="/etc/apt/sources.list.d/winehq.list">
 
 deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] {{endpoint}}/{{os}}/ {{release}} main
 </tmpl>

@@ -35,7 +35,7 @@ mirrorid: centos-vault
 <p>还提供 CentOS 各个版本的源代码和调试符号。</p>
 <h2>使用方法</h2>
 <p>需要确定您所需要的小版本，如无特殊需要则使用该大版本的最后一个小版本，比如 6.10，5.11，填入下方的文本框。</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="2bbaf808" title>使用的小版本</label><input id="2bbaf808" name="minorver" title type="text" value="6.10"/></div></form><pre class="z-code"></pre></div><tmpl z-input="minorver" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="483b8a28" title>使用的小版本</label><input id="483b8a28" name="minorver" title type="text" value="6.10"/></div></form><pre class="z-code"></pre></div><tmpl z-input="minorver" z-lang="bash">
 {{sudo}}sed -e "s|^mirrorlist=|#mirrorlist=|g" \
     -e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl={{endpoint}}/{{minorver}}|g" \
     -e "s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl={{endpoint}}/{{minorver}}|g" \
