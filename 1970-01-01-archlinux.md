@@ -47,7 +47,14 @@ Server = {{endpoint}}/$repo/os/$arch
 <p>如果您从一个较新的镜像切换到较旧的镜像，以下命令可以降级部分包，以避免系统的部分更新。</p>
 <div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"></form><pre class="z-code"></pre></div><tmpl z-lang="bash">
 {{sudo}}pacman -Syyuu
-</tmpl><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFyY2ggTGludXggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiYXJjaGxpbnV4In0=</script>
+</tmpl>
+<h2>Arch Linux Rollback Machine 使用帮助</h2>
+<p>因为 Arch Linux 的软件仓库和 iso 列表是不维护旧版本的，在少数情况下可能会需要安装旧版本的软件或系统，</p>
+<p>{% endraw %}<br/>
+因此镜像站维护了一个 <a href="https://{{ site.arch_archive }}/">Arch Linux Rollback Machine</a>来满足这种情况。<br/>
+{% raw %}</p>
+<p>Arch Linux Rollback Machine 的使用方法请参照 <a href="https://wiki.archlinux.org/index.php/Arch_Linux_Archive">wiki</a>。</p>
+<p><strong>需要注意的是，本镜像站的 Rollback Machine 的目录结构与 wiki 中的目录结构并不相同，配置时请自行替代。</strong></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFyY2ggTGludXggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSIsICJyb2xsYmFjayJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiYXJjaGxpbnV4In0=</script>
 </div>
 
 {% endraw %}

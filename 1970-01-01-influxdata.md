@@ -47,9 +47,8 @@ deb {{endpoint}}/debian/ stable main
 {{sudo}}apt install influxdb
 </tmpl>
 <h3>CentOS / RedHat 用户</h3>
-<h4>TUNA/BFSU/NJU 等</h4>
 <p>新建 <code>/etc/yum.repos.d/influxdata.repo</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="552d0611" title>发行版</label><select id="552d0611" name="release" title><option value="el7-x86_64">CentOS/RHEL 7 (x86_64)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-lang="ini" z-path="/etc/yum.repos.d/influxdata.repo">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="351a51ac" title>发行版</label><select id="351a51ac" name="release" title><option value="el7-x86_64">CentOS/RHEL 7 (x86_64)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-lang="ini" z-path="/etc/yum.repos.d/influxdata.repo">
 [influxdata]
 name = InfluxData Repository - RHEL $releasever
 baseurl={{endpoint}}/yum/{{release}}
@@ -57,17 +56,6 @@ enabled=1
 gpgcheck=1
 gpgkey=https://repos.influxdata.com/influxdata-archive_compat.key
 </tmpl>
-<h4>USTC</h4>
-<p>新建 <code>/etc/yum.repos.d/influxdata.repo</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"></form><pre class="z-code"></pre></div><tmpl z-lang="ini" z-path="/etc/yum.repos.d/influxdata.repo">
-[influxdata]
-name = InfluxData Repository - Stable
-baseurl = {{endpoint}}/stable/$basearch/main
-enabled = 1
-gpgcheck = 1
-gpgkey = https://repos.influxdata.com/influxdata-archive_compat.key
-</tmpl>
-<h4>共有部分</h4>
 <p>再执行</p>
 <div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"></form><pre class="z-code"></pre></div><tmpl z-lang="bash">
 {{sudo}}yum makecache
