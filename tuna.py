@@ -1,4 +1,10 @@
 import os
+from pathlib import Path
+
+
+outdir = Path(os.environ.get('TUNA_TEMP_DIR', './tuna/'))
+os.makedirs(outdir, exist_ok=True)
+
 
 def process(html, config, project, *_):
     md = f"""---
@@ -38,7 +44,6 @@ mirrorid: {config.get('mirrorid', project)}
 <script src="/static/js/mustache.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>
 """
-    os.makedirs('tuna', exist_ok=True)
-    with open(f'tuna/1970-01-01-{config.get("permalink", project)}.md', 'w') as f:
+    with open(outdir/f'1970-01-01-{config.get("permalink", project)}.md', 'w') as f:
         f.write(md)
     return html
