@@ -4,10 +4,10 @@ def process(html, config, project, *_):
     md = f"""---
 category: help
 layout: help
-mirrorid: {project}
+mirrorid: {config.get('mirrorid', project)}
 ---
 """ + """
-<!-- 本 markdown 从 tuna/mirrorz-help-ng 自动生成，如需修改，请修改其对应部分 -->
+<!-- 本 markdown 从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
 
 <style>.z-help tmpl { display: none }</style>
 
@@ -39,6 +39,6 @@ mirrorid: {project}
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>
 """
     os.makedirs('tuna', exist_ok=True)
-    with open(f'tuna/{project}.md', 'w') as f:
+    with open(f'tuna/1970-01-01-{config.get("permalink", project)}.md', 'w') as f:
         f.write(md)
     return html
