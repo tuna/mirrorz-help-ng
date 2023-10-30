@@ -1,0 +1,22 @@
+name: 'Sync Global Documentations'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 21 * * *'  # 05:43 AM in Asia/Shanghai (UTC+8)
+jobs:
+  sync:
+    name: 'Sync'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: Sync submodule
+      run: |
+        git submodule update --remote
+    - name: Commit changes
+      run: |
+        git config --local user.name  "GitHub Actions"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git commit -am "sync global documentations" && git push || echo "No changes to commit"
