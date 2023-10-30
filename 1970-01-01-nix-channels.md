@@ -79,7 +79,7 @@ nix-channel --add {{endpoint}}/nixpkgs-unstable nixpkgs
 nix-channel --update
 </tmpl>
 <p>替换 NixOS channel 命令如下（以 root 执行）：</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="3c1d7909" title>系统版本</label><select id="3c1d7909" name="version" title><option value="22.11">22.11</option><option value="unstable">unstable</option><option value="22.05">22.05</option><option value="21.11">21.11</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="version" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="e4e3640c" title>系统版本</label><select id="e4e3640c" name="version" title><option value="22.11">22.11</option><option value="unstable">unstable</option><option value="22.05">22.05</option><option value="21.11">21.11</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="version" z-lang="bash">
 nix-channel --add {{endpoint}}/nixos-{{version}} nixos
 nix-channel --update
 </tmpl><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk5peCBDaGFubmVscyIsICJibG9jayI6IFsibml4LWNoYW5uZWxzIl0sICJpbnB1dCI6IHsidmVyc2lvbiI6IHsiXyI6ICJcdTdjZmJcdTdlZGZcdTcyNDhcdTY3MmMiLCAib3B0aW9uIjogeyIyMi4xMSI6IG51bGwsICJ1bnN0YWJsZSI6IG51bGwsICIyMi4wNSI6IG51bGwsICIyMS4xMSI6IG51bGx9fX0sICJuYW1lIjogIm5peC1jaGFubmVscyJ9</script>

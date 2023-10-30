@@ -32,7 +32,7 @@ mirrorid: erlang-solutions
 <div class="z-help"><h1>Erlang Solutions 软件仓库</h1>
 <h3>Debian/Ubuntu 用户</h3>
 <p>选择你的系统版本</p>
-<div class="z-wrap"><form class="z-form z-global" onchange="form_update(event)" onsubmit="return false"><div><label for="97d77b52" title>操作系统版本</label><select id="97d77b52" name="release" title><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jessie">Debian 8 (jessie) (EOL)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form></div>
+<div class="z-wrap"><form class="z-form z-global" onchange="form_update(event)" onsubmit="return false"><div><label for="e2b50924" title>操作系统版本</label><select id="e2b50924" name="release" title><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jessie">Debian 8 (jessie) (EOL)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form></div>
 <p>首先信任 erlang-solutions 的 GPG 公钥：</p>
 <div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"></form><pre class="z-code"></pre></div><tmpl z-lang="bash">
 curl -s https://packages.erlang-solutions.com/{{os}}/erlang_solutions.asc | {{sudo}}apt-key add -
