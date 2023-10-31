@@ -84,5 +84,5 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever-$ba
 
 {% endraw %}
 
-<script src="/static/js/mustache.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

@@ -40,5 +40,5 @@ mirrorid: ubuntu-cloud-images
 
 {% endraw %}
 
-<script src="/static/js/mustache.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

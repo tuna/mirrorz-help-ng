@@ -53,5 +53,5 @@ wget {{endpoint}}/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016
 
 {% endraw %}
 
-<script src="/static/js/mustache.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

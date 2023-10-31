@@ -59,5 +59,5 @@ deb http://ports.ubuntu.com/ubuntu-ports/ {{release}}-security main restricted u
 
 {% endraw %}
 
-<script src="/static/js/mustache.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>
