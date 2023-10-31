@@ -15,7 +15,7 @@ jobs:
     - name: Sync submodule
       run: |
         git submodule update --remote
-        COMMIT_ID=$(git submodule status global | cut -d' ' -f2)
+        COMMIT_ID=$(git submodule status global | cut -c2-8)
         git config --local user.name  "GitHub Actions"
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git commit -am "sync mirrorz-org/mirrorz-docs@${COMMIT_ID::7}" && git push || echo "No changes to commit"
