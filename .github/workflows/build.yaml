@@ -5,7 +5,7 @@ on:
     branches:
       - main
   workflow_run:
-    workflows: ['Sync Global Documentations']
+    workflows: ['Sync Global Documentation']
     types:
       - completed
 jobs:
@@ -36,4 +36,4 @@ jobs:
         git config --local user.name  "GitHub Actions"
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add *.md
-        git commit -am "build $GITHUB_REPOSITORY@${GITHUB_SHA::7}" && git push || echo "No changes to commit"
+        git commit -am "Auto build for $GITHUB_REPOSITORY@${GITHUB_SHA::7}" && git push || echo "No changes to commit"
