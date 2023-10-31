@@ -35,7 +35,7 @@ mirrorid: elasticstack
 <h2>使用方法</h2>
 <p>请参考 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html">elasticsearch 官方安装教程</a>。</p>
 <p>以 Debian/Ubuntu 安装为例，举例如下：</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="7e8108ab" title>版本</label><select id="7e8108ab" name="version" title><option value="8.x">8.x</option><option value="7.x">7.x</option><option value="6.x">6.x</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="version" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="tlr1HRfk" title>版本</label><select id="tlr1HRfk" name="version" title><option value="8.x">8.x</option><option value="7.x">7.x</option><option value="6.x">6.x</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="version" z-lang="bash">
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | {{sudo}}gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] {{endpoint}}/{{version}}/apt/ stable main" | {{sudo}}tee /etc/apt/sources.list.d/elastic-{{version}}.list
 {{sudo}}apt-get update &amp;&amp; {{sudo}}apt-get install elasticsearch
