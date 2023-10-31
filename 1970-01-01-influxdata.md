@@ -48,7 +48,7 @@ deb {{endpoint}}/debian/ stable main
 </tmpl>
 <h3>CentOS / RedHat 用户</h3>
 <p>新建 <code>/etc/yum.repos.d/influxdata.repo</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="vv3nEeC4" title>发行版</label><select id="vv3nEeC4" name="release" title><option value="el7-x86_64">CentOS/RHEL 7 (x86_64)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-lang="ini" z-path="/etc/yum.repos.d/influxdata.repo">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="37c05189" title>发行版</label><select id="37c05189" name="release" title><option value="el7-x86_64">CentOS/RHEL 7 (x86_64)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-lang="ini" z-path="/etc/yum.repos.d/influxdata.repo">
 [influxdata]
 name = InfluxData Repository - RHEL $releasever
 baseurl={{endpoint}}/yum/{{release}}
