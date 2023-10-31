@@ -1,0 +1,50 @@
+---
+category: help
+layout: help
+mirrorid: ceph
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Ceph 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p><a href="https://ceph.io/">Ceph</a> 是一个开源软件存储平台，在单个分布式计算机集群上实现对象存储。</p>
+<h2>使用方法</h2>
+<p>请参考<a href="https://docs.ceph.com/en/latest/install/get-packages/">Ceph 官方安装教程</a>，只需要把文档中出现的 <code>download.ceph.com</code> 替换为以下链接即可。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}
+</pre>
+<p>以 Debian Buster 为例，举例如下：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+wget -q -O- 'https://download.ceph.com/keys/release.asc' | {{sudo}}apt-key add -
+{{sudo}}apt-add-repository 'deb {{endpoint}}/debian-octopus/ buster main'
+{{sudo}}apt update
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkNlcGggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiY2VwaCJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

@@ -1,0 +1,63 @@
+---
+category: help
+layout: help
+mirrorid: pkgsrc.git
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>pkgsrc Git</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><strong>注：该镜像是 pkgsrc 源码安装的镜像。本镜像站同时提供 pkgsrc 其他功能的镜像（如二进制包，distfile 等，不包含 joyent 内容），请参考 <a href="../pkgsrc/">pkgsrc 镜像使用帮助</a>。</strong></p>
+<h3>源码安装</h3>
+<p>对应<a href="https://www.netbsd.org/docs/pkgsrc/pkgsrc.html#getting-via-cvs">官方文档 getting-via-cvs</a>，本镜像站中 pkgsrc.git 镜像与官方文档中源的 CVS 架构不同，与<a href="https://github.com/NetBSD/pkgsrc">官方 git 镜像</a>架构类似，故使用命令有所调整。</p>
+<p>拉取特定稳定版镜像分支</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+git clone -b pkgsrc-2021Q4 {{endpoint}}
+</pre>
+<p>拉取当前镜像分支</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+git clone {{endpoint}}
+</pre>
+<h3>源码更新</h3>
+<p>对应<a href="https://www.netbsd.org/docs/pkgsrc/pkgsrc.html#uptodate-cvs">官方文档 uptodate-cvs</a>，切换到 pkgsrc 目录，执行</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+git pull
+</pre>
+<h4>源码切换分支</h4>
+<p>对应<a href="https://www.netbsd.org/docs/pkgsrc/pkgsrc.html#uptodate-cvs-switch">官方文档 uptodate-cvs-switch</a>，切换到 pkgsrc 目录</p>
+<p>切换特定稳定版镜像分支</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+git checkout pkgsrc-2021Q4
+</pre>
+<p>切换当前镜像分支</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+git checkout trunk
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogInBrZ3NyYyBHaXQiLCAiYmxvY2siOiBbInBrZ3NyYy5naXQiXSwgImlucHV0Ijoge30sICJuYW1lIjogInBrZ3NyYy5naXQifQ==</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

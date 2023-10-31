@@ -1,0 +1,56 @@
+---
+category: help
+layout: help
+mirrorid: msys2
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>MSYS2 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>收录架构</h2>
+<ul>
+<li>MINGW: i686, x86_64, ucrt64, clang64</li>
+<li>MSYS: i686, x86_64</li>
+</ul>
+<h2>安装</h2>
+<p>请访问镜像目录下的 <code>distrib/</code> 目录</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+# x86_64
+{{endpoint}}/distrib/x86_64/
+# i686
+{{endpoint}}/distrib/i686/
+</pre>
+<p>找到名为 <code>msys2-&lt;架构&gt;-&lt;日期&gt;.exe</code> 的文件（如 <code>msys2-x86_64-20141113.exe</code>），下载安装即可。</p>
+<h2>pacman 的配置</h2>
+<p>直接运行</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+sed -i "s#https\?://mirror.msys2.org/#{{endpoint}}/#g" /etc/pacman.d/mirrorlist*
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk1TWVMyIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsibXN5czIiXSwgImlucHV0Ijoge30sICJuYW1lIjogIm1zeXMyIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

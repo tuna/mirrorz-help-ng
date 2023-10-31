@@ -1,0 +1,129 @@
+---
+category: help
+layout: help
+mirrorid: docker-ce
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Docker CE 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>本镜像提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包。</p>
+<p><strong>注意：</strong>本镜像<strong>不是</strong> dockerhub 。</p>
+<h2>自动安装方式</h2>
+<p>Docker 提供了一个自动配置与安装的脚本，支持 Debian、RHEL、SUSE 系列及衍生系统的安装。</p>
+<p>以下内容假定</p>
+<ul>
+<li>您为 root 用户，或有 sudo 权限，或知道 root 密码；</li>
+<li>您系统上有 curl 或 wget</li>
+</ul>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+export DOWNLOAD_URL="{{endpoint}}"
+# 如您使用 curl
+curl -fsSL https://get.docker.com/ | {{#sudo}}sudo -E{{/sudo}}sh
+# 如您使用 wget
+wget -O- https://get.docker.com/ | {{#sudo}}sudo -E{{/sudo}}sh
+</pre>
+<h3>Debian/Ubuntu/Raspbian 用户</h3>
+<p>以下内容根据 <a href="https://docs.docker.com/engine/install/debian/">官方文档</a> 修改而来。</p>
+<p>如果你过去安装过 docker，先删掉：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do {{sudo}}apt-get remove $pkg; done
+</pre>
+<p>首先安装依赖：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt-get update
+{{sudo}}apt-get install ca-certificates curl gnupg
+</pre>
+<p>信任 Docker 的 GPG 公钥并添加仓库：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="33oUBLk4" title="">发行版</label><select id="33oUBLk4" name="deb_release" title=""><option value="debian">Debian</option><option value="ubuntu">Ubuntu</option><option value="raspbian">Raspbian</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="deb_release" z-lang="bash">
+{{sudo}}install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/{{deb_release}}/gpg | {{sudo}}gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] {{endpoint}}/linux/{{deb_release}} \
+  "$(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME")" stable" | \
+  {{sudo}}tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</pre>
+<p>最后安装</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt-get update
+{{sudo}}apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</pre>
+<h3>Fedora</h3>
+<p>以下内容根据 <a href="https://docs.docker.com/engine/install/fedora/">官方文档</a> 修改而来。</p>
+<p>如果你之前安装过 docker，请先删掉</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}dnf remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+</pre>
+<p>安装依赖，下载 repo 文件，并把软件仓库地址替换为镜像站：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}dnf -y install dnf-plugins-core
+{{sudo}}dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+{{sudo}}sed -i 's+https://download.docker.com+{{endpoint}}+' /etc/yum.repos.d/docker-ce.repo
+</pre>
+<p>最后安装：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</pre>
+<h3>CentOS/RHEL</h3>
+<p>以下内容根据 <a href="https://docs.docker.com/engine/install/centos/">官方文档</a> 修改而来。</p>
+<p>如果你之前安装过 docker，请先删掉</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+</pre>
+<p>安装依赖，下载 repo 文件，并把软件仓库地址替换为镜像站：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="6sopcIhU" title="">发行版</label><select id="6sopcIhU" name="rh_release" title=""><option value="centos">CentOS</option><option value="rhel">RHEL</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="rh_release" z-lang="bash">
+
+{{sudo}} yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/{{rh_release}}/docker-ce.repo
+{{sudo}}sed -i 's+https://download.docker.com+{{endpoint}}+' /etc/yum.repos.d/docker-ce.repo
+</pre>
+<p>最后安装：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkRvY2tlciBDRSBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgImF1dG8iLCAiZGViaWFuIiwgImZlZG9yYSIsICJjZW50b3MiLCAib212Il0sICJpbnB1dCI6IHsiZGViX3JlbGVhc2UiOiB7Il8iOiAiXHU1M2QxXHU4ODRjXHU3MjQ4IiwgIm9wdGlvbiI6IHsiZGViaWFuIjogeyJfIjogIkRlYmlhbiJ9LCAidWJ1bnR1IjogeyJfIjogIlVidW50dSJ9LCAicmFzcGJpYW4iOiB7Il8iOiAiUmFzcGJpYW4ifX19LCAicmhfcmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJjZW50b3MiOiB7Il8iOiAiQ2VudE9TIn0sICJyaGVsIjogeyJfIjogIlJIRUwifX19fSwgIm5hbWUiOiAiZG9ja2VyLWNlIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

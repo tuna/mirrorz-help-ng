@@ -1,0 +1,66 @@
+---
+category: help
+layout: help
+mirrorid: clojars
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Clojars 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用方法</h2>
+<p>以 leiningen 为例，在项目根目录的 <code>project.clj</code> 中自己添加关键字 <code>:mirrors</code></p>
+<p>然后以如下 map 格式添加源：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="clojure">
+:mirrors {"clojars" {:name "mirror"
+                     :url "{{endpoint}}/"}}
+</pre>
+<h3>极简示例</h3>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="clojure">
+(defproject myapp "1.0.0"
+   :description "My Application"
+   :dependencies [[enlive "1.0.1"]
+                  [cheshire "4.0.0"]
+                  [org.markdownj/markdownj "0.3.0-1.0.2b4"]]
+   :mirrors {"clojars" {:name "mirror"
+                        :url "{{endpoint}}/"}}
+   :main leiningen.web)
+</pre>
+<p>配置好后，在项目的根目录下运行 <code>lein run</code>，从输出中可以看到一些包是从镜像站下载的。</p>
+<h3>注意事项</h3>
+<p>此镜像源替换的只是 clojars 这个仓库，一些 maven 的包依然会从 central maven 仓库下载。</p>
+<p>上述方法只针对单个项目生效。如果要针对所有项目进行全局配置，需修改 leiningen 的 <code>profiles</code> 。</p>
+<p>在 <code>~/.lein/projfiles.clj</code> 中添加：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="clojure">
+:user {:repositories [["clojars" {:url "{{endpoint}}/"}]]
+       ;; other :user profile settings...
+       }
+</pre>
+<p>leiningen 会提示说 <code>:repositories</code> 写在了 <code>:user</code> 中，不过不影响使用。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkNsb2phcnMgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiY2xvamFycyJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

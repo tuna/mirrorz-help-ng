@@ -1,0 +1,49 @@
+---
+category: help
+layout: help
+mirrorid: repo-ck
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Repo-ck 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><a href="http://repo-ck.com/">repo-ck</a> 是 <a href="https://archlinux.org/">Arch</a> 的非官方仓库，内有包含 ck 补丁、BFS 调度器等，通用或为特定 CPU 架构优化过的内核，以及内核相关的软件包，是居家旅行，优化折腾的必备良药。更多内容，参考 <a href="https://wiki.archlinux.org/index.php/repo-ck">ArchWiki</a>。</p>
+<h3>食用方法</h3>
+<p>在 <code>/etc/pacman.conf</code> 里添加</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
+[repo-ck]
+Server = {{endpoint}}/$arch
+</pre>
+<p>再增加 GPG 信任：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pacman-key -r 5EE46C4C &amp;&amp; pacman-key --lsign-key 5EE46C4C
+</pre>
+<p>之后 <code>pacman -Sy</code> 即可。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJlcG8tY2sgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJyZXBvLWNrIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJyZXBvLWNrIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

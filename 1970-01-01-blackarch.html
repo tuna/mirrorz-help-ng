@@ -1,0 +1,52 @@
+---
+category: help
+layout: help
+mirrorid: blackarch
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Black Arch 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>BlackArch 是一款基于 ArchLinux 的为渗透测试及安全研究人员开发的发行版，相当于 Arch 版的 BackTrack/Kali。</p>
+<p>仓库地址：https://blackarch.org/blackarch/</p>
+<h2>使用方法</h2>
+<p>在 <code>/etc/pacman.conf</code> 文件末尾添加两行：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="ini" z-path="/etc/pacman.conf">
+[blackarch]
+Server = {{endpoint}}/$repo/os/$arch
+</pre>
+<p>由于一些软件依赖 32 位的库，需要取消掉 <code>/etc/pacman.conf</code> 中 <code>multilib</code> 的注释，详见 <a href="https://wiki.archlinux.org/index.php/Official_repositories#Enabling_multilib">ArchWiki</a> 。</p>
+<p>然后请安装 <code>blackarch-keyring</code> 包以导入 GPG key。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}pacman -Sy blackarch-keyring
+</pre>
+<p>注：Black Arch 软件源仅包含其打包的工具等软件。如果需要更换 Arch Linux 基础系统的软件源，请查看 <a href="../archlinux/">Arch Linux 帮助</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkJsYWNrIEFyY2ggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiYmxhY2thcmNoIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

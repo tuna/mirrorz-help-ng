@@ -1,0 +1,54 @@
+---
+category: help
+layout: help
+mirrorid: armbian
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Armbian 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>Armbian 是为 ARM 单板机提供的基于 Debian 和 Ubuntu 的操作系统。Armbian 仓库包括专用的 u-boot、内核及各种支持文件。</p>
+<h2>使用方法</h2>
+<p>可以使用以下方法更换软件源：</p>
+<ul>
+<li>运行 <code>armbian-config</code> -&gt; Personal -&gt; Mirrors -&gt; 选择镜像站。</li>
+<li>编辑 <code>/etc/apt/sources.list.d/armbian.list</code>，将 <code>http://apt.armbian.com</code> 替换为以下链接</li>
+</ul>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}
+</pre>
+<p>然后执行 <code>apt update</code>。</p>
+<p>这可以由以下命令完成</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}sed -i.bak 's#http://apt.armbian.com#{{endpoint}}#g' /etc/apt/sources.list.d/armbian.list
+{{sudo}}apt update
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFybWJpYW4gXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiYXJtYmlhbiJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

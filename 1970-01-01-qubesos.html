@@ -1,0 +1,50 @@
+---
+category: help
+layout: help
+mirrorid: qubesos
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Qubes OS 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><a href="https://www.qubes-os.org/">Qubes OS</a> 是一个面向安全的操作系统。</p>
+<p>它使用一种叫做<em>隔离保证安全</em> (security by compartmentalization) 的理念，采用虚拟化技术隔离各个应用来保证安全。</p>
+<h3>使用方法</h3>
+<h4>R4.1 及以上</h4>
+<p>在 <code>/etc/dnf/dnf.conf</code> 中添加 <code>fastestmirror=True</code></p>
+<h4>R4.0 及以下</h4>
+<p>每次使用 <code>qubes-dom0-update --setopt=fastestmirror=True</code> 更新</p>
+<p>或者不想使用上述命令，您可以使用如下方法</p>
+<p>对于 <code>/etc/yum.repos.d</code> 下的 <code>qubes-*.repo</code>:</p>
+<ol>
+<li>用<code>#</code>注释掉所有的 <code>metalink</code></li>
+<li>将 <code>baseurl</code> 中的 <code>https://yum.qubes-os.org/</code> 替换为 <span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/repo/yum/</pre> 并取消这些 <code>baseurl</code> 的注释</li>
+</ol><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlF1YmVzIE9TIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsicXViZXNvcyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicXViZXNvcyJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

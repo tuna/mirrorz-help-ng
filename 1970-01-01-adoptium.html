@@ -1,0 +1,81 @@
+---
+category: help
+layout: help
+mirrorid: Adoptium
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Adoptium 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>Windows/macOS 用户</h2>
+<p>通过以下链接打开下载页面，选择所需的版本，下载独立安装包。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}
+</pre>
+<h2>Debian/Ubuntu 用户</h2>
+<p>首先请安装依赖：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt-get update &amp;&amp; {{sudo}}apt-get install -y wget apt-transport-https
+</pre>
+<p>然后信任 GPG 公钥：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | {{sudo}}tee /etc/apt/keyrings/adoptium.asc
+</pre>
+<p>随后将下列内容添加到 <code>/etc/apt/sources.list.d/adoptium.list</code> ：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="XczzIGSY" title="">操作系统版本</label><select id="XczzIGSY" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/adoptium.list">
+deb [signed-by=/etc/apt/keyrings/adoptium.asc] {{endpoint}}/deb {{release}} main
+</pre>
+<p>再执行</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt-get update
+</pre>
+<p>之后可以安装软件包，例如：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt-get install temurin-17-jdk
+</pre>
+<h2>CentOS/RHEL/Fedora 用户</h2>
+<p>将下列内容添加到 <code>/etc/yum.repos.d/adoptium.repo</code> ：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini" z-path="/etc/yum.repos.d/adoptium.repo">
+[Adoptium]
+name=Adoptium
+baseurl={{endpoint}}/rpm/centos$releasever-$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
+</pre>
+<p>再执行</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}yum makecache
+</pre>
+<p>之后可以安装软件包，例如：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}yum install temurin-17-jdk
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFkb3B0aXVtIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsid2luIiwgImRlYiIsICJycG0iXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NjRjZFx1NGY1Y1x1N2NmYlx1N2VkZlx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7ImJvb2t3b3JtIjogeyJfIjogIkRlYmlhbiAxMiAoYm9va3dvcm0pIn0sICJidWxsc2V5ZSI6IHsiXyI6ICJEZWJpYW4gMTEgKGJ1bGxzZXllKSJ9LCAiYnVzdGVyIjogeyJfIjogIkRlYmlhbiAxMCAoYnVzdGVyKSJ9LCAic3RyZXRjaCI6IHsiXyI6ICJEZWJpYW4gOSAoc3RyZXRjaCkgKEVPTCkifSwgImphbW15IjogeyJfIjogIlVidW50dSAyMi4wNCBMVFMgKGphbW15KSJ9LCAiZm9jYWwiOiB7Il8iOiAiVWJ1bnR1IDIwLjA0IExUUyAoZm9jYWwpIn0sICJiaW9uaWMiOiB7Il8iOiAiVWJ1bnR1IDE4LjA0IExUUyAoYmlvbmljKSJ9LCAieGVuaWFsIjogeyJfIjogIlVidW50dSAxNi4wNCBMVFMgKHhlbmlhbCkgKEVPTCkifX19fSwgInBlcm1hbGluayI6ICJhZG9wdGl1bSIsICJuYW1lIjogIkFkb3B0aXVtIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

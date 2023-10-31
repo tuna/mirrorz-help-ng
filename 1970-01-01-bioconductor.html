@@ -1,0 +1,60 @@
+---
+category: help
+layout: help
+mirrorid: bioconductor
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Bioconductor 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>Bioconductor 为高通量基因组数据的分析和可视化提供开源工具。Bioconductor 多数软件包采用 R 统计编程语言开发。Bioconductor 每年释出两个版本，并有活跃的用户社区。</p>
+<h2>使用方法</h2>
+<p><a href="https://www.bioconductor.org">Bioconductor</a> 镜像源配置文件之一是 <code>.Rprofile</code>（linux 下位于 <code>~/.Rprofile</code>, Windows 下位于 <code>~\library\base\R\Rprofile</code>）。</p>
+<p>在文末添加如下语句或在 R/RStudio 终端下键入：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="r" z-path="~/.Rprofile">
+options(BioC_mirror="{{endpoint}}")
+</pre>
+<p>即可使用该 Bioconductor 镜像源安装 Bioconductor 软件包。命令如下：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="r">
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("$package")
+</pre>
+<h2>离线使用</h2>
+<p>如果您只能访问内网镜像站，在完成下列步骤后，依然可以正常使用 Bioconductor 镜像。<br/>
+1. 确保 BiocManager 的版本不低于 <code>1.30.12</code>。<br/>
+2. 使用一台可以访问公网的设备，访问 <a href="https://bioconductor.org/config.yaml">https://bioconductor.org/config.yaml</a> 下载 <code>config.yaml</code>，并将该文件拷贝到 BiocManager 所在的内网设备上。然后，在 <code>~/.Rprofile</code> 添加如下配置：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="r" z-path="~/.Rprofile">
+options(
+    BIOCONDUCTOR_CONFIG_FILE = "file:///path/to/config.yaml"  # config.yaml 所在的路径
+)
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkJpb2NvbmR1Y3RvciBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIiwgIm9mZmxpbmUiXSwgImlucHV0Ijoge30sICJuYW1lIjogImJpb2NvbmR1Y3RvciJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

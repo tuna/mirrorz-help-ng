@@ -1,0 +1,72 @@
+---
+category: help
+layout: help
+mirrorid: raspbian
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Raspbian 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h3>Raspbian 简介</h3>
+<p>Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统， 其基于 Debian 开发，针对 Raspberry Pi 硬件优化。</p>
+<p>Raspbian 并非由树莓派的开发与维护机构 The Raspberry Pi Foundation“树莓派基金会”官方支持。其维护者是一群 Raspberry Pi 硬件和 Debian 项目的爱好者。</p>
+<p>注：Raspbian 系统由于从诞生开始就基于（为了 armhf，也必须基于）当时还是 testing 版本的 7.0/wheezy，所以 Raspbian 不倾向于使用 stable/testing 表示版本。</p>
+<h3>使用说明</h3>
+<p>首先通过 <code>uname -m</code> 确定你使用的系统的架构。</p>
+<p>编辑镜像站后，请使用<code>sudo apt-get update</code>命令，更新软件源列表，同时检查您的编辑是否正确。</p>
+<h4>armv7l</h4>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="Dx8CqWaV" title="">选择你的 Raspbian 对应的 Debian 版本</label><select id="Dx8CqWaV" name="release" title=""><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option></select></div><div><input id="0zw0z65k" name="src" title="源码源通常用于构建和调试，开启后影响更新速度" type="checkbox"/><label for="0zw0z65k" title="源码源通常用于构建和调试，开启后影响更新速度">启用源码源</label></div><div><input id="7trzke19" name="aarch64" title="" type="checkbox"/><label for="7trzke19" title="">启用 multi-arch aarch64</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release src aarch64" z-path="/etc/apt/sources.list">
+deb {{endpoint}}/raspbian/ {{release}} main non-free contrib rpi
+{{src}}deb-src {{endpoint}}/raspbian/ {{release}} main non-free contrib rpi
+
+{{aarch64}}deb [arch=arm64] {{endpoint}}/multiarch/ {{release}} main
+</pre>
+<p>注意：网址末尾的 <code>raspbian</code> 重复两次是必须的。因为 Raspbian 的仓库中除了 APT 软件源还包含其他代码。APT 软件源不在仓库的根目录，而在<code>raspbian/</code>子目录下。</p>
+<h4>aarch64</h4>
+<p>aarch64 用户可直接参考 <a href="../debian/">Debian 帮助</a></p>
+<h4>raspberry 镜像</h4>
+<p>对于两个架构，编辑 <code>/etc/apt/sources.list.d/raspi.list</code> 文件，这需要查看 <a href="../raspberrypi/">Raspberrypi 帮助</a>。</p>
+<h3>相关链接</h3>
+<h4>Raspbian 链接</h4>
+<ul>
+<li>Raspbian 主页：<a href="https://www.raspbian.org">https://www.raspbian.org</a></li>
+<li>文档：<a href="https://www.raspbian.org/RaspbianDocumentation">https://www.raspbian.org/RaspbianDocumentation</a></li>
+<li>Bug 反馈：<a href="https://www.raspbian.org/RaspbianBugs">https://www.raspbian.org/RaspbianBugs</a></li>
+<li>镜像列表: <a href="https://www.raspbian.org/RaspbianMirrors">https://www.raspbian.org/RaspbianMirrors</a></li>
+</ul>
+<h4>树莓派链接</h4>
+<ul>
+<li>树莓派基金会主页：<a href="https://www.raspberrypi.org/">https://www.raspberrypi.org/</a></li>
+<li>树莓派基金会论坛 Raspberry Pi OS 版块：<a href="https://raspberrypi.org/forums/viewforum.php?f=66">https://raspberrypi.org/forums/viewforum.php?f=66</a></li>
+</ul>
+<h3>关于本文档</h3>
+<p>本文档内容的原始版本由 Raspberry Pi 中文社区“树莓爱好者论坛”提供。按照 <a href="http://creativecommons.org/licenses/by-nc/3.0/cn/">知识共享署名 - 非商业性使用 3.0 中国大陆许可协议</a> 授权清华大学镜像站使用。</p>
+<p>TUNA 提供的修改版本同样使用 <a href="http://creativecommons.org/licenses/by-nc/3.0/cn/">知识共享署名 - 非商业性使用 3.0 中国大陆许可协议</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJhc3BiaWFuIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsicmFzcGJpYW4iXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1OTAwOVx1NjJlOVx1NGY2MFx1NzY4NCBSYXNwYmlhbiBcdTViZjlcdTVlOTRcdTc2ODQgRGViaWFuIFx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7ImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSAoYnVsbHNleWUpIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSAoRU9MKSJ9fX0sICJzcmMiOiB7Il8iOiAiXHU1NDJmXHU3NTI4XHU2ZTkwXHU3ODAxXHU2ZTkwIiwgIm5vdGUiOiAiXHU2ZTkwXHU3ODAxXHU2ZTkwXHU5MDFhXHU1ZTM4XHU3NTI4XHU0ZThlXHU2Nzg0XHU1ZWZhXHU1NDhjXHU4YzAzXHU4YmQ1XHVmZjBjXHU1ZjAwXHU1NDJmXHU1NDBlXHU1ZjcxXHU1NGNkXHU2NmY0XHU2NWIwXHU5MDFmXHU1ZWE2IiwgInRydWUiOiAiIiwgImZhbHNlIjogIiMgIn0sICJhYXJjaDY0IjogeyJfIjogIlx1NTQyZlx1NzUyOCBtdWx0aS1hcmNoIGFhcmNoNjQiLCAidHJ1ZSI6ICIiLCAiZmFsc2UiOiAiIyAifX0sICJuYW1lIjogInJhc3BiaWFuIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

@@ -1,0 +1,49 @@
+---
+category: help
+layout: help
+mirrorid: kali
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Kali 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>本镜像包含 amd64, arm64, armel, armhf, i386 架构处理器的软件包。</p>
+<h3>手动替换</h3>
+<p>编辑 <code>/etc/apt/sources.list</code> 文件，在文件最前面添加以下条目：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><input id="I31Qqq4b" name="src" title="源码源通常用于构建和调试，开启后影响更新速度" type="checkbox"/><label for="I31Qqq4b" title="源码源通常用于构建和调试，开启后影响更新速度">启用源码源</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="src" z-path="/etc/apt/sources.list">
+deb {{endpoint}} kali-rolling main non-free contrib
+{{src}}deb-src {{endpoint}} kali-rolling main non-free contrib
+</pre>
+<h3>sed 替换</h3>
+<p>执行如下命令 sed 替换</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}sed -i "s@http://http.kali.org/kali@{{endpoint}}@g" /etc/apt/sources.list
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkthbGkgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJrYWxpIl0sICJpbnB1dCI6IHsic3JjIjogeyJfIjogIlx1NTQyZlx1NzUyOFx1NmU5MFx1NzgwMVx1NmU5MCIsICJub3RlIjogIlx1NmU5MFx1NzgwMVx1NmU5MFx1OTAxYVx1NWUzOFx1NzUyOFx1NGU4ZVx1Njc4NFx1NWVmYVx1NTQ4Y1x1OGMwM1x1OGJkNVx1ZmYwY1x1NWYwMFx1NTQyZlx1NTQwZVx1NWY3MVx1NTRjZFx1NjZmNFx1NjViMFx1OTAxZlx1NWVhNiIsICJ0cnVlIjogIiIsICJmYWxzZSI6ICIjICJ9fSwgIm5hbWUiOiAia2FsaSJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

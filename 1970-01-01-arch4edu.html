@@ -1,0 +1,63 @@
+---
+category: help
+layout: help
+mirrorid: arch4edu
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Arch4edu 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>Arch4edu 是面向高校用户推出的非官方软件仓库，支持 Arch Linux 和 Arch Linux ARM，主要包含高校用户常用的科研、教学及开发软件。</p>
+<h2>使用方法</h2>
+<ul>
+<li>导入 GPG key</li>
+</ul>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}pacman-key --recv-keys 7931B6D628C8D3BA
+{{sudo}}pacman-key --finger 7931B6D628C8D3BA
+{{sudo}}pacman-key --lsign-key 7931B6D628C8D3BA
+</pre>
+<ul>
+<li>在 <code>/etc/pacman.conf</code> 文件末尾添加以下内容：</li>
+</ul>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="ini" z-path="/etc/pacman.conf">
+[arch4edu]
+Server = {{endpoint}}/$arch
+</pre>
+<ul>
+<li>[<strong>不推荐</strong>] 不导入 GPG key，并直接在 <code>/etc/pacman.conf</code> 文件末尾添加以下内容：</li>
+</ul>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="ini" z-path="/etc/pacman.conf">
+[arch4edu]
+SigLevel = Never
+Server = {{endpoint}}/$arch
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFyY2g0ZWR1IFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsiaW50cm8iLCAidXNhZ2UiXSwgImlucHV0Ijoge30sICJuYW1lIjogImFyY2g0ZWR1In0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

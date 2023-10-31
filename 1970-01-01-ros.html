@@ -1,0 +1,48 @@
+---
+category: help
+layout: help
+mirrorid: ros
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>ROS 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>新建 <code>/etc/apt/sources.list.d/ros-latest.list</code>，内容为：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="MM7jFfyQ" title="">发行版</label><select id="MM7jFfyQ" name="release" title=""><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option><option value="trusty">Ubuntu 14.04 LTS (trusty) (EOL)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jessie">Debian 8 (jessie) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/ros-latest.list">
+deb {{endpoint}}/ubuntu/ {{release}} main
+</pre>
+<p>然后再输入如下命令，信任 ROS 的 GPG Key，并更新索引：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+{{sudo}}apt update
+</pre>
+<h3>rosdep</h3>
+<p>参考 <a href="../rosdistro/">ROS Distro 帮助</a></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJPUyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInJvcyJdLCAiaW5wdXQiOiB7InJlbGVhc2UiOiB7Il8iOiAiXHU1M2QxXHU4ODRjXHU3MjQ4IiwgIm9wdGlvbiI6IHsiZm9jYWwiOiB7Il8iOiAiVWJ1bnR1IDIwLjA0IExUUyAoZm9jYWwpIn0sICJiaW9uaWMiOiB7Il8iOiAiVWJ1bnR1IDE4LjA0IExUUyAoYmlvbmljKSJ9LCAieGVuaWFsIjogeyJfIjogIlVidW50dSAxNi4wNCBMVFMgKHhlbmlhbCkgKEVPTCkifSwgInRydXN0eSI6IHsiXyI6ICJVYnVudHUgMTQuMDQgTFRTICh0cnVzdHkpIChFT0wpIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSAoRU9MKSJ9LCAiamVzc2llIjogeyJfIjogIkRlYmlhbiA4IChqZXNzaWUpIChFT0wpIn19fX0sICJuYW1lIjogInJvcyJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

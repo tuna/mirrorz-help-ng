@@ -1,0 +1,42 @@
+---
+category: help
+layout: help
+mirrorid: nixpkgs.git
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Nixpkgs</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>nixpkgs 镜像，同步源为 <a href="https://github.com/NixOS/nixpkgs">https://github.com/NixOS/nixpkgs</a>.</p>
+<h3>克隆仓库</h3>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+git clone {{endpoint}}/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk5peHBrZ3MiLCAiYmxvY2siOiBbIm5peHBrZ3MuZ2l0Il0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJuaXhwa2dzLmdpdCJ9</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

@@ -1,0 +1,84 @@
+---
+category: help
+layout: help
+mirrorid: debian
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Debian 软件源</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>一般情况下，将 <code>/etc/apt/sources.list</code> 文件中 Debian 默认的源地址 <code>http://deb.debian.org/</code> 替换为镜像地址即可。</p>
+<p>Debian Buster 以上版本默认支持 HTTPS 源。如果遇到无法拉取 HTTPS 源的情况，请先使用 HTTP 源并安装：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt install apt-transport-https ca-certificates
+</pre>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="wi3XfIg5" title="">Debian 版本</label><select id="wi3XfIg5" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="testing">testing</option><option value="sid">sid</option></select></div><div><input id="IykZkue8" name="src" title="源码源通常用于构建和调试，开启后影响更新速度" type="checkbox"/><label for="IykZkue8" title="源码源通常用于构建和调试，开启后影响更新速度">启用源码源</label></div><div><input checked="checked" id="kBdme3Hj" name="nf" title="" type="checkbox"/><label for="kBdme3Hj" title="">使用非自由软件源</label></div><div><input id="X52ud6Oo" name="mirror_security" title="为了更及时地获得安全更新，不推荐使用镜像站安全更新软件源" type="checkbox"/><label for="X52ud6Oo" title="为了更及时地获得安全更新，不推荐使用镜像站安全更新软件源">强制安全更新使用镜像</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release src nf mirror_security" z-path="/etc/apt/sources.list">
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+{{#sid}}
+deb {{endpoint}}/ sid main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{src}}deb-src {{endpoint}}/ sid main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{/sid}}
+{{^sid}}
+deb {{endpoint}}/ {{release}} main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{src}}deb-src {{endpoint}}/ {{release}} main contrib{{#nf}}{{nonfree}}{{/nf}}
+
+deb {{endpoint}}/ {{release}}-updates main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{src}}deb-src {{endpoint}}/ {{release}}-updates main contrib{{#nf}}{{nonfree}}{{/nf}}
+
+deb {{endpoint}}/ {{release}}-backports main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{src}}deb-src {{endpoint}}/ {{release}}-backports main contrib{{#nf}}{{nonfree}}{{/nf}}
+
+{{#mirror_security}}
+deb {{endpoint}}-security {{release}}{{security}} main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{src}}deb-src {{endpoint}}-security {{release}}{{security}} main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{/mirror_security}}
+{{^mirror_security}}
+deb https://security.debian.org/debian-security {{release}}{{security}} main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{src}}deb-src https://security.debian.org/debian-security {{release}}{{security}} main contrib{{#nf}}{{nonfree}}{{/nf}}
+{{/mirror_security}}
+{{/sid}}
+</pre>
+<p>为了方便快速配置，此处一并附上了 debian-security 的配置，一般来说，镜像站会同时提供 debian-security，截至写文档时，DNUI、HIT 与 NYIST 未提供该镜像，为了更准确的信息您可以前往 <a href="../debian-security/">Debian Security 帮助</a> 确认。</p>
+<p>不过，一般来说，为了更及时地获得安全更新，不推荐使用镜像站安全更新软件源，因为镜像站往往有同步延迟。参考 https://www.debian.org/security/faq.en.html#mirror</p>
+<blockquote>
+<p>The purpose of security.debian.org is to make security updates available as quickly and easily as possible.</p>
+<p>Encouraging the use of unofficial mirrors would add extra complexity that is usually not needed and that can cause frustration if these mirrors are not kept up to date.</p>
+</blockquote>
+<h3>Connection reset by peer</h3>
+<p>在 apt 2.1.9 及以后的版本中，apt 的 HTTP Pipelining 特性与 Nginx 服务器疑似存在一定的不兼容问题，可能导致高带宽从镜像站下载大量软件包<br/>
+（例如系统升级）时出现偶发的 Connection reset by peer 错误<br/>
+（详见 <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=973581">Debian bug #973581</a>）。</p>
+<p>目前，用户可以通过关闭 HTTP Pipelining 特性解决此问题。<br/>
+如果需要关闭，可以在使用 <code>apt</code> 命令时加上 <code>-o Acquire::http::Pipeline-Depth=0</code> 参数，<br/>
+或使用以下命令将相关设置加入 apt 系统配置中：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" data-lang="bash">
+echo "Acquire::http::Pipeline-Depth \"0\";" &gt; /etc/apt/apt.conf.d/99nopipelining
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkRlYmlhbiBcdThmNmZcdTRlZjZcdTZlOTAiLCAiYmxvY2siOiBbInVzYWdlIiwgIm9tdiIsICJuZ2lueCJdLCAiaW5wdXQiOiB7InJlbGVhc2UiOiB7Il8iOiAiRGViaWFuIFx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7ImJvb2t3b3JtIjogeyJfIjogIkRlYmlhbiAxMiAoYm9va3dvcm0pIiwgInNlY3VyaXR5IjogIi1zZWN1cml0eSIsICJub25mcmVlIjogIiBub24tZnJlZSBub24tZnJlZS1maXJtd2FyZSJ9LCAiYnVsbHNleWUiOiB7Il8iOiAiRGViaWFuIDExIChidWxsc2V5ZSkiLCAic2VjdXJpdHkiOiAiLXNlY3VyaXR5IiwgIm5vbmZyZWUiOiAiIG5vbi1mcmVlIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIiwgInNlY3VyaXR5IjogIi91cGRhdGVzIiwgIm5vbmZyZWUiOiAiIG5vbi1mcmVlIn0sICJ0ZXN0aW5nIjogeyJzZWN1cml0eSI6ICItc2VjdXJpdHkiLCAibm9uZnJlZSI6ICIgbm9uLWZyZWUgbm9uLWZyZWUtZmlybXdhcmUifSwgInNpZCI6IHsic2lkIjogdHJ1ZSwgIm5vbmZyZWUiOiAiIG5vbi1mcmVlIG5vbi1mcmVlLWZpcm13YXJlIn19fSwgInNyYyI6IHsiXyI6ICJcdTU0MmZcdTc1MjhcdTZlOTBcdTc4MDFcdTZlOTAiLCAibm90ZSI6ICJcdTZlOTBcdTc4MDFcdTZlOTBcdTkwMWFcdTVlMzhcdTc1MjhcdTRlOGVcdTY3ODRcdTVlZmFcdTU0OGNcdThjMDNcdThiZDVcdWZmMGNcdTVmMDBcdTU0MmZcdTU0MGVcdTVmNzFcdTU0Y2RcdTY2ZjRcdTY1YjBcdTkwMWZcdTVlYTYiLCAidHJ1ZSI6ICIiLCAiZmFsc2UiOiAiIyAifSwgIm5mIjogeyJfIjogIlx1NGY3Zlx1NzUyOFx1OTc1ZVx1ODFlYVx1NzUzMVx1OGY2Zlx1NGVmNlx1NmU5MCIsICJkZWZhdWx0IjogdHJ1ZSwgInRydWUiOiBudWxsfSwgIm1pcnJvcl9zZWN1cml0eSI6IHsiXyI6ICJcdTVmM2FcdTUyMzZcdTViODlcdTUxNjhcdTY2ZjRcdTY1YjBcdTRmN2ZcdTc1MjhcdTk1NWNcdTUwY2YiLCAibm90ZSI6ICJcdTRlM2FcdTRlODZcdTY2ZjRcdTUzY2FcdTY1ZjZcdTU3MzBcdTgzYjdcdTVmOTdcdTViODlcdTUxNjhcdTY2ZjRcdTY1YjBcdWZmMGNcdTRlMGRcdTYzYThcdTgzNTBcdTRmN2ZcdTc1MjhcdTk1NWNcdTUwY2ZcdTdhZDlcdTViODlcdTUxNjhcdTY2ZjRcdTY1YjBcdThmNmZcdTRlZjZcdTZlOTAiLCAidHJ1ZSI6IG51bGx9fSwgIm5hbWUiOiAiZGViaWFuIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>

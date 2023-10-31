@@ -1,0 +1,71 @@
+---
+category: help
+layout: help
+mirrorid: stackage
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Stackage 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>本镜像推荐与<a href="../hackage/">Hackage 镜像</a>配合使用。</p>
+<h3>stack &gt;= v2.5.1</h3>
+<p>修改<code>~/.stack/config.yaml</code>（在 Windows 下是 <code>%APPDATA%\stack\config.yaml</code>）, 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="yaml">
+setup-info-locations: ["{{endpoint}}/stack-setup.yaml"]
+urls:
+  latest-snapshot: {{endpoint}}/snapshots.json
+
+snapshot-location-base: {{endpoint}}/stackage-snapshots/
+</pre>
+<p>此外，还需要手动下载 global-hints.yaml（参考 <a href="../github-raw/">GitHub RAW 帮助</a> 中 stackage global-hints-cache.yaml 一节）到 <code>~/.stack/pantry/global-hints-cache.yaml</code>（在 Windows 下是 <code>%APPDATA%\stack\pantry\global-hints-cache.yaml</code>）。注意文件名不同。这是由于 <code>stack</code> 暂时不支持配置该文件的上游地址。该文件需要在每当第一次用到新版本的 GHC 时更新。</p>
+<h3>stack &gt;= v2.3.1</h3>
+<p>修改<code>~/.stack/config.yaml</code>（在 Windows 下是 <code>%APPDATA%\stack\config.yaml</code>）, 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="yaml">
+setup-info-locations: ["{{endpoint}}/stack-setup.yaml"]
+urls:
+  latest-snapshot: {{endpoint}}/snapshots.json
+</pre>
+<h3>stack &gt;= v2.1.1</h3>
+<p>修改<code>~/.stack/config.yaml</code>（在 Windows 下是 <code>%APPDATA%\stack\config.yaml</code>）, 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="yaml">
+setup-info: "{{endpoint}}/stack-setup.yaml"
+urls:
+  latest-snapshot: {{endpoint}}/snapshots.json
+</pre>
+<h3>stack 小于 v2.1.1</h3>
+<p>修改<code>~/.stack/config.yaml</code>（在 Windows 下是 <code>%APPDATA%\stack\config.yaml</code>）, 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="yaml">
+setup-info: "{{endpoint}}/stack-setup.yaml"
+urls:
+  latest-snapshot: {{endpoint}}/snapshots.json
+  lts-build-plans: {{endpoint}}/lts-haskell/
+  nightly-build-plans: {{endpoint}}/stackage-nightly/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlN0YWNrYWdlIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsic3RhY2thZ2UiXSwgImlucHV0Ijoge30sICJuYW1lIjogInN0YWNrYWdlIn0=</script>
+</div>
+
+{% endraw %}
+
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>
