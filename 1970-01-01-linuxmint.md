@@ -32,7 +32,7 @@ mirrorid: linuxmint
 <div class="z-help"><h1>Linux Mint 软件仓库</h1>
 <p>Linux Mint 也采用 apt 作为包管理器，与 Ubuntu 和 Debian 类似，你需要编辑 <code>/etc/apt/sources.list</code> 和 <code>/etc/apt/sources.list.d/*</code> 中的路径。对于来自 Ubuntu 与 Debian 的部分源，可以参考 <a href="../ubuntu/">Ubuntu 帮助</a>与 <a href="../debian/">Debian 帮助</a>进行修改。</p>
 <p>需要修改 <code>/etc/apt/sources.list.d/official-package-repositories.list</code>（注意备份），把 <code>packages.linuxmint.com</code> 替换为镜像源</p>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="d6c4df9b" title>Linux Mint 版本</label><select id="d6c4df9b" name="release" title><option value="victoria">21.2 (victoria)</option><option value="vera">21.1 (vera)</option><option value="vanessa">21 (vanessa)</option><option value="una">20.3 (una)</option><option value="uma">20.2 (uma)</option><option value="ulyssa">20.1 (ulyssa)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="trexZ9C9" title>Linux Mint 版本</label><select id="trexZ9C9" name="release" title><option value="victoria">21.2 (victoria)</option><option value="vera">21.1 (vera)</option><option value="vanessa">21 (vanessa)</option><option value="una">20.3 (una)</option><option value="uma">20.2 (uma)</option><option value="ulyssa">20.1 (ulyssa)</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release">
 deb {{endpoint}}/ {{release}} main upstream import backport
 </tmpl>
 <p>然后运行 <code>apt update</code> 即可。</p>
