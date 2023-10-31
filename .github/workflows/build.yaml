@@ -26,6 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install markdown pyyaml beautifulsoup4
     - name: Build all documentation
+      id: build
       run: |
         export TUNA_TEMP_DIR=$(mktemp -d)
         git worktree add --no-checkout --detach "$TUNA_TEMP_DIR" origin/transpiled
@@ -33,6 +34,7 @@ jobs:
         git -C "$TUNA_TEMP_DIR" add --all --verbose
         if git -C "$TUNA_TEMP_DIR" diff --exit-code --quiet --cached; then
           echo "No changes to commit."
+          echo "changed=false" >> "$GITHUB_OUTPUT"
           exit 0
         fi
         git -C "$TUNA_TEMP_DIR" \
@@ -40,3 +42,22 @@ jobs:
           -c user.email="github-actions[bot]@users.noreply.github.com" \
           commit -m "Auto build for $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
         git -C "$TUNA_TEMP_DIR" push --force origin HEAD:transpiled
+        echo "changed=true" >> "$GITHUB_OUTPUT"
+        echo "new_commit=$(git -C "$TUNA_TEMP_DIR" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+    - name: Trigger mirror-web update
+      uses: actions/github-script@v6
+      if: steps.build.outputs.changed == 'true'
+      env:
+        NEW_COMMIT: ${{ steps.build.outputs.new_commit }}
+      with:
+        github-token: ${{ secrets.MIRROR_WEB_TRIGGER_PAT }}
+        script: |
+          github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: 'mirror-web',
+            workflow_id: 'sync-helpz.yml',
+            ref: 'master',
+            inputs: {
+              'new_commit': process.env.NEW_COMMIT,
+            },
+          });
