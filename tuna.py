@@ -12,6 +12,9 @@ def process(html, config, project, *_):
     for tmpl in doc.find_all('tmpl'):
         tmpl.name = "pre"
         tmpl.attrs["class"] = tmpl.attrs.get("class", []) + ["z-tmpl"]
+    for form in doc.find_all('form', class_='z-form'):
+        form.attrs.pop('onchange', None)
+        form.attrs.pop('onsumit', None)
     doc_body = doc.find('div', class_='z-help')
     doc_title = None
     if not doc_body is None:
@@ -29,7 +32,7 @@ excerpt_separator: ""
 <!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
 {% raw %}""" + (str(doc_title) if not doc_title is None else "") + """{% endraw %}
 <div class="z-wrap">
-    <form class="z-form z-global" onchange="form_update(null)" onsubmit="return false">
+    <form class="z-form z-global">
         <div>
             <label for="e0a5cecb">线路选择</label>
             <select id="e0a5cecb" name="host">
