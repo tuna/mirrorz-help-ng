@@ -41,7 +41,7 @@ mirrorid: rpmfusion
 {{sudo}}yum install --nogpgcheck {{endpoint}}/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm {{endpoint}}/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 </tmpl>
 <h4>CentOS/RHEL 用户</h4>
-<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="38f0dc2b" title>发行版</label><select id="38f0dc2b" name="release" title><option value="7">CentOS/RHEL 7</option><option value="6">CentOS/RHEL 6</option><option value="8">CentOS/RHEL 8</option><option value="9">CentOS/RHEL 9</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onchange="form_update(event)" onsubmit="return false"><div><label for="wMdOOkEi" title>发行版</label><select id="wMdOOkEi" name="release" title><option value="7">CentOS/RHEL 7</option><option value="6">CentOS/RHEL 6</option><option value="8">CentOS/RHEL 8</option><option value="9">CentOS/RHEL 9</option></select></div></form><pre class="z-code"></pre></div><tmpl z-input="release" z-lang="bash">
 {{sudo}}yum localinstall --nogpgcheck {{endpoint}}/free/el/rpmfusion-free-release-{{release}}.noarch.rpm {{endpoint}}/nonfree/el/rpmfusion-nonfree-release-{{release}}.noarch.rpm
 </tmpl>
 <p>注意：没有将当前用户设为管理员的用户，需要将 <code>sudo CMD</code> 替换为 <code>su -c 'CMD'</code>，并输入 root 密码。</p>
