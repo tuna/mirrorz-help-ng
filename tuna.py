@@ -17,6 +17,7 @@ def process(html, config, project, *_):
 category: help
 layout: help
 mirrorid: {config.get('mirrorid', project)}
+excerpt_separator: ""
 ---
 """ + """
 <!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
