@@ -41,7 +41,7 @@ mirrorid: {config.get('mirrorid', project)}
 """ + html + """
 {% endraw %}
 
-<script src="/static/js/mustache.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>
 """
     with open(outdir/f'1970-01-01-{config.get("permalink", project)}.md', 'w') as f:
