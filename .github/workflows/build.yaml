@@ -28,12 +28,15 @@ jobs:
     - name: Build all documentation
       run: |
         export TUNA_TEMP_DIR=$(mktemp -d)
+        git worktree add --no-checkout --detach "$TUNA_TEMP_DIR" origin/transpiled
         cat enabled.txt | xargs python global/compile.py -v --lang zh -C dom -C tuna
-        git checkout transpiled
-        mv $TUNA_TEMP_DIR/* .
-    - name: Commit changes
-      run: |
-        git config --local user.name  "GitHub Actions"
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add *.md
-        git commit -am "Auto build for $GITHUB_REPOSITORY@${GITHUB_SHA::7}" && git push || echo "No changes to commit"
+        git -C "$TUNA_TEMP_DIR" add --all --verbose
+        if git -C "$TUNA_TEMP_DIR" diff --exit-code --quiet --cached; then
+          echo "No changes to commit."
+          exit 0
+        fi
+        git -C "$TUNA_TEMP_DIR" \
+          -c user.name="GitHub Actions" \
+          -c user.email="github-actions[bot]@users.noreply.github.com" \
+          commit -m "Auto build for $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
+        git -C "$TUNA_TEMP_DIR" push --force origin HEAD:transpiled
