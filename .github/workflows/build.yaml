@@ -36,4 +36,4 @@ jobs:
         git config --local user.name  "GitHub Actions"
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add *.md
-        git commit -am "build documentations" && git push || echo "No changes to commit"
+        git commit -am "build $GITHUB_REPOSITORY@${GITHUB_SHA::7}" && git push || echo "No changes to commit"
