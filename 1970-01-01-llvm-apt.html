@@ -30,7 +30,7 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h3>安装脚本</h3>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="vocX8xNU" title="">LLVM 版本</label><select id="vocX8xNU" name="ver" title=""><option value="">默认</option><option value="15">15</option><option value="14">14</option><option value="13">13</option><option value="12">12</option><option value="11">11</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="ver" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="rmcPYtGM" title="">LLVM 版本</label><select id="rmcPYtGM" name="ver" title=""><option value="">默认</option><option value="15">15</option><option value="14">14</option><option value="13">13</option><option value="12">12</option><option value="11">11</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="ver" z-lang="bash">
 # 下载脚本
 wget {{endpoint}}/llvm.sh
 chmod +x llvm.sh
@@ -42,7 +42,7 @@ chmod +x llvm.sh
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | {{sudo}}apt-key add -
 </pre>
 <p>新增 <code>/etc/apt/sources.list.d/llvm-apt.list</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="GcfdT6uJ" title="">发行版</label><select id="GcfdT6uJ" name="release" title=""><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div><div><label for="z60uBjKU" title="">LLVM 版本</label><select id="z60uBjKU" name="ver2" title=""><option value="">默认</option><option value="16">16</option><option value="15">15</option><option value="14">14</option><option value="13">13</option><option value="12">12</option><option value="11">11</option></select></div><div><input id="ArfcpA1L" name="src" title="源码源通常用于构建和调试，开启后影响更新速度" type="checkbox"/><label for="ArfcpA1L" title="源码源通常用于构建和调试，开启后影响更新速度">启用源码源</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release ver2 src" z-path="/etc/apt/sources.list.d/llvm-apt.list">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="BbecMXrD" title="">发行版</label><select id="BbecMXrD" name="release" title=""><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div><div><label for="vXSqxiEN" title="">LLVM 版本</label><select id="vXSqxiEN" name="ver2" title=""><option value="">默认</option><option value="16">16</option><option value="15">15</option><option value="14">14</option><option value="13">13</option><option value="12">12</option><option value="11">11</option></select></div><div><input id="woecnwTF" name="src" title="源码源通常用于构建和调试，开启后影响更新速度" type="checkbox"/><label for="woecnwTF" title="源码源通常用于构建和调试，开启后影响更新速度">启用源码源</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release ver2 src" z-path="/etc/apt/sources.list.d/llvm-apt.list">
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
 deb {{endpoint}}/{{release}}/ llvm-toolchain-{{release}}{{#ver2}}-{{ver2}}{{/ver2}} main
 {{src}}deb-src {{endpoint}}/{{release}}/ llvm-toolchain-{{release}}{{#ver2}}-{{ver2}}{{/ver2}} main
