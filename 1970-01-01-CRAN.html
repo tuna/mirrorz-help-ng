@@ -57,9 +57,11 @@ deb {{endpoint}}/bin/linux/{{os}} {{release}}-{{version}}/
 <p>然后运行</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 # Debian 用户添加该公钥
-{{sudo}}apt-key adv --keyserver keyserver.ubuntu.com --recv-key '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7'
+gpg --keyserver keyserver.ubuntu.com --recv-key '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7'
+gpg --armor --export '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7' | {{sudo}} tee /etc/apt/trusted.gpg.d/cran_debian_key.asc
 # Ubuntu 用户添加该公钥
-{{sudo}}apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+wget -qO- {{endpoint}}/bin/linux/ubuntu/marutter_pubkey.asc | {{sudo}} tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+# 更新软件包
 {{sudo}}apt-get update
 {{sudo}}apt-get install r-base-dev
 </pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkNSQU4iLCAiYmxvY2siOiBbInVzYWdlIiwgImRlYiJdLCAiaW5wdXQiOiB7InJlbGVhc2UiOiB7Il8iOiAiXHU2NGNkXHU0ZjVjXHU3Y2ZiXHU3ZWRmXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiYnVsbHNleWUiOiB7Il8iOiAiRGViaWFuIDExIChidWxsc2V5ZSkiLCAib3MiOiAiZGViaWFuIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIiwgIm9zIjogImRlYmlhbiJ9LCAic3RyZXRjaCI6IHsiXyI6ICJEZWJpYW4gOSAoc3RyZXRjaCkgKEVPTCkiLCAib3MiOiAiZGViaWFuIn0sICJib29rd29ybSI6IHsiXyI6ICJEZWJpYW4gOCAoamVzc2llKSAoRU9MKSIsICJvcyI6ICJkZWJpYW4ifSwgImphbW15IjogeyJfIjogIlVidW50dSAyMi4wNCBMVFMgKGphbW15KSIsICJvcyI6ICJ1YnVudHUifSwgImZvY2FsIjogeyJfIjogIlVidW50dSAyMC4wNCBMVFMgKGZvY2FsKSIsICJvcyI6ICJ1YnVudHUifSwgImJpb25pYyI6IHsiXyI6ICJVYnVudHUgMTguMDQgTFRTIChiaW9uaWMpIiwgIm9zIjogInVidW50dSJ9LCAieGVuaWFsIjogeyJfIjogIlVidW50dSAxNi4wNCBMVFMgKHhlbmlhbCkgKEVPTCkiLCAib3MiOiAidWJ1bnR1In19fSwgInZlcnNpb24iOiB7Il8iOiAiQ1JBTiBcdTcyNDhcdTY3MmMiLCAib3B0aW9uIjogeyJjcmFuNDAiOiBudWxsLCAiY3JhbjM1IjogbnVsbCwgImNyYW4zNCI6IG51bGx9fX0sICJuYW1lIjogIkNSQU4ifQ==</script>
