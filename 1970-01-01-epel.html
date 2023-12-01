@@ -37,13 +37,13 @@ excerpt_separator: ""
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}yum install epel-release
 </pre>
-<p>用如下命令自动替换：（来自 <a href="https://github.com/tuna/issues/issues/687">https://github.com/tuna/issues/issues/687</a>）</p>
+<p>用如下命令自动替换：（修改自 <a href="https://github.com/tuna/issues/issues/687">https://github.com/tuna/issues/issues/687</a>）</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}sed -e 's!^metalink=!#metalink=!g' \
     -e 's!^#baseurl=!baseurl=!g' \
     -e 's!https\?://download\.fedoraproject\.org/pub/epel!{{endpoint}}!g' \
     -e 's!https\?://download\.example/pub/epel!{{endpoint}}!g' \
-    -i /etc/yum.repos.d/epel*.repo
+    -i /etc/yum.repos.d/epel{,-testing}.repo
 </pre>
 <p>修改结果如下：（仅供参考，不同版本可能不同）</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
