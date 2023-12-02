@@ -24,21 +24,21 @@ name=MySQL Connectors Community
 baseurl={{endpoint}}/yum/mysql-connectors-community-{{rh_release}}-$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql
+gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
 [mysql-tools-community]
 name=MySQL Tools Community
 baseurl={{endpoint}}/yum/mysql-tools-community-{{rh_release}}-$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql
+gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
 [mysql-{{version}}-community]
 name=MySQL {{version}} Community Server
 baseurl={{endpoint}}/yum/mysql-{{version}}-community-{{rh_release}}-$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql
+gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 </tmpl>
 
 参考文档：https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/
