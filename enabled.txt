@@ -21,6 +21,7 @@ crates.io-index.git
 dart-pub
 deb-multimedia
 debian
+debian-elts
 docker-ce
 eclipse
 elasticstack
