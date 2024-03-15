@@ -47,10 +47,12 @@ Server = {{endpoint}}/$arch
 </pre>
 <h3>新系统中安装 archlinuxcn-keyring 包前的额外步骤</h3>
 <p>2023 年 12 月后，在新系统下安装 <code>archlinuxcn-keyring</code> 时可能会出现错误：</p>
-<p><code>error: archlinuxcn-keyring: Signature from "Jiachen YANG (Arch Linux Packager Signing Key) " is marginal trust</code></p>
+<pre><code>error: archlinuxcn-keyring: Signature from "Jiachen YANG (Arch Linux Packager Signing Key) " is marginal trust
+</code></pre>
 <p>需要在本地信任 farseerfc 的 GPG key：</p>
-<p><code>bash
-sudo pacman-key --lsign-key "farseerfc@archlinux.org"</code></p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}pacman-key --lsign-key "farseerfc@archlinux.org"
+</pre>
 <p>然后重试安装。详情参见 <a href="https://www.archlinuxcn.org/archlinuxcn-keyring-manually-trust-farseerfc-key/">新系统中安装 archlinuxcn-keyring 包前需要手动信任 farseerfc 的 key</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFyY2ggTGludXggQ04gXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSIsICJmYXJzZWVyZmMiXSwgImlucHV0Ijoge30sICJuYW1lIjogImFyY2hsaW51eGNuIn0=</script>
 </div>
 
