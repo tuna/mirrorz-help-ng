@@ -42,9 +42,9 @@ excerpt_separator: ""
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 export DOWNLOAD_URL="{{endpoint}}"
 # 如您使用 curl
-curl -fsSL https://get.docker.com/ | {{#sudo}}sudo -E{{/sudo}}sh
+curl -fsSL https://get.docker.com/ | {{#sudo}}sudo -E {{/sudo}}sh
 # 如您使用 wget
-wget -O- https://get.docker.com/ | {{#sudo}}sudo -E{{/sudo}}sh
+wget -O- https://get.docker.com/ | {{#sudo}}sudo -E {{/sudo}}sh
 </pre>
 <h3>Debian/Ubuntu/Raspbian 用户</h3>
 <p>以下内容根据 <a href="https://docs.docker.com/engine/install/debian/">官方文档</a> 修改而来。</p>
