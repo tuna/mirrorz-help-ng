@@ -30,40 +30,57 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h3>Debian/Ubuntu 用户</h3>
-<p>选择你的系统版本</p>
-<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="hdwIMwFh" title="">操作系统版本</label><select id="hdwIMwFh" name="release" title=""><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jessie">Debian 8 (jessie) (EOL)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form></div>
-<p>首先信任 erlang-solutions 的 GPG 公钥：</p>
+<p>选择你的系统版本：</p>
+<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="hdwIMwFh" title="">操作系统版本</label><select id="hdwIMwFh" name="release" title=""><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div></form></div>
+<p>Mongoose IM 版本：</p>
+<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="FmClmQOT" title="">MongooseIM 版本</label><select id="FmClmQOT" name="mongooseim-version" title=""><option value="mongooseim-5">MongooseIM 5</option><option value="mongooseim-6">MongooseIM 6</option></select></div></form></div>
+<p>Erlang 版本：</p>
+<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="UlfufeBM" title="">Erlang/OTP 版本</label><select id="UlfufeBM" name="erlang-version" title=""><option value="esl-erlang-24">Erlang/OTP 24</option><option value="esl-erlang-25">Erlang/OTP 25</option><option value="esl-erlang-26">Erlang/OTP 26</option></select></div></form></div>
+<p>Elixir 版本：</p>
+<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="SzhscWbR" title="">Elixir 版本</label><select id="SzhscWbR" name="elixir-version" title=""><option value="elixir-1.14">Elixir 1.14</option><option value="elixir-1.15">Elixir 1.15</option></select></div></form></div>
+<p>请注意：官方提供的软件列表可能经常变化，镜像站不保证能提供所有系统与软件的组合。<br/>
+请在<a href="https://www.erlang-solutions.com/downloads/">官网</a>查询目前的可用版本，并根据实际情况指定版本。</p>
+<p>首先信任来自 <a href="https://www.erlang-solutions.com/downloads/">Erlang Solutions</a> 的 PGP 公钥：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-curl -s https://packages.erlang-solutions.com/{{os}}/erlang_solutions.asc | {{sudo}}apt-key add -
+{{sudo}}mkdir -m 0755 -p /etc/apt/keyrings/
+curl -s https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc | gpg --dearmor | {{sudo}}tee /etc/apt/keyrings/erlang-solutions-archive_compat.gpg &gt; /dev/null
 </pre>
-<p>新建 <code>/etc/apt/sources.list.d/erlang-solutions.list</code></p>
+<p>新建 <code>/etc/apt/sources.list.d/erlang-solutions.list</code>，填入下列内容（可根据需要选择）：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apt/sources.list.d/erlang-solutions.list">
-deb {{endpoint}}/{{os}} {{release}} contrib
+deb [signed-by=/etc/apt/keyrings/erlang-solutions-archive_compat.gpg] {{endpoint}}/{{os}} {{release}}-esl-erlang-{{erlang-version}} contrib
+deb [signed-by=/etc/apt/keyrings/erlang-solutions-archive_compat.gpg] {{endpoint}}/{{os}} {{release}}-elixir-{{elixir-version}} contrib
+deb [signed-by=/etc/apt/keyrings/erlang-solutions-archive_compat.gpg] {{endpoint}}/{{os}} {{release}}-mongooseim-{{mongooseim-version}} contrib
 </pre>
-<p>安装 <code>erlang</code> 即可</p>
+<p>安装 <code>esl-erlang</code> 等软件包即可：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}apt-get update
-{{sudo}}apt-get install -y erlang
+{{sudo}}apt-get install -y elixir esl-erlang mongooseim
 </pre>
-<h3>CentOS 用户</h3>
-<p>首先信任 erlang-solutions 的 GPG 公钥：</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+<h3>CentOS / Rocky Linux 用户</h3>
+<p>官方目前没有提供软件仓库，请前往<a href="https://www.erlang-solutions.com/downloads/">官网</a> 下载。</p>
+<!-- 首先信任 erlang-solutions 的 GPG 公钥：
+
+<tmpl z-lang="bash">
 {{sudo}}rpm --import https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
-</pre>
-<p>新建 <code>/etc/yum.repos.d/erlang-solutions.repo</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini" z-path="/etc/yum.repos.d/erlang-solutions.repo">
+</tmpl>
+
+新建 `/etc/yum.repos.d/erlang-solutions.repo`，内容为
+
+<tmpl z-lang="ini" z-path="/etc/yum.repos.d/erlang-solutions.repo">
 [erlang-solutions]
 name=CentOS $releasever - Erlang Solutions
 baseurl={{endpoint}}/centos/$releasever/
 gpgcheck=1
 gpgkey=https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
 enabled=1
-</pre>
-<p>刷新缓存并安装 <code>erlang</code> 即可。</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+</tmpl>
+
+刷新缓存并安装 `erlang` 即可。
+
+<tmpl z-lang="bash">
 {{sudo}}yum makecache
 {{sudo}}yum install erlang
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVybGFuZyBTb2x1dGlvbnMgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJkZWIiLCAicnBtIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJcdTY0Y2RcdTRmNWNcdTdjZmJcdTdlZGZcdTcyNDhcdTY3MmMiLCAib3B0aW9uIjogeyJidWxsc2V5ZSI6IHsiXyI6ICJEZWJpYW4gMTEgKGJ1bGxzZXllKSIsICJvcyI6ICJkZWJpYW4ifSwgImJ1c3RlciI6IHsiXyI6ICJEZWJpYW4gMTAgKGJ1c3RlcikiLCAib3MiOiAiZGViaWFuIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSAoRU9MKSIsICJvcyI6ICJkZWJpYW4ifSwgImplc3NpZSI6IHsiXyI6ICJEZWJpYW4gOCAoamVzc2llKSAoRU9MKSIsICJvcyI6ICJkZWJpYW4ifSwgImZvY2FsIjogeyJfIjogIlVidW50dSAyMC4wNCBMVFMgKGZvY2FsKSIsICJvcyI6ICJ1YnVudHUifSwgImJpb25pYyI6IHsiXyI6ICJVYnVudHUgMTguMDQgTFRTIChiaW9uaWMpIiwgIm9zIjogInVidW50dSJ9LCAieGVuaWFsIjogeyJfIjogIlVidW50dSAxNi4wNCBMVFMgKHhlbmlhbCkgKEVPTCkiLCAib3MiOiAidWJ1bnR1In19fX0sICJuYW1lIjogImVybGFuZy1zb2x1dGlvbnMifQ==</script>
+</tmpl> --><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVybGFuZyBTb2x1dGlvbnMgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJkZWIiLCAicnBtIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJcdTY0Y2RcdTRmNWNcdTdjZmJcdTdlZGZcdTcyNDhcdTY3MmMiLCAib3B0aW9uIjogeyJidWxsc2V5ZSI6IHsiXyI6ICJEZWJpYW4gMTEgKGJ1bGxzZXllKSIsICJvcyI6ICJkZWJpYW4ifSwgImJ1c3RlciI6IHsiXyI6ICJEZWJpYW4gMTAgKGJ1c3RlcikiLCAib3MiOiAiZGViaWFuIn0sICJqYW1teSI6IHsiXyI6ICJVYnVudHUgMjIuMDQgTFRTIChqYW1teSkiLCAib3MiOiAidWJ1bnR1In0sICJmb2NhbCI6IHsiXyI6ICJVYnVudHUgMjAuMDQgTFRTIChmb2NhbCkiLCAib3MiOiAidWJ1bnR1In0sICJiaW9uaWMiOiB7Il8iOiAiVWJ1bnR1IDE4LjA0IExUUyAoYmlvbmljKSIsICJvcyI6ICJ1YnVudHUifX19LCAibW9uZ29vc2VpbS12ZXJzaW9uIjogeyJfIjogIk1vbmdvb3NlSU0gXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsibW9uZ29vc2VpbS01IjogeyJfIjogIk1vbmdvb3NlSU0gNSJ9LCAibW9uZ29vc2VpbS02IjogeyJfIjogIk1vbmdvb3NlSU0gNiJ9fX0sICJlcmxhbmctdmVyc2lvbiI6IHsiXyI6ICJFcmxhbmcvT1RQIFx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7ImVzbC1lcmxhbmctMjQiOiB7Il8iOiAiRXJsYW5nL09UUCAyNCJ9LCAiZXNsLWVybGFuZy0yNSI6IHsiXyI6ICJFcmxhbmcvT1RQIDI1In0sICJlc2wtZXJsYW5nLTI2IjogeyJfIjogIkVybGFuZy9PVFAgMjYifX19LCAiZWxpeGlyLXZlcnNpb24iOiB7Il8iOiAiRWxpeGlyIFx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7ImVsaXhpci0xLjE0IjogeyJfIjogIkVsaXhpciAxLjE0In0sICJlbGl4aXItMS4xNSI6IHsiXyI6ICJFbGl4aXIgMS4xNSJ9fX19LCAibmFtZSI6ICJlcmxhbmctc29sdXRpb25zIn0=</script>
 </div>
 
 {% endraw %}
