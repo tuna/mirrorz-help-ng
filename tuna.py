@@ -1,4 +1,5 @@
 import os
+import json
 from pathlib import Path
 import bs4
 
@@ -24,8 +25,8 @@ def process(html, config, project, *_):
     html = str(doc)
     md = f"""---
 category: help
-layout: help
-mirrorid: {config.get('mirrorid', project)}
+layout: helpz
+mirrorid: {json.dumps(config.get('mirrorid', project))}
 excerpt_separator: ""
 ---
 """ + """
@@ -54,9 +55,6 @@ excerpt_separator: ""
 {% raw %}
 """ + html + """
 {% endraw %}
-
-<script src="/static/js/mustache.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/zdocs.js?{{ site.data['hash'] }}"></script>
 """
     with open(outdir/f'1970-01-01-{config.get("permalink", project)}.html', 'w') as f:
         f.write(md)
