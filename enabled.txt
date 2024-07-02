@@ -41,6 +41,7 @@ influxdata
 kali
 kicad
 kodi
+kubernetes
 linux-firmware.git
 linux-next.git
 linux-stable.git
