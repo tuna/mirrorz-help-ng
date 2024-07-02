@@ -40,7 +40,7 @@ excerpt_separator: ""
 {{sudo}}yum install --nogpgcheck {{endpoint}}/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm {{endpoint}}/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 </pre>
 <h4>CentOS/RHEL 用户</h4>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="sGdHHizh" title="">发行版</label><select id="sGdHHizh" name="release" title=""><option value="7">CentOS/RHEL 7</option><option value="6">CentOS/RHEL 6</option><option value="8">CentOS/RHEL 8</option><option value="9">CentOS/RHEL 9</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="sGdHHizh" title="">发行版</label><select id="sGdHHizh" name="release" title=""><option value="8">CentOS/RHEL 8</option><option value="9">CentOS/RHEL 9</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-lang="bash">
 {{sudo}}yum localinstall --nogpgcheck {{endpoint}}/free/el/rpmfusion-free-release-{{release}}.noarch.rpm {{endpoint}}/nonfree/el/rpmfusion-nonfree-release-{{release}}.noarch.rpm
 </pre>
 <p>注意：没有将当前用户设为管理员的用户，需要将 <code>sudo CMD</code> 替换为 <code>su -c 'CMD'</code>，并输入 root 密码。</p>
@@ -78,7 +78,7 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever-$basearch
 </pre>
 <h3>更多</h3>
-<p>RHEL/CentOS 用户请参考 <a href="http://rpmfusion.org/Configuration">RPMFusion 官方指南</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJQTUZ1c2lvbiBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInJwbWZ1c2lvbiJdLCAiaW5wdXQiOiB7InJlbGVhc2UiOiB7Il8iOiAiXHU1M2QxXHU4ODRjXHU3MjQ4IiwgIm9wdGlvbiI6IHsiNyI6IHsiXyI6ICJDZW50T1MvUkhFTCA3In0sICI2IjogeyJfIjogIkNlbnRPUy9SSEVMIDYifSwgIjgiOiB7Il8iOiAiQ2VudE9TL1JIRUwgOCJ9LCAiOSI6IHsiXyI6ICJDZW50T1MvUkhFTCA5In19fX0sICJuYW1lIjogInJwbWZ1c2lvbiJ9</script>
+<p>RHEL/CentOS 用户请参考 <a href="http://rpmfusion.org/Configuration">RPMFusion 官方指南</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJQTUZ1c2lvbiBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInJwbWZ1c2lvbiJdLCAiaW5wdXQiOiB7InJlbGVhc2UiOiB7Il8iOiAiXHU1M2QxXHU4ODRjXHU3MjQ4IiwgIm9wdGlvbiI6IHsiOCI6IHsiXyI6ICJDZW50T1MvUkhFTCA4In0sICI5IjogeyJfIjogIkNlbnRPUy9SSEVMIDkifX19fSwgIm5hbWUiOiAicnBtZnVzaW9uIn0=</script>
 </div>
 
 {% endraw %}

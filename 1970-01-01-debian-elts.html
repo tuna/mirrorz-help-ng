@@ -34,17 +34,17 @@ excerpt_separator: ""
 <p>每个 Debian 稳定版本都有两年的官方支持期限，然后进入由 Debian LTS Team 支持的至少三年的<a href="https://www.debian.org/lts/">长期支持（LTS）</a>期。在这五年中，用户依旧可以使用官方 debian 源、debian-security 源及它们的镜像。</p>
 <p>在 LTS 结束后，对应发行版的软件源会被从 Debian 主源中删除，移动到 <a href="https://archive.debian.org/">archive.debian.org</a>，不再获得任何更新，对应的 APT 签名公钥也会过期。Freexian 公司为 Debian 提供付费的<a href="https://www.freexian.com/lts/extended/">扩展 LTS 支持</a>服务，主要提供安全更新，也有少量功能更新，通常支持期限可至对应版本发布后十年。这些 ELTS 软件源是可以免费使用的。</p>
 <h2>使用方法</h2>
-<p>在使用前，请确保你的系统正在 ELTS 列表中。</p>
+<p>在使用前，请确保你的<strong>系统、架构</strong>都在<a href="https://www.freexian.com/lts/extended/">受支持的 ELTS 列表</a>中。</p>
 <p>首先安装 Freexian 的 APT 源密钥：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 wget https://deb.freexian.com/extended-lts/archive-key.gpg -O /tmp/elts-archive-key.gpg
 mv /tmp/elts-archive-key.gpg /etc/apt/trusted.gpg.d/freexian-archive-extended-lts.gpg
 </pre>
 <p>此后，<strong>删除</strong> <code>/etc/apt/sources.list</code> 中的所有的 Debian 源（可能包括 <code>foo</code>, <code>foo-updates</code>, <code>foo-backports</code>, <code>foo-security</code> 等多个来源，其中 <code>foo</code> 为版本代号），替换为：</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="ONWzdTUA" title="">Debian 版本</label><select id="ONWzdTUA" name="release" title=""><option value="jessie">Debian 8 (jessie)</option><option value="stretch">Debian 9 (stretch)</option></select></div><div><input checked="checked" id="ePHGGFSH" name="nf" title="" type="checkbox"/><label for="ePHGGFSH" title="">使用非自由软件源</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release nf">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="ONWzdTUA" title="">Debian 版本</label><select id="ONWzdTUA" name="release" title=""><option value="jessie">Debian 8 (jessie)</option><option value="stretch">Debian 9 (stretch)</option><option value="buster">Debian 10 (buster)</option></select></div><div><input checked="checked" id="ePHGGFSH" name="nf" title="" type="checkbox"/><label for="ePHGGFSH" title="">使用非自由软件源</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release nf">
 deb {{endpoint}} {{release}} main contrib{{#nf}}{{nonfree}}{{/nf}}
 </pre>
-<p>提醒：旧版 Debian 如需使用 HTTPS 源，需要安装 <code>apt-transport-https</code> 包，并需要对应更新根证书，否则可能无法访问大多数镜像站。详情可参见 TUNA issues 上的<a href="https://github.com/tuna/issues/issues/1342#issuecomment-931412628">相应讨论</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkRlYmlhbiBcdTYyNjlcdTVjNTVcdTk1N2ZcdTY3MWZcdTY1MmZcdTYzMDFcdWZmMDhFeHRlbmRlZCBMVFNcdWZmMDlcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJEZWJpYW4gXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiamVzc2llIjogeyJfIjogIkRlYmlhbiA4IChqZXNzaWUpIiwgIm5vbmZyZWUiOiAiIG5vbi1mcmVlIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSIsICJub25mcmVlIjogIiBub24tZnJlZSJ9fX0sICJuZiI6IHsiXyI6ICJcdTRmN2ZcdTc1MjhcdTk3NWVcdTgxZWFcdTc1MzFcdThmNmZcdTRlZjZcdTZlOTAiLCAiZGVmYXVsdCI6IHRydWUsICJ0cnVlIjogbnVsbH19LCAibmFtZSI6ICJkZWJpYW4tZWx0cyJ9</script>
+<p>提醒：旧版 Debian 如需使用 HTTPS 源，需要安装 <code>apt-transport-https</code> 包，并需要对应更新根证书，否则可能无法访问大多数镜像站。详情可参见 TUNA issues 上的<a href="https://github.com/tuna/issues/issues/1342#issuecomment-931412628">相应讨论</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkRlYmlhbiBcdTYyNjlcdTVjNTVcdTk1N2ZcdTY3MWZcdTY1MmZcdTYzMDFcdWZmMDhFeHRlbmRlZCBMVFNcdWZmMDlcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJEZWJpYW4gXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiamVzc2llIjogeyJfIjogIkRlYmlhbiA4IChqZXNzaWUpIiwgIm5vbmZyZWUiOiAiIG5vbi1mcmVlIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSIsICJub25mcmVlIjogIiBub24tZnJlZSJ9LCAiYnVzdGVyIjogeyJfIjogIkRlYmlhbiAxMCAoYnVzdGVyKSIsICJub25mcmVlIjogIiBub24tZnJlZSJ9fX0sICJuZiI6IHsiXyI6ICJcdTRmN2ZcdTc1MjhcdTk3NWVcdTgxZWFcdTc1MzFcdThmNmZcdTRlZjZcdTZlOTAiLCAiZGVmYXVsdCI6IHRydWUsICJ0cnVlIjogbnVsbH19LCAibmFtZSI6ICJkZWJpYW4tZWx0cyJ9</script>
 </div>
 
 {% endraw %}

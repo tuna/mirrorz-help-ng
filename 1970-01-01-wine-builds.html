@@ -39,7 +39,7 @@ excerpt_separator: ""
 {{sudo}}wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 </pre>
 <p>新增 <code>/etc/apt/sources.list.d/winehq.list</code>，内容为</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="ylfeBrnS" title="">发行版</label><select id="ylfeBrnS" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/winehq.list">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="ylfeBrnS" title="">发行版</label><select id="ylfeBrnS" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/winehq.list">
 
 deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] {{endpoint}}/{{os}}/ {{release}} main
 </pre>
@@ -47,7 +47,7 @@ deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] {{endpoin
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}apt update
 {{sudo}}apt install --install-recommends winehq-stable
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIldpbmUgYnVpbGRzIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsid2luZS1idWlsZHMiXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NTNkMVx1ODg0Y1x1NzI0OCIsICJvcHRpb24iOiB7ImJvb2t3b3JtIjogeyJfIjogIkRlYmlhbiAxMiAoYm9va3dvcm0pIiwgIm9zIjogImRlYmlhbiJ9LCAiYnVsbHNleWUiOiB7Il8iOiAiRGViaWFuIDExIChidWxsc2V5ZSkiLCAib3MiOiAiZGViaWFuIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIiwgIm9zIjogImRlYmlhbiJ9LCAiamFtbXkiOiB7Il8iOiAiVWJ1bnR1IDIyLjA0IExUUyAoamFtbXkpIiwgIm9zIjogInVidW50dSJ9LCAiZm9jYWwiOiB7Il8iOiAiVWJ1bnR1IDIwLjA0IExUUyAoZm9jYWwpIiwgIm9zIjogInVidW50dSJ9LCAiYmlvbmljIjogeyJfIjogIlVidW50dSAxOC4wNCBMVFMgKGJpb25pYykiLCAib3MiOiAidWJ1bnR1In19fX0sICJuYW1lIjogIndpbmUtYnVpbGRzIn0=</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIldpbmUgYnVpbGRzIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsid2luZS1idWlsZHMiXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NTNkMVx1ODg0Y1x1NzI0OCIsICJvcHRpb24iOiB7ImJvb2t3b3JtIjogeyJfIjogIkRlYmlhbiAxMiAoYm9va3dvcm0pIiwgIm9zIjogImRlYmlhbiJ9LCAiYnVsbHNleWUiOiB7Il8iOiAiRGViaWFuIDExIChidWxsc2V5ZSkiLCAib3MiOiAiZGViaWFuIn0sICJqYW1teSI6IHsiXyI6ICJVYnVudHUgMjIuMDQgTFRTIChqYW1teSkiLCAib3MiOiAidWJ1bnR1In0sICJmb2NhbCI6IHsiXyI6ICJVYnVudHUgMjAuMDQgTFRTIChmb2NhbCkiLCAib3MiOiAidWJ1bnR1In0sICJiaW9uaWMiOiB7Il8iOiAiVWJ1bnR1IDE4LjA0IExUUyAoYmlvbmljKSIsICJvcyI6ICJ1YnVudHUifX19fSwgIm5hbWUiOiAid2luZS1idWlsZHMifQ==</script>
 </div>
 
 {% endraw %}

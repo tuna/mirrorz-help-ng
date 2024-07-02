@@ -32,10 +32,10 @@ excerpt_separator: ""
 <h2>项目简介</h2>
 <p>EPEL(Extra Packages for Enterprise Linux) 是由 Fedora Special Interest Group 维护的 Enterprise Linux（RHEL、CentOS）中经常用到的包。</p>
 <h2>使用方法</h2>
-<p>下面以 CentOS 7 为例讲解如何使用本镜像站的 epel 镜像。CentOS 8 或 CentOS Stream 同样可用该方法。</p>
-<p>首先从 CentOS Extras 这个源里安装 epel-release：</p>
+<p>下面以 Rocky Linux 9 为例讲解如何使用本镜像站的 epel 镜像。RHEL 及其他衍生发行版同样可用该方法。</p>
+<p>首先从 Extras 里安装 epel-release：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}yum install epel-release
+{{sudo}}dnf install epel-release
 </pre>
 <p>用如下命令自动替换：（修改自 <a href="https://github.com/tuna/issues/issues/687">https://github.com/tuna/issues/issues/687</a>）</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
@@ -45,36 +45,41 @@ excerpt_separator: ""
     -e 's!https\?://download\.example/pub/epel!{{endpoint}}!g' \
     -i /etc/yum.repos.d/epel{,-testing}.repo
 </pre>
-<p>修改结果如下：（仅供参考，不同版本可能不同）</p>
+<p><code>epel.repo</code> 的修改结果如下：（仅供参考，不同版本可能不同）</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
 [epel]
-name=Extra Packages for Enterprise Linux 7 - $basearch
-baseurl={{endpoint}}/7/$basearch
-#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&amp;arch=$basearch
-failovermethod=priority
+name=Extra Packages for Enterprise Linux $releasever - $basearch
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+baseurl={{endpoint}}/$releasever/Everything/$basearch/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&amp;arch=$basearch&amp;infra=$infra&amp;content=$contentdir
 enabled=1
 gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
 
 [epel-debuginfo]
-name=Extra Packages for Enterprise Linux 7 - $basearch - Debug
-baseurl={{endpoint}}/7/$basearch/debug
-#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&amp;arch=$basearch
-failovermethod=priority
+name=Extra Packages for Enterprise Linux $releasever - $basearch - Debug
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+baseurl={{endpoint}}/$releasever/Everything/$basearch/debug/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&amp;arch=$basearch&amp;infra=$infra&amp;content=$contentdir
 enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
 gpgcheck=1
 
 [epel-source]
-name=Extra Packages for Enterprise Linux 7 - $basearch - Source
-baseurl={{endpoint}}/7/SRPMS
-#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&amp;arch=$basearch
-failovermethod=priority
+name=Extra Packages for Enterprise Linux $releasever - $basearch - Source
+# It is much more secure to use the metalink, but if you wish to use a local mirror
+# place its address here.
+baseurl={{endpoint}}/$releasever/Everything/source/tree/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-$releasever&amp;arch=$basearch&amp;infra=$infra&amp;content=$contentdir
 enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
 gpgcheck=1
 </pre>
-<p>运行 <code>yum update</code> 测试一下吧。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVQRUwgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiZXBlbCJ9</script>
+<p>由于无法同步，镜像站不包含 EPEL Cisco OpenH264 仓库（<code>epel-cisco-openh264.repo</code>），如果不需要可手动将其改为 <code>enabled=0</code>。</p>
+<p>运行 <code>dnf update</code> 测试一下吧。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVQRUwgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiZXBlbCJ9</script>
 </div>
 
 {% endraw %}

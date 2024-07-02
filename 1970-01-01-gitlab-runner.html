@@ -37,7 +37,7 @@ excerpt_separator: ""
 curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | {{sudo}}apt-key add - &amp;&gt;/dev/null
 </pre>
 <p>再选择你的 Debian/Ubuntu 版本，将下方内容写入 <code>/etc/apt/sources.list.d/gitlab-runner.list</code></p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="EuWuKdeH" title="">操作系统版本</label><select id="EuWuKdeH" name="release" title=""><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jessie">Debian 8 (jessie) (EOL)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/gitlab-runner.list">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="EuWuKdeH" title="">操作系统版本</label><select id="EuWuKdeH" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/gitlab-runner.list">
 deb {{endpoint}}/{{os}} {{release}} main
 </pre>
 <p>安装 gitlab-runner:</p>
@@ -60,7 +60,7 @@ gpgkey=https://packages.gitlab.com/gpg.key
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}yum makecache
 {{sudo}}yum install gitlab-runner
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdExhYiBSdW5uZXIgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJjb3ZlciIsICJkZWIiLCAicnBtIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJcdTY0Y2RcdTRmNWNcdTdjZmJcdTdlZGZcdTcyNDhcdTY3MmMiLCAib3B0aW9uIjogeyJidWxsc2V5ZSI6IHsiXyI6ICJEZWJpYW4gMTEgKGJ1bGxzZXllKSIsICJvcyI6ICJkZWJpYW4ifSwgImJ1c3RlciI6IHsiXyI6ICJEZWJpYW4gMTAgKGJ1c3RlcikiLCAib3MiOiAiZGViaWFuIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSAoRU9MKSIsICJvcyI6ICJkZWJpYW4ifSwgImplc3NpZSI6IHsiXyI6ICJEZWJpYW4gOCAoamVzc2llKSAoRU9MKSIsICJvcyI6ICJkZWJpYW4ifSwgImZvY2FsIjogeyJfIjogIlVidW50dSAyMC4wNCBMVFMgKGZvY2FsKSIsICJvcyI6ICJ1YnVudHUifSwgImJpb25pYyI6IHsiXyI6ICJVYnVudHUgMTguMDQgTFRTIChiaW9uaWMpIiwgIm9zIjogInVidW50dSJ9LCAieGVuaWFsIjogeyJfIjogIlVidW50dSAxNi4wNCBMVFMgKHhlbmlhbCkgKEVPTCkiLCAib3MiOiAidWJ1bnR1In19fX0sICJuYW1lIjogImdpdGxhYi1ydW5uZXIifQ==</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdExhYiBSdW5uZXIgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJjb3ZlciIsICJkZWIiLCAicnBtIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJcdTY0Y2RcdTRmNWNcdTdjZmJcdTdlZGZcdTcyNDhcdTY3MmMiLCAib3B0aW9uIjogeyJib29rd29ybSI6IHsiXyI6ICJEZWJpYW4gMTIgKGJvb2t3b3JtKSIsICJvcyI6ICJkZWJpYW4ifSwgImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSAoYnVsbHNleWUpIiwgIm9zIjogImRlYmlhbiJ9LCAiZm9jYWwiOiB7Il8iOiAiVWJ1bnR1IDIwLjA0IExUUyAoZm9jYWwpIiwgIm9zIjogInVidW50dSJ9LCAiYmlvbmljIjogeyJfIjogIlVidW50dSAxOC4wNCBMVFMgKGJpb25pYykiLCAib3MiOiAidWJ1bnR1In0sICJ4ZW5pYWwiOiB7Il8iOiAiVWJ1bnR1IDE2LjA0IExUUyAoeGVuaWFsKSAoRU9MKSIsICJvcyI6ICJ1YnVudHUifX19fSwgIm5hbWUiOiAiZ2l0bGFiLXJ1bm5lciJ9</script>
 </div>
 
 {% endraw %}
