@@ -1,0 +1,67 @@
+---
+category: help
+layout: helpz
+mirrorid: "kubernetes"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Kubernetes 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>Kubernetes 是用于自动部署，扩展和管理容器化应用程序的开源系统。详情可见 <a href="https://kubernetes.io/zh/">官方介绍</a>。</p>
+<p>在以下 URL 中，所有仓库的公钥均相同，因此只需要将仓库地址中的 <code>v1.28</code> 修改为所需的版本。</p>
+<h3>Debian / Ubuntu 用户</h3>
+<p>首先导入 gpg key：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | {{sudo}}gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+</pre>
+<p>新建 <code>/etc/apt/sources.list.d/kubernetes.list</code>，内容为</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><input id="QrOsTCzH" name="cri_o" title="" type="checkbox"/><label for="QrOsTCzH" title="">使用 CRI-O</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="cri_o" z-path="/etc/apt/sources.list.d/kubernetes.list">
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] {{endpoint}}/core:/stable:/v1.28/deb/ /
+{{cri_o}}deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] {{endpoint}}/addons:/cri-o:/stable:/v1.28/deb/ /
+</pre>
+<h3>RHEL / CentOS 用户</h3>
+<p>新建 <code>/etc/yum.repos.d/kubernetes.repo</code>，内容为：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><input id="VbUCFiTx" name="cri_o" title="" type="checkbox"/><label for="VbUCFiTx" title="">使用 CRI-O</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="cri_o" z-lang="ini" z-path="/etc/yum.repos.d/kubernetes.repo">
+[kubernetes]
+name=kubernetes
+baseurl={{endpoint}}/yum/repos/kubernetes-el7-$basearch
+name=Kubernetes
+baseurl={{endpoint}}/core:/stable:/v1.28/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key
+
+{{cri_o}}[cri-o]
+{{cri_o}}name=CRI-O
+{{cri_o}}baseurl={{endpoint}}/addons:/cri-o:/stable:/v1.28/rpm/
+{{cri_o}}enabled=1
+{{cri_o}}gpgcheck=1
+{{cri_o}}gpgkey=https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/rpm/repodata/repomd.xml.key
+</pre>
+<h2>Minikube</h2>
+<p>请到 Minikube 镜像，即一些镜像站的  路径下载。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkt1YmVybmV0ZXMgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJrdWJlcm5ldGVzIl0sICJpbnB1dCI6IHsiY3JpX28iOiB7Il8iOiAiXHU0ZjdmXHU3NTI4IENSSS1PIiwgInRydWUiOiAiIiwgImZhbHNlIjogIiMgIn19LCAibmFtZSI6ICJrdWJlcm5ldGVzIn0=</script>
+</div>
+
+{% endraw %}
