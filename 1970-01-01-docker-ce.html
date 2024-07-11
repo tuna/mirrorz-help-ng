@@ -33,7 +33,7 @@ excerpt_separator: ""
 <p>本镜像提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包。</p>
 <p><strong>注意：</strong>本镜像<strong>不是</strong> dockerhub 。</p>
 <h2>自动安装方式</h2>
-<p>Docker 提供了一个自动配置与安装的脚本，支持 Debian、RHEL、SUSE 系列及衍生系统的安装。</p>
+<p>Docker 提供了一个自动配置与安装的脚本，支持 Debian、RHEL、SUSE 系列及衍生系统的安装。请注意，Docker 官方不建议在生产环境使用此脚本安装 Docker CE。</p>
 <p>以下内容假定</p>
 <ul>
 <li>您为 root 用户，或有 sudo 权限，或知道 root 密码；</li>
@@ -42,9 +42,9 @@ excerpt_separator: ""
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 export DOWNLOAD_URL="{{endpoint}}"
 # 如您使用 curl
-curl -fsSL https://get.docker.com/ | {{#sudo}}sudo -E {{/sudo}}sh
+curl -fsSL https://raw.githubusercontent.com/docker/docker-install/master/install.sh | {{#sudo}}sudo -E {{/sudo}}sh
 # 如您使用 wget
-wget -O- https://get.docker.com/ | {{#sudo}}sudo -E {{/sudo}}sh
+wget -O- https://raw.githubusercontent.com/docker/docker-install/master/install.sh | {{#sudo}}sudo -E {{/sudo}}sh
 </pre>
 <h3>Debian/Ubuntu/Raspbian 用户</h3>
 <p>以下内容根据 <a href="https://docs.docker.com/engine/install/debian/">官方文档</a> 修改而来。</p>
