@@ -1,0 +1,70 @@
+---
+category: help
+layout: helpz
+mirrorid: "alpine"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Alpine 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<blockquote>
+<p>Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox.</p>
+</blockquote>
+<p>Alpine Linux 是一个面向安全，轻量级的基于 musl libc 与 busybox 项目的 Linux 发行版。</p>
+<h2>使用方法</h2>
+<p>在终端输入以下命令以替换镜像源：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#{{endpoint}}#g' /etc/apk/repositories
+</pre>
+<p>也可以直接编辑 <code>/etc/apk/repositories</code> 文件。以下是 v3.5 版本的参考配置：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apk/repositories">
+{{endpoint}}/v3.5/main
+{{endpoint}}/v3.5/community
+</pre>
+<p>也可以使用 <code>latest-stable</code> 指向最新的稳定版本：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apk/repositories">
+{{endpoint}}/latest-stable/main
+{{endpoint}}/latest-stable/community
+</pre>
+<p>更改完 <code>/etc/apk/repositories</code> 文件后请更新索引以使更改生效:</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apk update
+</pre>
+<h2>postmarketOS</h2>
+<p>本节供 <a href="../postmarketOS/">postmarketOS 帮助</a>使用。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pmbootstrap --mirror-pmOS=http://mirror/postmarketOS/ --mirror-alpine={{endpoint}}/ init
+pmbootstrap --mirror-pmOS=http://mirror/postmarketOS/ --mirror-alpine={{endpoint}}/ install
+</pre>
+<p>将 <code>/etc/apk/repositories</code> 替换为以下的内容</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apk/repositories">
+http://mirror/postmarketOS/master
+{{endpoint}}/edge/main
+{{endpoint}}/edge/community
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFscGluZSBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIiwgInBtb3MiXSwgImlucHV0Ijoge30sICJuYW1lIjogImFscGluZSJ9</script>
+</div>
+
+{% endraw %}

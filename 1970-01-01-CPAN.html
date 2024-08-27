@@ -1,0 +1,102 @@
+---
+category: help
+layout: helpz
+mirrorid: "CPAN"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>CPAN</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用方法</h2>
+<p><a href="https://www.cpan.org/">CPAN</a> (The Comprehensive Perl Archive Network) 镜像源的配置文件为 <code>MyConfig.pm</code>（一般位于 <code>~/.cpan/CPAN/MyConfig.pm</code>），可使用包管理脚本 <code>cpan</code> 进行修改。</p>
+<h3>初次使用</h3>
+<p>如果 <code>MyConfig.pm</code> 配置文件不存在，在命令行中执行：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# 自动生成 MyConfig.pm
+## 对于 Perl 5.36 （或 CPAN 2.29）及以上，使用如下命令
+PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'CPAN::HandleConfig-&gt;edit("pushy_https", 0); CPAN::HandleConfig-&gt;edit("urllist", "unshift", "{{endpoint}}/"); mkmyconfig'
+## 对于较久版本，使用如下命令
+PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'CPAN::HandleConfig-&gt;edit("urllist", "unshift", "{{endpoint}}/"); mkmyconfig'
+
+# 或不使用默认配置，手动确认各个配置选项
+perl -MCPAN -e 'mkmyconfig'
+</pre>
+<h3>已有配置</h3>
+<h4>在 CPAN Shell 中手动设置镜像</h4>
+<p>在命令行中执行 <code>cpan</code> 进入 cpan shell：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="console">
+cpan shell -- CPAN exploration and modules installation
+Enter 'h' for help.
+
+# 列出当前的镜像设置
+cpan[1]&gt; o conf urllist
+
+# 将本站镜像加入镜像列表首位
+# 注：若已在列表中则可跳过本步直接退出，修改列表不会执行自动去重
+cpan[2]&gt; o conf urllist unshift {{endpoint}}/
+
+# 或将本站镜像加入镜像列表末尾
+# 注：本命令和上面的命令执行一个即可，修改列表不会执行自动去重
+cpan[3]&gt; o conf urllist push {{endpoint}}/
+
+# 或清空镜像列表，仅保留本站
+cpan[4]&gt; o conf urllist {{endpoint}}/
+
+# Perl 5.36 及以上用户需要关闭 pushy_https 以使用镜像站
+cpan[5]&gt; o conf pushy_https 0
+
+# 保存修改后的配置至 MyConfig.pm
+cpan[6]&gt; o conf commit
+
+# 退出 cpan shell
+cpan[7]&gt; quit
+</pre>
+<h4>在命令行中使用脚本设置</h4>
+<p>在命令行中执行：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# 若本站不在镜像列表中则将其加入列表首位
+if ! (
+    perl -MCPAN -e 'CPAN::HandleConfig-&gt;load();' \
+        -e 'CPAN::HandleConfig-&gt;prettyprint("urllist")' |
+    grep -qF '{{endpoint}}/'
+); then
+    perl -MCPAN -e 'CPAN::HandleConfig-&gt;load();' \
+        -e 'CPAN::HandleConfig-&gt;edit("urllist", "unshift", "{{endpoint}}/");' \
+        -e 'CPAN::HandleConfig-&gt;commit()'
+fi
+
+# Perl 5.36 及以上用户还需要关闭 pushy_https
+perl -MCPAN -e 'CPAN::HandleConfig-&gt;load();' \
+    -e 'CPAN::HandleConfig-&gt;edit("pushy_https", 0);' \
+    -e 'CPAN::HandleConfig-&gt;commit()'
+</pre>
+<h2>pkgsrc</h2>
+<p>本节供 <a href="../pkgsrc/">pkgsrc 帮助</a>使用</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+MASTER_SITE_PERL_CPAN= {{endpoint}}/modules/by-module/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkNQQU4iLCAiYmxvY2siOiBbInVzYWdlIiwgInBrZ3NyYyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiQ1BBTiJ9</script>
+</div>
+
+{% endraw %}

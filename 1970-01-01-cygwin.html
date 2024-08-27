@@ -1,0 +1,47 @@
+---
+category: help
+layout: helpz
+mirrorid: "cygwin"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Cygwin 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用方法</h2>
+<p>从 https://cygwin.com 上下载 <a href="https://cygwin.com/setup-x86.exe">setup-x86.exe</a> 或 <a href="https://cygwin.com/setup-x86_64.exe">setup-x86_64.exe</a>。</p>
+<p>选择<code>Install from Internet</code>, 在"User URL"处输入以下地址：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/
+</pre>
+<p>点击"Add"按钮，然后选中所添加的镜像，点击"下一步"进行安装。</p>
+<p>注意，该列表为可多选列表，注意把上面不需要的镜像点掉。</p>
+<h2>pkgsrc</h2>
+<p>本节供 <a href="../pkgsrc/">pkgsrc 帮助</a>使用。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+MASTER_SITE_CYGWIN= {{endpoint}}/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkN5Z3dpbiBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInVzYWdlIiwgInBrZ3NyYyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiY3lnd2luIn0=</script>
+</div>
+
+{% endraw %}

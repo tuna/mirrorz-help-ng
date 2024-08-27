@@ -1,0 +1,97 @@
+---
+category: help
+layout: helpz
+mirrorid: "elpa"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>ELPA 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>ELPA 是 Emacs 内建包管理器 <code>package.el</code> 的软件源。</p>
+<h2>收录范围</h2>
+<p>镜像站支持了常见的 ELPA，具体各个镜像站提供的 EPLA，需要前往各镜像站确认，链接如下：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}
+</pre>
+<h2>使用方法</h2>
+<p>根据你的需求，设置 package-archives，比如用 GNU ELPA 和 MELPA：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+(setq package-archives '(("gnu"    . "{{endpoint}}/gnu/")
+                         ("nongnu" . "{{endpoint}}/nongnu/")
+                         ("melpa"  . "{{endpoint}}/melpa/")))
+(package-initialize) ;; You might already have this line
+</pre>
+<h2>Spacemacs 用户</h2>
+<h3>master 分支</h3>
+<p>添加下面的代码到<code>.spacemacs</code>的<code>dotspacemacs/user-init()</code></p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+(setq configuration-layer--elpa-archives
+    '(("melpa-cn" . "{{endpoint}}/melpa/")
+      ("org-cn"   . "{{endpoint}}/org/")
+      ("gnu-cn"   . "{{endpoint}}/gnu/")))
+</pre>
+<h3>develop 分支</h3>
+<p>使用 <code>configuration-layer-elpa-archives</code> 代替原来的 <code>configuration-layer--elpa-archives</code> （ <code>--</code> 换成 <code>-</code> ）</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+(setq configuration-layer-elpa-archives
+    '(("melpa-cn" . "{{endpoint}}/melpa/")
+      ("org-cn"   . "{{endpoint}}/org/")
+      ("gnu-cn"   . "{{endpoint}}/gnu/")))
+</pre>
+<h2>Cask 用户</h2>
+<p><a href="https://github.com/cask/cask">Cask</a> 是一个 Emacs Lisp 的项目管理工具。这里还是以 GNU ELPA 和 MELPA 为例，在添加下面的代码到 Cask</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+(source "gnu"   "{{endpoint}}/gnu/")
+(source "melpa" "{{endpoint}}/melpa/")
+</pre>
+<h2>关于 ELPA 的选择</h2>
+<p>(来自 <a href="https://github.com/xuchunyang">@xuchunyang</a> )</p>
+<p>假如不清楚需要用哪些 ELPA 的话</p>
+<ul>
+<li><code>gnu</code> 一般是必备的，其它的 elpa 中的包会依赖 <code>gnu</code> 中的包</li>
+<li><code>nongnu</code> 建议启用，类似于 <code>melpa</code> 但是 Emacs 官方维护的</li>
+<li><code>melpa</code> 滚动升级，收录了的包的数量最大</li>
+<li><code>stable-melpa</code> 依据源码的 Tag（Git）升级，数量比 <code>melpa</code> 少，因为很多包作者根本不打 Tag</li>
+<li><code>org</code> 仅仅为了 <code>org-plus-contrib</code> 这一个包，org 重度用户使用</li>
+<li><code>gnu-devel</code> 收录 <code>gnu</code> 中的包的开发中版本，一般不必启用（与 <code>gnu</code> 的关系类似于 <code>melpa</code> 与 <code>stable-melpa</code> 的关系）</li>
+<li><code>nongnu-devel</code> 收录 <code>nongnu</code> 中的包的开发中版本，一般不必启用</li>
+</ul>
+<h1>上游</h1>
+<p>本文档参考了 http://elpa.emacs-china.org/ 提供的帮助。</p>
+<h1>URL Bug</h1>
+<p>各个仓库的 URL 末尾一定要加<code>/</code>，否则会无法拉取，提示<code>Failed to download melpa archive</code>。</p>
+<p>事实上，末尾没有<code>/</code>的话，emacs 会去尝试取以下链接：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/melpaarchive-contents
+</pre>
+<p>而正常的链接应该是</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/melpa/archive-contents
+</pre>
+<p>这个是 emacs 自己的 bug。在 https://github.com/melpa/melpa/issues/2139 中有描述。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVMUEEgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJjb3ZlciIsICJlbHBhIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJlbHBhIn0=</script>
+</div>
+
+{% endraw %}

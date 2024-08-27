@@ -1,0 +1,50 @@
+---
+category: help
+layout: helpz
+mirrorid: "postmarketOS"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>postmarketOS 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h3>pmbootstrap</h3>
+<p>需要在每个 <code>pmbootstrap</code> 命令中都指定镜像</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pmbootstrap --mirror-pmOS={{endpoint}}/ --mirror-alpine=http://mirror/alpine/ init
+pmbootstrap --mirror-pmOS={{endpoint}}/ --mirror-alpine=http://mirror/alpine/ install
+</pre>
+<p>其中 <code>mirror-alpine</code> 部分需要前往 <a href="../alpine/">Alpine 帮助</a>构造。</p>
+<h3>安装后的 postmarketOS</h3>
+<p>将 <code>/etc/apk/repositories</code> 替换为以下的内容</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/master
+http://mirror/alpine/edge/main
+http://mirror/alpine/edge/community
+</pre>
+<p>其中 alpine 部分需要前往 <a href="../alpine/">Alpine 帮助</a>构造。</p>
+<p>可以按照需要使用不同的 channel，例如 <code>postmarketOS/v21.12</code>，<code>alpine/v3.15/main</code></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogInBvc3RtYXJrZXRPUyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInBvc3RtYXJrZXRPUyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicG9zdG1hcmtldE9TIn0=</script>
+</div>
+
+{% endraw %}

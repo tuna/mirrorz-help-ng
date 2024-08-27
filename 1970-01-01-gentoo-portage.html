@@ -1,0 +1,50 @@
+---
+category: help
+layout: helpz
+mirrorid: "gentoo-portage"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Gentoo Portage 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用方法</h2>
+<h3>rsync 方式</h3>
+<p>修改 <code>/etc/portage/repos.conf/gentoo.conf</code> ，将</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+sync-uri = rsync://rsync.gentoo.org/gentoo-portage
+</pre>
+<p>修改为</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+sync-uri = rsync://{{host}}{{path}}
+</pre>
+<p>注意在使用前需要检查所选镜像站提供的 rsync 是否可以访问，MirrorZ 并未记录该元数据。</p>
+<h3>git 方式</h3>
+<p>参考 <a href="../gentoo-portage.git/">Gentoo Portage Git 帮助</a>。</p>
+<h2>Distfiles 配置</h2>
+<p>参考 <a href="../gentoo/">Gentoo 帮助</a>。</p>
+<p>配置好 Portage 与 Distfiles 后，执行 <code>emerge --sync</code> 进行更新。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdlbnRvbyBQb3J0YWdlIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsidXNhZ2UiXSwgImlucHV0Ijoge30sICJuYW1lIjogImdlbnRvby1wb3J0YWdlIn0=</script>
+</div>
+
+{% endraw %}

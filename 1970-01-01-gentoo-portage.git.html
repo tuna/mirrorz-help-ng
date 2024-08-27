@@ -1,0 +1,67 @@
+---
+category: help
+layout: helpz
+mirrorid: "gentoo-portage.git"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Gentoo Portage Git</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用方法</h2>
+<p>第一次使用 <code>git</code> 同步方式的用户需要进行如下操作：</p>
+<ul>
+<li>
+<p>修改 <code>/etc/portage/repos.conf/gentoo.conf</code></p>
+<ul>
+<li>将 <code>sync-type</code> 改为 <code>git</code></li>
+<li>将 <code>sync-uri</code> 改为 <span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}</pre></li>
+</ul>
+</li>
+<li>
+<p>删除 <code>/var/db/repos/gentoo</code></p>
+</li>
+<li>执行 <code>emerge --sync</code></li>
+</ul>
+<p>已经配置 <code>git</code> 同步的用户只需：</p>
+<ul>
+<li>
+<p>修改 <code>/etc/portage/repos.conf/gentoo.conf</code></p>
+<ul>
+<li>将 <code>sync-uri</code> 改为 <span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}</pre></li>
+</ul>
+</li>
+<li>
+<p>于 <code>/var/db/repos/gentoo</code> 下，执行</p>
+</li>
+</ul>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+git remote set-url origin {{endpoint}}
+</pre>
+<ul>
+<li>执行 <code>emerge --sync</code></li>
+</ul><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdlbnRvbyBQb3J0YWdlIEdpdCIsICJibG9jayI6IFsidXNhZ2UiXSwgImlucHV0Ijoge30sICJuYW1lIjogImdlbnRvby1wb3J0YWdlLmdpdCJ9</script>
+</div>
+
+{% endraw %}

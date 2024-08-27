@@ -1,0 +1,62 @@
+---
+category: help
+layout: helpz
+mirrorid: "pkgsrc"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>pkgsrc 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><strong>注：该镜像是 pkgsrc 二进制包和 distfile 的镜像。本镜像站同时提供 pkgsrc 源码的镜像，请参考 <a href="../pkgsrc.git/">pkgsrc.git 镜像使用帮助</a>。</strong></p>
+<h3>二进制包使用</h3>
+<p>输入</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+echo {{endpoint}}/packages/NetBSD/&lt;ARCH&gt;/&lt;VERSION&gt;/All &gt; $PKGDIR/etc/pkgin/repositories.conf
+</pre>
+<p>其中 <code>&lt;ARCH&gt;</code> 和 <code>&lt;VERSION&gt;</code> 可选范围可参看以下链接</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/packages/NetBSD/
+</pre>
+<p>注意该镜像不包括 joyent 内容，即<code>MacOS</code>，<code>SmartOS</code>，<code>Linux</code>中二进制包。</p>
+<h3>distfile 使用</h3>
+<p>如果想使用该镜像的 distfile 强制替换全部 distfile 的下载路径，编辑<code>$PKGSRCDIR/mk/defaults/mk.conf</code>，并添加</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+MASTER_SITE_BACKUP= {{endpoint}}/distfiles/
+MASTER_SITE_OVERRIDE= {{endpoint}}/distfiles/
+MASTER_SORT= .edu.cn .cn
+</pre>
+<p>若只是部分替代，可参考</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+MASTER_SITE_CYGWIN= https://mirror/cygwin/
+MASTER_SITE_GNU= https://mirror/gnu/
+MASTER_SITE_PERL_CPAN= https://mirror/CPAN/modules/by-module/
+MASTER_SITE_TEX_CTAN= https://mirror/CTAN/
+MASTER_SITE_BACKUP= {{endpoint}}/distfiles/
+MASTER_SORT= .edu.cn .cn
+</pre>
+<p>其中非 pkgsrc 的变量可参考<a href="../cygwin/"> Cygwin 帮助</a>，<a href="../gnu/"> GNU 帮助</a>，<a href="../CPAN/"> CPAN 帮助</a>，<a href="../CTAN/">CTAN 帮助</a>。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogInBrZ3NyYyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInBrZ3NyYyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicGtnc3JjIn0=</script>
+</div>
+
+{% endraw %}

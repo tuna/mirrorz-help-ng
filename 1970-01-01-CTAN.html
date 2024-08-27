@@ -1,0 +1,86 @@
+---
+category: help
+layout: helpz
+mirrorid: "CTAN"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>CTAN</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>CTAN (The Comprehensive TeX Archive Network) 是所有 TeX 排版系统相关材料的汇集地，收录了编译引擎、宏包及字体等的源代码与说明文档。目前，绝大多数 LaTeX 宏包会被上传至 CTAN 核心站点，随后同步到遍布全球的各个镜像。</p>
+<p>本文提供了 TeX Live 和 MiKTeX 两大主要发行版的镜像配置方法。</p>
+<h2>TeX Live</h2>
+<p>TeX Live 是目前使用最为广泛的 TeX 发行版，支持 Windows、Linux 和 macOS。其中，在 macOS 上发行的版本称为 MacTeX。</p>
+<h2>安装方法</h2>
+<p>TeX Live 发行版的常见安装方法可以参考如下文档。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf
+</pre>
+<p>除每年更新的完整版 ISO 镜像以外，CTAN 镜像中也包含在线安装器。这种方法可以使安装的所有宏包均为最新版本，但受网络连接状况影响较大。操作方法为（<em>很可能需要管理员权限</em>）：</p>
+<ol>
+<li>下载 install-tl.zip 并解压缩</li>
+</ol>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/systems/texlive/tlnet/install-tl.zip
+</pre>
+<ol>
+<li>
+<p>Windows 下双击运行其中的 <code>install-tl.bat</code>。如果有图形化界面，可以在进入安装器前的右下角按钮指定使用镜像源。</p>
+<p>Linux 下使用如下命令：</p>
+</li>
+</ol>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+perl install-tl --repository {{endpoint}}/systems/texlive/tlnet
+</pre>
+<h3>切换镜像</h3>
+<p>TeX Live 使用的 CTAN 镜像源可以从内置的包管理器 <code>tlmgr</code> 更改（<em>很可能需要管理员权限</em>）。</p>
+<p>在命令行中执行</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}tlmgr option repository {{endpoint}}/systems/texlive/tlnet
+</pre>
+<p>即可永久更改镜像源。</p>
+<p>如果只需要临时切换，可以用如下命令：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}tlmgr update --all --repository {{endpoint}}/systems/texlive/tlnet
+</pre>
+<p>其中的 <code>update --all</code> 指令可根据需要修改。</p>
+<h2>MiKTeX</h2>
+<p>MiKTeX 发行版的特点在于仅安装用户需要的宏包，节省了磁盘空间占用，但在部分实现细节上与 TeX Live 有所出入。该发行版支持 Windows、Linux 和 macOS。</p>
+<h3>安装</h3>
+<p>MiKTeX 仅提供 Windows 和 macOS 的独立安装包，前往<a href="https://mirrorz.org/app/TeX%E6%8E%92%E7%89%88%E7%B3%BB%E7%BB%9F">TeX 排版系统下载页</a>即可。在 Linux 下的安装请参考<a href="https://miktex.org/howto/install-miktex-unx">官方文档</a>。</p>
+<h3>使用镜像</h3>
+<p>MiKTeX 使用的 CTAN 镜像源可以从内置的 MiKTeX Console 图形化应用程序进行切换，也可以使用如下命令：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+mpm --set-repository={{endpoint}}/systems/win32/miktex/tm/packages/
+</pre>
+<h2>pkgsrc</h2>
+<p>本节供 <a href="../pkgsrc/">pkgsrc 帮助</a>使用</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+MASTER_SITE_TEX_CTAN= {{endpoint}}/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkNUQU4iLCAiYmxvY2siOiBbImludHJvIiwgInRleGxpdmUiLCAibWlrdGV4IiwgInBrZ3NyYyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiQ1RBTiJ9</script>
+</div>
+
+{% endraw %}

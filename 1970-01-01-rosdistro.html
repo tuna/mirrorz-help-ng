@@ -1,0 +1,51 @@
+---
+category: help
+layout: helpz
+mirrorid: "rosdistro"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>ROS Distro</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>在 rosdep 使用流程中，我们会有如下两个步骤</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}rosdep init
+rosdep update
+</pre>
+<p>我们替换为以下步骤</p>
+<p>首先手动模拟 rosdep init，这可以参考 <a href="../github-raw/">GitHub RAW 镜像</a> 中 rosdep init 一节。</p>
+<p>之后执行以下指令。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# 为 rosdep update 换源
+export ROSDISTRO_INDEX_URL={{endpoint}}/index-v4.yaml
+rosdep update
+
+# 每次 rosdep update 之前，均需要增加该环境变量
+# 为了持久化该设定，可以将其写入 .bashrc 中，例如
+echo 'export ROSDISTRO_INDEX_URL={{endpoint}}/index-v4.yaml' &gt;&gt; ~/.bashrc
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJPUyBEaXN0cm8iLCAiYmxvY2siOiBbInJvc2Rpc3RybyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicm9zZGlzdHJvIn0=</script>
+</div>
+
+{% endraw %}

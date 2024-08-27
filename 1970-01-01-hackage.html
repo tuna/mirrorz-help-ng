@@ -1,0 +1,115 @@
+---
+category: help
+layout: helpz
+mirrorid: "hackage"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Hackage 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>在 cabal 中初次使用</h2>
+<p>先执行 <code>cabal update</code></p>
+<p>待生成 <code>~/.cabal/config</code> 配置文件之后 <code>Ctrl+C</code> , 然后进行下一步。（注：在 Windows 平台上的配置文件是 <code>%APPDATA%\cabal\config</code> ）</p>
+<h3>Cabal 1.2.4 (GHC 8.0)</h3>
+<p>修改 <code>~/.cabal/config</code> ，加入</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-path="~/.cabal/config">
+repository mirror
+  url: {{endpoint}}
+  secure: True
+</pre>
+<p>为了访问速度，可以选择把官方仓库注释掉：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+repository hackage.haskell.org
+  url: http://hackage.haskell.org/
+  -- secure: False
+  -- root-keys:
+  -- key-threshold:
+</pre>
+<h3>Cabal 小于 1.2.4</h3>
+<p>修改<code>~/.cabal/config</code>, 将此行</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
+</pre>
+<p>注释掉，改为</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+remote-repo: mirror:{{endpoint}}
+-- remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
+</pre>
+<p>注意，此处的注释是两条短线 <code>--</code> .</p>
+<p>再执行 <code>cabal update</code> , 即可使用 <code>cabal</code> 安装包了。</p>
+<h2>在 stack 中使用</h2>
+<p>本镜像推荐与<a href="../stackage/">Stackage 镜像</a>配合使用。</p>
+<h3>stack 大于等于 v2.9.3</h3>
+<p>修改<code>~/.stack/config.yaml</code>, 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="yaml" z-path="~/.stack/config.yaml">
+package-index:
+  download-prefix: {{endpoint}}/
+  hackage-security:
+    keyids:
+      - 0a5c7ea47cd1b15f01f5f51a33adda7e655bc0f0b0615baa8e271f4c3351e21d
+      - 1ea9ba32c526d1cc91ab5e5bd364ec5e9e8cb67179a471872f6e26f0ae773d42
+      - 280b10153a522681163658cb49f632cde3f38d768b736ddbc901d99a1a772833
+      - 2a96b1889dc221c17296fcc2bb34b908ca9734376f0f361660200935916ef201
+      - 2c6c3627bd6c982990239487f1abd02e08a02e6cf16edb105a8012d444d870c3
+      - 51f0161b906011b52c6613376b1ae937670da69322113a246a09f807c62f6921
+      - 772e9f4c7db33d251d5c6e357199c819e569d130857dc225549b40845ff0890d
+      - aa315286e6ad281ad61182235533c41e806e5a787e0b6d1e7eef3f09d137d2e9
+      - fe331502606802feac15e514d9b9ea83fee8b6ffef71335479a2e68d84adc6b0
+    key-threshold: 3 # number of keys required
+    # ignore expiration date, see https://github.com/commercialhaskell/stack/pull/4614
+    ignore-expiry: no
+</pre>
+<h3>stack 大于等于 v2.1.1</h3>
+<p>修改 <code>~/.stack/config.yaml</code> , 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="yaml" z-path="~/.stack/config.yaml">
+package-indices:
+  - download-prefix: {{endpoint}}/
+    hackage-security:
+        keyids:
+        - 0a5c7ea47cd1b15f01f5f51a33adda7e655bc0f0b0615baa8e271f4c3351e21d
+        - 1ea9ba32c526d1cc91ab5e5bd364ec5e9e8cb67179a471872f6e26f0ae773d42
+        - 280b10153a522681163658cb49f632cde3f38d768b736ddbc901d99a1a772833
+        - 2a96b1889dc221c17296fcc2bb34b908ca9734376f0f361660200935916ef201
+        - 2c6c3627bd6c982990239487f1abd02e08a02e6cf16edb105a8012d444d870c3
+        - 51f0161b906011b52c6613376b1ae937670da69322113a246a09f807c62f6921
+        - 772e9f4c7db33d251d5c6e357199c819e569d130857dc225549b40845ff0890d
+        - aa315286e6ad281ad61182235533c41e806e5a787e0b6d1e7eef3f09d137d2e9
+        - fe331502606802feac15e514d9b9ea83fee8b6ffef71335479a2e68d84adc6b0
+        key-threshold: 3 # number of keys required
+
+        # ignore expiration date, see https://github.com/commercialhaskell/stack/pull/4614
+        ignore-expiry: no
+</pre>
+<h3>stack 小于 v2.1.1</h3>
+<p>修改 <code>~/.stack/config.yaml</code> , 加上：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="yaml" z-path="~/.stack/config.yaml">
+package-indices:
+  - name: mirror
+    download-prefix: {{endpoint}}/package/
+    http: {{endpoint}}/00-index.tar.gz
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkhhY2thZ2UgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJjYWJhbCIsICJzdGFjayJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiaGFja2FnZSJ9</script>
+</div>
+
+{% endraw %}

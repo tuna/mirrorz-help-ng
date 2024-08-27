@@ -1,0 +1,50 @@
+---
+category: help
+layout: helpz
+mirrorid: "github-raw"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>GitHub RAW</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>GitHub RAW 镜像仅为其他镜像服务。</p>
+<h3>rosdep init</h3>
+<p>主内容在 <a href="../rosdistro/">ROS Distro 帮助</a> 中。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# 手动模拟 rosdep init
+{{sudo}}mkdir -p /etc/ros/rosdep/sources.list.d/
+{{sudo}}curl -o /etc/ros/rosdep/sources.list.d/20-default.list {{endpoint}}/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
+</pre>
+<h3>stackage global-hints-cache.yaml</h3>
+<p>主内容在 <a href="../stackage/">Stackage 帮助</a> 中。</p>
+<p>手动下载</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/fpco/stackage-content/master/stack/global-hints.yaml
+</pre>
+<p>到 <code>~/.stack/pantry/global-hints-cache.yaml</code>（在 Windows 下是 <code>%APPDATA%\stack\pantry\global-hints-cache.yaml</code>）。注意文件名不同。这是由于 <code>stack</code> 暂时不支持配置该文件的上游地址。该文件需要在每当第一次用到新版本的 GHC 时更新。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdEh1YiBSQVciLCAiYmxvY2siOiBbImludHJvIiwgImdpdGh1Yi1yYXciXSwgImlucHV0Ijoge30sICJuYW1lIjogImdpdGh1Yi1yYXcifQ==</script>
+</div>
+
+{% endraw %}

@@ -1,0 +1,100 @@
+---
+category: help
+layout: helpz
+mirrorid: "termux"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Termux 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>Termux 是什么</h2>
+<blockquote>
+<p>Termux is a terminal emulator and Linux environment bringing powerful terminal access to Android.</p>
+</blockquote>
+<p>Termux 是运行在 Android 上的 terminal。不需要 root，运行于内部存储（不在 SD 卡上）。</p>
+<p>自带了一个包管理器，可以安装许多现代化的开发和系统维护工具。比如：</p>
+<ul>
+<li>neovim</li>
+<li>tmux</li>
+<li>zsh</li>
+<li>clang</li>
+<li>gcc</li>
+<li>weechat</li>
+<li>irssi</li>
+<li>...</li>
+</ul>
+<h2>如何使用 Termux 镜像</h2>
+<h3>图形界面（TUI）替换</h3>
+<p>在较新版的 Termux 中，官方提供了图形界面（TUI）来半自动替换镜像，推荐使用该种方式以规避其他风险。<br/>
+在 Termux 中执行如下命令</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+termux-change-repo
+</pre>
+<p>在图形界面引导下，使用自带方向键可上下移动。 <br/>
+第一步使用空格选择需要更换的仓库，之后在第二步选择相应镜像源。确认无误后回车，镜像源会自动完成更换。</p>
+<h3>命令行替换</h3>
+<p>使用如下命令行替换官方源为镜像源</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+sed -i 's@^\(deb.*stable main\)$@#\1\ndeb {{endpoint}}/apt/termux-main stable main@' $PREFIX/etc/apt/sources.list
+apt update &amp;&amp; apt upgrade
+</pre>
+<p>社区源（如果已经启用）</p>
+<p>x11-repo</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+sed -i 's@^\(deb.*x11 main\)$@#\1\ndeb {{endpoint}}/apt/termux-x11 x11 main @' $PREFIX/etc/apt/sources.list.d/x11.list 
+apt update &amp;&amp; apt upgrade
+</pre>
+<p>root-repo</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+sed -i 's@^\(deb.*root main\)$@#\1\ndeb {{endpoint}}/apt/termux-root root main @' $PREFIX/etc/apt/sources.list.d/root.list 
+apt update &amp;&amp; apt upgrade
+</pre>
+<h3>手动修改</h3>
+<p>编辑 <code>$PREFIX/etc/apt/sources.list</code> 修改为如下内容</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="$PREFIX/etc/apt/sources.list">
+# The termux repository mirror
+deb {{endpoint}}/apt/termux-main stable main
+</pre>
+<p>社区源（如果已经启用）</p>
+<p>x11-repo</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="$PREFIX/etc/apt/sources.list.d/x11.list">
+# The termux repository mirror
+deb {{endpoint}}/apt/termux-x11 x11 main
+</pre>
+<p>root-repo</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="$PREFIX/etc/apt/sources.list.d/root.list">
+# The termux repository mirror
+deb {{endpoint}}/apt/termux-root root stable
+</pre>
+<p>请使用内置或安装在 Termux 里的文本编辑器，例如 <code>vi</code> / <code>vim</code> / <code>nano</code> 等，<strong>不要使用 RE 管理器等其他具有 ROOT 权限的外部 APP</strong> 来修改 Termux 的文件</p>
+<p>注：Termux 会自动将环境变量 <code>$PREFIX</code> 设定为 <code>/data/data/com.termux/files/usr</code></p>
+<h3>警告</h3>
+<ul>
+<li>镜像仅适用于 Android 7.0 (API 24) 及以上版本，旧版本系统使用本镜像可能导致程序错误。</li>
+<li>Google Play 上的 Termux 已被弃用，如安装会产生兼容性问题。请通过 GitHub 或 F-Droid（<a href="../fdroid/">镜像帮助</a>）来安装 Termux。</li>
+</ul><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlRlcm11eCBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInRlcm11eCJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAidGVybXV4In0=</script>
+</div>
+
+{% endraw %}

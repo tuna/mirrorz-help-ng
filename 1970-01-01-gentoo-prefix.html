@@ -1,0 +1,49 @@
+---
+category: help
+layout: helpz
+mirrorid: "gentoo-portage-prefix"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Gentoo Portage Prefix macOS 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用方法</h2>
+<p><strong>注意：Gentoo Prefix Portage tree 已合并进 gentoo.git。如果您是 Linux 用户，请使用 <a href="../gentoo-portage/">gentoo-portage</a> rsync 或 <a href="../gentoo-portage.git/">gentoo-portage.git</a> 镜像。此 repo 专为 macOS 下 prefix 用户而设。</strong></p>
+<p><a href="https://wiki.gentoo.org/wiki/Project:Prefix">Gentoo Prefix</a> macOS 的镜像配置方法如下：</p>
+<h3>Bootstrap 镜像配置</h3>
+<p>参考 <a href="../gentoo/">Gentoo 帮助</a>中「Gentoo Prefix Bootstrap 镜像配置」一节。</p>
+<h3>Gentoo Portage Prefix 镜像配置：</h3>
+<p>在 <code>$EPREFIX/etc/portage</code> 目录下创建名为 <code>repos.conf</code> 的目录，在 <code>$EPREFIX/etc/portage/repos.conf/gentoo.conf</code> 中加入如下内容：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-path="$EPREFIX/etc/portage/repos.conf/gentoo.conf">
+[gentoo_prefix]
+sync-uri = rsync://{{host}}{{path}}
+</pre>
+<p>注意在使用前需要检查所选镜像站提供的 rsync 是否可以访问，MirrorZ 并未记录该元数据。</p>
+<h3>Distfiles 配置：</h3>
+<p>参考 <a href="../gentoo/">Gentoo 帮助</a>，只需将 <code>/etc</code> 换成 <code>$EPREFIX/etc</code>。</p>
+<p>配置好以上两项以后，执行 <code>emerge --sync</code> 或者 <code>eix-sync</code> 进行更新。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdlbnRvbyBQb3J0YWdlIFByZWZpeCBtYWNPUyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInVzYWdlIl0sICJwZXJtYWxpbmsiOiAiZ2VudG9vLXByZWZpeCIsICJpbnB1dCI6IHt9LCAibmFtZSI6ICJnZW50b28tcG9ydGFnZS1wcmVmaXgifQ==</script>
+</div>
+
+{% endraw %}

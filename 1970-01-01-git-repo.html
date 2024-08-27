@@ -1,0 +1,51 @@
+---
+category: help
+layout: helpz
+mirrorid: "git-repo"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Git Repo</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<blockquote>
+<p>Repo is a tool that we built on top of Git. Repo helps us manage the many Git repositories, does the uploads to our revision control system, and automates parts of the Android development workflow. Repo is not meant to replace Git, only to make it easier to work with Git in the context of Android. The repo command is an executable Python script that you can put anywhere in your path.</p>
+</blockquote>
+<p>当前 repo 主要用于同步 AOSP、chromium 及 chromium OS。</p>
+<h2>下载</h2>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+curl {{endpoint}} -o repo
+chmod +x repo
+</pre>
+<p>为了方便可以将其拷贝到你的<code>PATH</code>里。</p>
+<h2>更新</h2>
+<p>repo 的运行过程中会尝试访问官方的 git 源更新自己，如果想使用镜像源进行更新，可以将如下内容复制到你的<code>~/.bashrc</code>里</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+export REPO_URL='{{endpoint}}'
+</pre>
+<p>并重启终端模拟器。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdCBSZXBvIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiZ2l0LXJlcG8ifQ==</script>
+</div>
+
+{% endraw %}
