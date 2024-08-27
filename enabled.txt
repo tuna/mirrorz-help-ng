@@ -37,6 +37,7 @@ gitlab-ce
 gitlab-runner
 glibc.git
 grafana
+homebrew
 influxdata
 kali
 kicad
