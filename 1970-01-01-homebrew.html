@@ -1,0 +1,193 @@
+---
+category: help
+layout: helpz
+mirrorid: "homebrew"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Homebrew 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><strong>注：该镜像是 Homebrew / Linuxbrew 源程序以及 formula / cask 索引的镜像（即 <code>brew update</code> 时所更新内容）。镜像站同时提供相应的二进制预编译包的镜像，请参考 <a href="../homebrew-bottles/">Homebrew bottles 镜像使用帮助</a></strong></p>
+<p>镜像站提供了 https://github.com/Homebrew 组织下的以下 <code>repo</code>：<code>brew</code>, <code>homebrew-core</code>, <code>homebrew-cask</code>, <code>homebrew-command-not-found</code>, <code>install</code>。</p>
+<p><strong>注：自 brew 4.0.0 (2023 年 2 月 16 日) 起，<code>HOMEBREW_INSTALL_FROM_API</code> 会成为默认行为，无需设置。大部分用户无需再克隆 <code>homebrew-core</code> 仓库，故无需设置 <code>HOMEBREW_CORE_GIT_REMOTE</code> 环境变量；但若需要运行 <code>brew</code> 的开发命令或者 <code>brew</code> 安装在非官方支持的默认 prefix 位置，则仍需设置 <code>HOMEBREW_CORE_GIT_REMOTE</code> 环境变量。如果不想通过 API 安装，可以设置 <code>HOMEBREW_NO_INSTALL_FROM_API=1</code>。</strong></p>
+<p><strong>注：目前，<code>homebrew-cask-{drivers,versions,fonts}</code> 已被弃用，所有 cask 合并至 <code>homebrew-cask</code> 仓库。本帮助内已移除克隆这些仓库的命令。已克隆用户（<code>brew tap</code> 查看）可使用 <code>brew untap</code> 移除废弃的仓库。</strong></p>
+<h3>首次安装 Homebrew / Linuxbrew</h3>
+<p>首先，需要确保系统中安装了 bash、git 和 curl，对于 macOS 用户需额外要求安装 Command Line Tools (CLT) for Xcode。</p>
+<ul>
+<li>对于 macOS 用户，系统自带 bash、git 和 curl，在命令行输入 <code>xcode-select --install</code> 安装 CLT for Xcode 即可。</li>
+<li>对于 Linux 用户，系统自带 bash，仅需额外安装 git 和 curl。</li>
+</ul>
+<p>接着，在终端输入以下几行命令设置环境变量：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+export HOMEBREW_BREW_GIT_REMOTE="{{endpoint}}/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"
+export HOMEBREW_INSTALL_FROM_API=1
+# export HOMEBREW_API_DOMAIN
+# export HOMEBREW_BOTTLE_DOMAIN
+# export HOMEBREW_PIP_INDEX_URL
+</pre>
+<p>前往 <a href="../homebrew-bottles/">Homebrew bottles 镜像使用帮助</a>中「临时替换」一节设置好 <code>HOMEBREW_API_DOMAIN</code> 与 <code>HOMEBREW_BOTTLE_DOMAIN</code>。</p>
+<p>前往 <a href="../pypi/">PyPI 镜像使用帮助</a>中「Homebrew」一节设置好 <code>HOMEBREW_PIP_INDEX_URL</code>。</p>
+<p><em>注：自 <code>brew</code> 4.0 起，<code>HOMEBREW_INSTALL_FROM_API</code> 会成为默认行为，无需设置；大部分用户无需再克隆 homebrew/core 仓库，故无需设置 <code>HOMEBREW_CORE_GIT_REMOTE</code> 环境变量。但若需要运行 <code>brew</code> 的开发命令或者 <code>brew</code> 安装在非官方支持的默认 prefix 位置，则仍需设置  <code>HOMEBREW_CORE_GIT_REMOTE</code> 环境变量；如果不想通过 API 安装，可以设置 <code>HOMEBREW_NO_INSTALL_FROM_API=1</code>。</em></p>
+<p>最后，在终端运行以下命令以安装 Homebrew / Linuxbrew：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# 从镜像下载安装脚本并安装 Homebrew / Linuxbrew
+git clone --depth=1 {{endpoint}}/install.git brew-install
+/bin/bash brew-install/install.sh
+rm -rf brew-install
+
+# 也可从 GitHub 获取官方安装脚本安装 Homebrew / Linuxbrew
+/bin/bash -c "$(curl -fsSL https://github.com/Homebrew/install/raw/master/install.sh)"
+</pre>
+<p>这样在首次安装的时候也可以使用镜像。更多信息请参考 <a href="https://docs.brew.sh/Installation">Homebrew 官方安装文档</a>。</p>
+<p><strong>安装成功后需将 brew 程序的相关路径加入到环境变量中：</strong></p>
+<ul>
+<li>以下针对基于 Apple Silicon CPU 设备上的 macOS 系统（命令行运行 <code>uname -m</code> 应输出 <code>arm64</code>）上的 Homebrew：<br/>
+<br/>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+test -r ~/.bash_profile &amp;&amp; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' &gt;&gt; ~/.bash_profile
+test -r ~/.zprofile &amp;&amp; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' &gt;&gt; ~/.zprofile
+</pre>
+</li>
+</ul>
+<p>对基于 Intel CPU 设备上的 macOS 系统（命令行运行 <code>uname -m</code> 应输出 <code>x86_64</code>）的用户可跳过本步。</p>
+<ul>
+<li>以下针对 Linux 系统上的 Linuxbrew：<br/>
+<br/>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+test -d ~/.linuxbrew &amp;&amp; eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew &amp;&amp; eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -r ~/.bash_profile &amp;&amp; echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" &gt;&gt; ~/.bash_profile
+test -r ~/.profile &amp;&amp; echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" &gt;&gt; ~/.profile
+test -r ~/.zprofile &amp;&amp; echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" &gt;&gt; ~/.zprofile
+</pre>
+</li>
+</ul>
+<p>参考了 <a href="https://docs.brew.sh/Homebrew-on-Linux">https://docs.brew.sh/Homebrew-on-Linux</a>。</p>
+<h3>替换现有仓库上游</h3>
+<p>替换 brew 程序本身的源，Homebrew / Linuxbrew 相同：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# export HOMEBREW_API_DOMAIN=
+export HOMEBREW_BREW_GIT_REMOTE="{{endpoint}}/brew.git"
+brew update
+</pre>
+<p>前往 <a href="../homebrew-bottles/">Homebrew bottles 镜像使用帮助</a>中「临时替换」一节设置好 <code>HOMEBREW_API_DOMAIN</code></p>
+<p>以下针对 macOS 系统上的 Homebrew：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# 手动设置
+export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"
+
+# 注：自 brew 4.0 起，大部分 Homebrew 用户无需设置 homebrew/core 和 homebrew/cask 镜像，只需设置 HOMEBREW_API_DOMAIN 即可。
+# 如果需要使用 Homebrew 的开发命令 (如 `brew cat &lt;formula&gt;`)，则仍然需要设置 homebrew/core 和 homebrew/cask 镜像。
+# 请按需执行如下两行命令：
+brew tap --custom-remote --force-auto-update homebrew/core {{endpoint}}/homebrew-core.git
+brew tap --custom-remote --force-auto-update homebrew/cask {{endpoint}}/homebrew-cask.git
+
+# 除 homebrew/core 和 homebrew/cask 仓库外的 tap 仓库仍然需要设置镜像
+brew tap --custom-remote --force-auto-update homebrew/command-not-found {{endpoint}}/homebrew-command-not-found.git
+brew update
+
+# 或使用下面的几行命令自动设置
+export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"
+for tap in core cask command-not-found; do
+    brew tap --custom-remote --force-auto-update "homebrew/${tap}" "{{endpoint}}/homebrew-${tap}.git"
+done
+brew update
+</pre>
+<p>以下针对 Linux 系统上的 Linuxbrew：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"
+
+# 注：自 brew 4.0 起，使用默认 prefix (即 "/home/linuxbrew/.linuxbrew") 的大部分 Homebrew 用户无需设置 homebrew/core 镜像，只需设置 HOMEBREW_API_DOMAIN 即可。
+# 如果不是默认 prefix 或者需要使用 Homebrew 的开发命令 (如 `brew cat &lt;formula&gt;`)，则仍然需要设置 homebrew/core 镜像。
+# 请按需执行如下命令：
+brew tap --custom-remote --force-auto-update homebrew/core {{endpoint}}/homebrew-core.git
+
+# 除 homebrew/core 仓库外的 tap 仓库仍然需要设置镜像
+brew tap --custom-remote --force-auto-update homebrew/command-not-found {{endpoint}}/homebrew-command-not-found.git
+brew update
+</pre>
+<p><strong>注：如果用户设置了环境变量 <code>HOMEBREW_BREW_GIT_REMOTE</code> 和 <code>HOMEBREW_CORE_GIT_REMOTE</code>，则每次执行 <code>brew update</code> 时，<code>brew</code> 程序本身和 Core Tap (<code>homebrew-core</code>) 的远程将被自动设置。推荐用户将这两个环境变量设置加入 shell 的 profile 设置中。</strong></p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+test -r ~/.bash_profile &amp;&amp; echo 'export HOMEBREW_BREW_GIT_REMOTE="{{endpoint}}/brew.git"' &gt;&gt; ~/.bash_profile  # bash
+test -r ~/.bash_profile &amp;&amp; echo 'export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"' &gt;&gt; ~/.bash_profile
+test -r ~/.profile &amp;&amp; echo 'export HOMEBREW_BREW_GIT_REMOTE="{{endpoint}}/brew.git"' &gt;&gt; ~/.profile
+test -r ~/.profile &amp;&amp; echo 'export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"' &gt;&gt; ~/.profile
+
+test -r ~/.zprofile &amp;&amp; echo 'export HOMEBREW_BREW_GIT_REMOTE="{{endpoint}}/brew.git"' &gt;&gt; ~/.zprofile  # zsh
+test -r ~/.zprofile &amp;&amp; echo 'export HOMEBREW_CORE_GIT_REMOTE="{{endpoint}}/homebrew-core.git"' &gt;&gt; ~/.zprofile
+</pre>
+<p>对于 <code>HOMEBREW_API_DOMAIN</code> 与其余 bottles 相关环境变量的持久化，可以参考 <a href="../homebrew-bottles/">Homebrew Bottles 帮助</a>。</p>
+<h3>复原仓库上游</h3>
+<p>(感谢 Snowonion Lee 提供说明)</p>
+<ul>
+<li>
+<p>以下针对 macOS 系统上的 Homebrew<br/>
+<br/>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# brew 程序本身，Homebrew / Linuxbrew 相同
+unset HOMEBREW_API_DOMAIN
+unset HOMEBREW_BREW_GIT_REMOTE
+git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew
+
+# 以下针对 macOS 系统上的 Homebrew
+unset HOMEBREW_CORE_GIT_REMOTE
+BREW_TAPS="$(BREW_TAPS="$(brew tap 2&gt;/dev/null)"; echo -n "${BREW_TAPS//$'\n'/:}")"
+for tap in core cask command-not-found; do
+    if [[ ":${BREW_TAPS}:" == *":homebrew/${tap}:"* ]]; then  # 只复原已安装的 Tap
+        brew tap --custom-remote "homebrew/${tap}" "https://github.com/Homebrew/homebrew-${tap}"
+    fi
+done
+
+# 重新拉取远程
+brew update
+</pre>
+</p>
+</li>
+<li>
+<p>以下针对 Linux 系统上的 Linuxbrew<br/>
+<br/>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+# brew 程序本身，Homebrew / Linuxbrew 相同
+unset HOMEBREW_API_DOMAIN
+unset HOMEBREW_BREW_GIT_REMOTE
+git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew
+
+# 以下针对 Linux 系统上的 Linuxbrew
+unset HOMEBREW_API_DOMAIN
+unset HOMEBREW_CORE_GIT_REMOTE
+brew tap --custom-remote homebrew/core https://github.com/Homebrew/homebrew-core
+brew tap --custom-remote homebrew/command-not-found https://github.com/Homebrew/homebrew-command-not-found
+
+# 重新拉取远程
+brew update
+</pre>
+</p>
+</li>
+</ul>
+<p><strong>注：重置回默认远程后，用户应该删除 shell 的 profile 设置中的环境变量 <code>HOMEBREW_BREW_GIT_REMOTE</code> 和 <code>HOMEBREW_CORE_GIT_REMOTE</code> 以免运行 <code>brew update</code> 时远程再次被更换。</strong></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkhvbWVicmV3IFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsiaG9tZWJyZXciXSwgImlucHV0Ijoge30sICJuYW1lIjogImhvbWVicmV3In0=</script>
+</div>
+
+{% endraw %}
