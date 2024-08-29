@@ -1,6 +1,7 @@
 AOSP
 Adoptium
 alpine
+anaconda
 anthon
 arch4edu
 archlinux
