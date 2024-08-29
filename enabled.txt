@@ -52,6 +52,7 @@ glibc.git
 grafana
 hackage
 homebrew
+homebrew-bottles
 influxdata
 julia-releases
 kali
@@ -83,6 +84,7 @@ ohmyzsh.git
 OpenBSD
 OpenMediaVault
 opensuse
+openwrt
 pkgsrc
 pkgsrc.git
 postmarketOS
