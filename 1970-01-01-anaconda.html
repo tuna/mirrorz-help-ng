@@ -1,0 +1,80 @@
+---
+category: help
+layout: helpz
+mirrorid: "anaconda"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Anaconda 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>Anaconda 是一个用于科学计算的 Python 发行版，支持 Linux, Mac, Windows, 包含了众多流行的科学计算、数据分析的 Python 包。</p>
+<p>Anaconda 安装包可以到以下链接下载。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/archive/
+</pre>
+<h2>使用方法</h2>
+<p>镜像站提供了 Anaconda 仓库与第三方源（conda-forge、msys2、pytorch 等，各镜像站镜像的第三方源并不相同，可以参考下方「第三方镜像源」一节）的镜像，各系统都可以通过修改用户目录下的 <code>.condarc</code> 文件来使用镜像站。</p>
+<p>不同系统下的 <code>.condarc</code> 目录如下：<br/>
+- Linux: <code>${HOME}/.condarc</code><br/>
+- macOS: <code>${HOME}/.condarc</code><br/>
+- Windows: <code>C:\Users\&lt;YourUserName&gt;\.condarc</code></p>
+<p>注：<br/>
+  * Windows 用户无法直接创建名为 <code>.condarc</code> 的文件，可先执行 <code>conda config --set show_channel_urls yes</code> 生成该文件之后再修改。<br/>
+  * 由于更新过快难以同步，TUNA 等镜像站不同步 <code>pytorch-nightly</code> , <code>pytorch-nightly-cpu</code> , <code>ignite-nightly</code> 这三个包。<br/>
+  * 如果您正在从某一镜像源切换到另一镜像源，请检查镜像源是否同步了您所需要的 repo，以及该 repo 是否支持您使用的平台 (e.g. linux-64)。<br/>
+  * 为了保证以下配置在所有镜像站可用，配置中只加入了少量必须的第三方源，您可以在下方的列表中自行寻找并添加其他第三方源。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="yaml" z-path="~/.condarc">
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - {{endpoint}}/pkgs/main
+  - {{endpoint}}/pkgs/r
+  - {{endpoint}}/pkgs/msys2
+custom_channels:
+  conda-forge: {{endpoint}}/cloud
+  pytorch: {{endpoint}}/cloud
+</pre>
+<p>即可添加 Anaconda Python 免费仓库。</p>
+<p>使用下列命令清除索引缓存，并安装常用包测试一下。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+conda clean -i
+conda create -n myenv numpy
+</pre>
+<h2>第三方源列表</h2>
+<p>您可以遵循上述配置文件中的格式添加第三方源（推荐），或者通过以下命令添加第三方源：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="VOmvJmHn" title="">第三方源</label><select id="VOmvJmHn" name="channel" title=""><option value="auto">auto</option><option value="biobakery">biobakery</option><option value="bioconda">bioconda</option><option value="c4aarch64">c4aarch64</option><option value="caffe2">caffe2</option><option value="conda-forge">conda-forge</option><option value="deepmodeling">deepmodeling</option><option value="dglteam">dglteam</option><option value="fastai">fastai</option><option value="fermi">fermi</option><option value="idaholab">idaholab</option><option value="intel">intel</option><option value="matsci">matsci</option><option value="menpo">menpo</option><option value="MindSpore">MindSpore</option><option value="mordred-descriptor">mordred-descriptor</option><option value="msys2">msys2</option><option value="numba">numba</option><option value="ohmeta">ohmeta</option><option value="omnia">omnia</option><option value="Paddle">Paddle</option><option value="peterjc123">peterjc123</option><option value="plotly">plotly</option><option value="psi4">psi4</option><option value="pytorch">pytorch</option><option value="pytorch3d">pytorch3d</option><option value="pytorch-lts">pytorch-lts</option><option value="pytorch-test">pytorch-test</option><option value="pyviz">pyviz</option><option value="qiime2">qiime2</option><option value="rapidsai">rapidsai</option><option value="rdkit">rdkit</option><option value="simpleitk">simpleitk</option><option value="stackless">stackless</option><option value="ursky">ursky</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="channel" z-lang="bash">
+conda config --set custom_channels.{{channel}} {{endpoint}}/cloud/
+</pre>
+<h2>Miniconda</h2>
+<p>Miniconda 是一个 Anaconda 的轻量级替代，默认只包含了 python 和 conda，但是可以通过 pip 和 conda 来安装所需要的包。</p>
+<p>Miniconda 安装包可以到以下链接下载。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/miniconda/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFuYWNvbmRhIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsiaW50cm8iLCAidXNhZ2UiLCAiY3VzdG9tcyIsICJtaW5pY29uZGEiXSwgImlucHV0IjogeyJjaGFubmVsIjogeyJfIjogIlx1N2IyY1x1NGUwOVx1NjViOVx1NmU5MCIsICJvcHRpb24iOiB7ImF1dG8iOiBudWxsLCAiYmlvYmFrZXJ5IjogbnVsbCwgImJpb2NvbmRhIjogbnVsbCwgImM0YWFyY2g2NCI6IG51bGwsICJjYWZmZTIiOiBudWxsLCAiY29uZGEtZm9yZ2UiOiBudWxsLCAiZGVlcG1vZGVsaW5nIjogbnVsbCwgImRnbHRlYW0iOiBudWxsLCAiZmFzdGFpIjogbnVsbCwgImZlcm1pIjogbnVsbCwgImlkYWhvbGFiIjogbnVsbCwgImludGVsIjogbnVsbCwgIm1hdHNjaSI6IG51bGwsICJtZW5wbyI6IG51bGwsICJNaW5kU3BvcmUiOiBudWxsLCAibW9yZHJlZC1kZXNjcmlwdG9yIjogbnVsbCwgIm1zeXMyIjogbnVsbCwgIm51bWJhIjogbnVsbCwgIm9obWV0YSI6IG51bGwsICJvbW5pYSI6IG51bGwsICJQYWRkbGUiOiBudWxsLCAicGV0ZXJqYzEyMyI6IG51bGwsICJwbG90bHkiOiBudWxsLCAicHNpNCI6IG51bGwsICJweXRvcmNoIjogbnVsbCwgInB5dG9yY2gzZCI6IG51bGwsICJweXRvcmNoLWx0cyI6IG51bGwsICJweXRvcmNoLXRlc3QiOiBudWxsLCAicHl2aXoiOiBudWxsLCAicWlpbWUyIjogbnVsbCwgInJhcGlkc2FpIjogbnVsbCwgInJka2l0IjogbnVsbCwgInNpbXBsZWl0ayI6IG51bGwsICJzdGFja2xlc3MiOiBudWxsLCAidXJza3kiOiBudWxsfX19LCAibmFtZSI6ICJhbmFjb25kYSJ9</script>
+</div>
+
+{% endraw %}
