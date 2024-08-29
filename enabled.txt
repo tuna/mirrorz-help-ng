@@ -58,6 +58,8 @@ kali
 kicad
 kodi
 kubernetes
+lineage-rom
+lineageOS
 linux-firmware.git
 linux-next.git
 linux-stable.git
@@ -79,10 +81,13 @@ nixpkgs.git
 nodejs-release
 ohmyzsh.git
 OpenBSD
+OpenMediaVault
 opensuse
 pkgsrc
 pkgsrc.git
 postmarketOS
+pybombs
+pypi
 proxmox
 qemu.git
 qt
