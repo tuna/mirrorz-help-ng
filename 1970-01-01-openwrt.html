@@ -1,0 +1,48 @@
+---
+category: help
+layout: helpz
+mirrorid: "openwrt"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>OpenWRT 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>OpenWRT（曾用名 LEDE）是一款广泛应用于路由器的嵌入式操作系统。本站提供 OpenWRT 的包管理器 <code>opkg</code> 的 release 部分镜像。</p>
+<p>本站不包含 snapshots 镜像，如果需要 snapshots，可以前往<a href="https://mirrors.cernet.edu.cn/list/openwrt">校园网联合镜像站</a>寻找替代。</p>
+<h3>手工替换</h3>
+<p>登录到路由器，并编辑 <code>/etc/opkg/distfeeds.conf</code> 文件，将其中的 <code>http://downloads.openwrt.org</code> 替换为</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}
+</pre>
+<p>即可。</p>
+<h3>自动替换</h3>
+<p>执行如下命令自动替换</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+sed -i 's_https\?://downloads.openwrt.org_{{endpoint}}_' /etc/opkg/distfeeds.conf
+</pre>
+<p>注：使用 HTTPS 可以有效避免国内运营商的缓存劫持，但需要另行安装 <code>libustream-openssl ca-bundle ca-certificates</code> 。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5XUlQgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJvcGVud3J0Il0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJvcGVud3J0In0=</script>
+</div>
+
+{% endraw %}
