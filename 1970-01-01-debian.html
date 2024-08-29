@@ -127,6 +127,13 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 <p>The purpose of security.debian.org is to make security updates available as quickly and easily as possible.</p>
 <p>Encouraging the use of unofficial mirrors would add extra complexity that is usually not needed and that can cause frustration if these mirrors are not kept up to date.</p>
 </blockquote>
+<h2>OpenMediaVault</h2>
+<p>本节供 <a href="../OpenMediaVault/">OpenMediaVault 帮助</a>使用。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" data-lang="bash">
+omv-env set OMV_APT_KERNEL_BACKPORTS_REPOSITORY_URL "{{endpoint}}"
+omv-env set OMV_APT_SECURITY_REPOSITORY_URL "{{endpoint}}-security"
+</pre>
+<p>关于 debian-security 可以参考上文的说明。</p>
 <h3>Connection reset by peer</h3>
 <p>在 apt 2.1.9 及以后的版本中，apt 的 HTTP Pipelining 特性与 Nginx 服务器疑似存在一定的不兼容问题，可能导致高带宽从镜像站下载大量软件包<br/>
 （例如系统升级）时出现偶发的 Connection reset by peer 错误<br/>

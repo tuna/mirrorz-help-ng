@@ -1,12 +1,12 @@
 ---
 category: help
 layout: helpz
-mirrorid: "NetBSD"
+mirrorid: "OpenBSD"
 excerpt_separator: ""
 ---
 
 <!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
-{% raw %}<h1>NetBSD 软件仓库</h1>{% endraw %}
+{% raw %}<h1>OpenBSD 软件仓库</h1>{% endraw %}
 <div class="z-wrap">
     <form class="z-form z-global">
         <div>
@@ -29,13 +29,10 @@ excerpt_separator: ""
 </div>
 {% raw %}
 <div class="z-help">
-<h2>pkgsrc</h2>
-<p>参考 <a href="../pkgsrc/">pkgsrc 帮助</a>。</p>
-<h2>sysupgrade</h2>
-<p>升级 NetBSD 时，指定 sysupgrade 的下载地址为镜像源，以 NetBSD 9.3 amd64 为例：</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-sysupgrade auto {{endpoint}}/NetBSD-9.3/amd64
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk5ldEJTRCBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbIk5ldEJTRCJdLCAicGVybWFsaW5rIjogIm5ldGJzZCIsICJpbnB1dCI6IHt9LCAibmFtZSI6ICJOZXRCU0QifQ==</script>
+<p>编辑 <code>/etc/installurl</code> 文件为以下内容：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/installurl">
+{{endpoint}}/
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5CU0QgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJPcGVuQlNEIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJPcGVuQlNEIn0=</script>
 </div>
 
 {% endraw %}

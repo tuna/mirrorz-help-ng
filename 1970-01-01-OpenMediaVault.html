@@ -1,0 +1,69 @@
+---
+category: help
+layout: helpz
+mirrorid: "OpenMediaVault"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>OpenMediaVault 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>Open Media Vault 是一款基于 Debian 的 NAS 操作系统。</p>
+<h3>替换 Open Media Vault 镜像源</h3>
+<p>登录到已经部署的 Open Media Vault 使用如下命令可以替换 Open Media Vault 镜像源。</p>
+<p>其中的非 OpenMediaVault 部分的镜像站需要分别在 <a href="../debian/">Debian 帮助</a>，<a href="../docker-ce/">Docker CE 帮助</a>，和 <a href="../proxmox/">Proxmox 帮助</a> 中构造。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+omv-env set OMV_APT_REPOSITORY_URL "{{endpoint}}/public"
+omv-env set OMV_APT_ALT_REPOSITORY_URL "{{endpoint}}/packages"
+# 前往其他帮助文档修改
+#omv-env set OMV_APT_KERNEL_BACKPORTS_REPOSITORY_URL "https://mirror/debian"
+#omv-env set OMV_APT_SECURITY_REPOSITORY_URL "https://mirror/debian-security"
+# 如果你有安装 omv-extras 则需要运行如下命令更改源
+omv-env set OMV_EXTRAS_APT_REPOSITORY_URL "{{endpoint}}/openmediavault-plugin-developers"
+#omv-env set OMV_DOCKER_APT_REPOSITORY_URL "https://mirror/docker-ce/linux/debian"
+#omv-env set OMV_PROXMOX_APT_REPOSITORY_URL "https://mirror/proxmox/debian"
+# 使得环境变量更改生效
+omv-salt stage run all
+</pre>
+<ol>
+<li>由于 Open Media Vault 自带 kernel backports，因此在 <code>/etc/apt/source.list</code> 中配置 backports 源会造成冲突。</li>
+<li>由于 Open Media Vault 的公钥分发通过源自己携带完成，因此本身存在被篡改的可能性，故在换源后用户需要通过其他渠道验证获取的公钥的正确性。</li>
+</ol>
+<h3>首次部署 Open Media Vault</h3>
+<p>首次部署操作步骤可参考 <a href="https://openmediavault.readthedocs.io/en/latest/installation/on_debian.html">https://openmediavault.readthedocs.io/en/latest/installation/on_debian.html</a>。</p>
+<p>我们仅对 <strong>Add the package repositories</strong> 段落做出如下调整</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="xjjvxXdU" title="">版本</label><select id="xjjvxXdU" name="release" title=""><option value="shaitan">6.0 (shaitan)</option><option value="usul">5.0 (usul)</option></select></div><div><input id="aKdKxhEO" name="proposed" title="" type="checkbox"/><label for="aKdKxhEO" title="">启用 proposed</label></div><div><input id="TbhESeLO" name="partner" title="" type="checkbox"/><label for="TbhESeLO" title="">启用 partner</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release proposed partner" z-path="/etc/apt/sources.list.d/openmediavault.list">
+deb {{endpoint}}/public {{release}} main
+deb {{endpoint}}/packages {{release}} main
+## Uncomment the following line to add software from the proposed repository.
+{{proposed}}deb {{endpoint}}/public {{release}}-proposed main
+{{proposed}}deb {{endpoint}}/packages {{release}}-proposed main
+## This software is not part of OpenMediaVault, but is offered by third-party
+## developers as a service to OpenMediaVault users.
+{{partner}}deb {{endpoint}}/public {{release}} partner
+{{partner}}deb {{endpoint}}/packages {{release}} partner
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5NZWRpYVZhdWx0IFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsiT3Blbk1lZGlhVmF1bHQiXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7InNoYWl0YW4iOiB7Il8iOiAiNi4wIChzaGFpdGFuKSJ9LCAidXN1bCI6IHsiXyI6ICI1LjAgKHVzdWwpIn19fSwgInByb3Bvc2VkIjogeyJfIjogIlx1NTQyZlx1NzUyOCBwcm9wb3NlZCIsICJ0cnVlIjogIiIsICJmYWxzZSI6ICIjICJ9LCAicGFydG5lciI6IHsiXyI6ICJcdTU0MmZcdTc1MjggcGFydG5lciIsICJ0cnVlIjogIiIsICJmYWxzZSI6ICIjICJ9fSwgIm5hbWUiOiAiT3Blbk1lZGlhVmF1bHQifQ==</script>
+</div>
+
+{% endraw %}

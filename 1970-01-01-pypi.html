@@ -1,0 +1,89 @@
+---
+category: help
+layout: helpz
+mirrorid: "pypi"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>PyPI 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h3>服务域名</h3>
+<p>如果您正在使用 TUNA 镜像站，可以使用 <code>pypi.tuna.tsinghua.edu.cn</code> 替换下面所有的 <code>mirrors.tuna.tsinghua.edu.cn/pypi/web</code>。</p>
+<p>BFSU 镜像站没有为 PyPI 提供独立服务域名。</p>
+<p>PyPI 镜像在每次同步成功后间隔 5 分钟同步一次。</p>
+<h3>pip</h3>
+<h4>临时使用</h4>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pip install -i {{endpoint}}/web/simple some-package
+</pre>
+<p>注意，<code>simple</code> 不能少。<br/>
+pip 要求使用 <code>https</code> ，因此需要 <code>https</code> 而不是 <code>http</code></p>
+<h4>设为默认</h4>
+<p>升级 pip 到最新的版本后进行配置：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+python -m pip install --upgrade pip
+pip config set global.index-url {{endpoint}}/web/simple
+</pre>
+<p>如果您到 pip 默认源的网络连接较差，临时使用本镜像站来升级 pip：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+python -m pip install -i {{endpoint}}/web/simple --upgrade pip
+</pre>
+<h4>配置多个镜像源</h4>
+<p>如果您想配置多个镜像源平衡负载，可在已经替换 <code>index-url</code> 的情况下通过以下方式继续增加源站：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pip config set global.extra-index-url "&lt;url1&gt; &lt;url2&gt;..."
+</pre>
+<p>请自行替换引号内的内容，源地址之间需要有空格</p>
+<p>例如</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pip config set global.extra-index-url "{{endpoint}}/web/simple"
+</pre>
+<h3>PDM</h3>
+<p>通过如下命令设置默认镜像：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pdm config pypi.url {{endpoint}}/web/simple
+</pre>
+<h3>Poetry</h3>
+<p>通过以下命令为单个项目设置首选镜像：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+poetry source add --priority=primary mirrors {{endpoint}}/web/simple/
+</pre>
+<p>通过以下命令为单个项目设置补充镜像：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+poetry source add --priority=supplemental mirrors {{endpoint}}/web/simple/
+</pre>
+<p>Poetry 尚未支持全局设置镜像。参考 <a href="https://github.com/python-poetry/poetry/issues/1632">issue 1632</a>。</p>
+<p>使用全局镜像的临时方案是将 Poetry 的安装器切换回 pip，如下所示。但该方式会在将来的版本中停止支持，参考 <a href="https://github.com/python-poetry/poetry/pull/7356">PR 7356</a>。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+poetry config experimental.new-installer false
+</pre>
+<h2>Homebrew</h2>
+<p>本节主要供 <a href="../homebrew/">Homebrew 帮助</a>使用。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+export HOMEBREW_PIP_INDEX_URL="{{endpoint}}/web/simple"
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlB5UEkgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJ0dW5hIiwgInB5cGkiXSwgImZpbHRlciI6IHsic2NoZW1lIjogImh0dHBzIn0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJweXBpIn0=</script>
+</div>
+
+{% endraw %}

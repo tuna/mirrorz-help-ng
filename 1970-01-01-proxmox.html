@@ -53,7 +53,12 @@ deb {{endpoint}}/debian/{{service}} {{release}} {{service}}-no-subscription
 cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm_back
 sed -i 's|http://download.proxmox.com|{{endpoint}}|g' /usr/share/perl5/PVE/APLInfo.pm
 </pre>
-<p>针对 <code>/usr/share/perl5/PVE/APLInfo.pm</code> 文件的修改，重启后生效。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlByb3htb3ggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJwcm94bW94Il0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJEZWJpYW4gXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiYm9va3dvcm0iOiB7Il8iOiAiRGViaWFuIDEyIChib29rd29ybSkifSwgImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSAoYnVsbHNleWUpIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSAoRU9MKSJ9LCAiamVzc2llIjogeyJfIjogIkRlYmlhbiA4IChqZXNzaWUpIChFT0wpIn19fSwgInNlcnZpY2UiOiB7Il8iOiAiXHU2NzBkXHU1MmExIiwgIm9wdGlvbiI6IHsicHZlIjogeyJfIjogIlByb3htb3ggVmlydHVhbCBFbnZpcm9ubWVudCAoUFZFKSJ9LCAicGJzIjogeyJfIjogIlByb3htb3ggQmFja3VwIFNlcnZlciAoUEJTKSJ9LCAicGJzLWNsaWVudCI6IHsiXyI6ICJQcm94bW94IEJhY2t1cCBDbGllbnQgKFBCUy1DTElFTlQpIn0sICJwbWciOiB7Il8iOiAiUHJveG1veCBNYWlsIEdhdGV3YXkgKFBNRykifX19fSwgIm5hbWUiOiAicHJveG1veCJ9</script>
+<p>针对 <code>/usr/share/perl5/PVE/APLInfo.pm</code> 文件的修改，重启后生效。</p>
+<h2>OpenMediaVault</h2>
+<p>本节供 <a href="../OpenMediaVault/">OpenMediaVault 帮助</a>使用。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+omv-env set OMV_PROXMOX_APT_REPOSITORY_URL "{{endpoint}}/debian"
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlByb3htb3ggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJwcm94bW94Il0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJEZWJpYW4gXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiYm9va3dvcm0iOiB7Il8iOiAiRGViaWFuIDEyIChib29rd29ybSkifSwgImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSAoYnVsbHNleWUpIn0sICJidXN0ZXIiOiB7Il8iOiAiRGViaWFuIDEwIChidXN0ZXIpIn0sICJzdHJldGNoIjogeyJfIjogIkRlYmlhbiA5IChzdHJldGNoKSAoRU9MKSJ9LCAiamVzc2llIjogeyJfIjogIkRlYmlhbiA4IChqZXNzaWUpIChFT0wpIn19fSwgInNlcnZpY2UiOiB7Il8iOiAiXHU2NzBkXHU1MmExIiwgIm9wdGlvbiI6IHsicHZlIjogeyJfIjogIlByb3htb3ggVmlydHVhbCBFbnZpcm9ubWVudCAoUFZFKSJ9LCAicGJzIjogeyJfIjogIlByb3htb3ggQmFja3VwIFNlcnZlciAoUEJTKSJ9LCAicGJzLWNsaWVudCI6IHsiXyI6ICJQcm94bW94IEJhY2t1cCBDbGllbnQgKFBCUy1DTElFTlQpIn0sICJwbWciOiB7Il8iOiAiUHJveG1veCBNYWlsIEdhdGV3YXkgKFBNRykifX19fSwgIm5hbWUiOiAicHJveG1veCJ9</script>
 </div>
 
 {% endraw %}

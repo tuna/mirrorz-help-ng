@@ -1,0 +1,88 @@
+---
+category: help
+layout: helpz
+mirrorid: "lineageOS"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>LineageOS 源码仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><strong>注意：本镜像是 lineageOS 源代码的镜像，如果是希望下载 lineage 的 rom，请访问 <a href="../lineage-rom/">Lineage ROM 使用帮助</a> 。</strong></p>
+<h3>过程摘录</h3>
+<p>下载 repo 工具：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+mkdir ~/bin
+PATH=~/bin:$PATH
+curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo
+chmod a+x ~/bin/repo
+</pre>
+<p>或者使用<a href="../git-repo/">git-repo 镜像</a></p>
+<p>建立工作目录：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+mkdir WORKING_DIRECTORY
+cd WORKING_DIRECTORY
+</pre>
+<p>初始化仓库：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+repo init -u {{endpoint}}/LineageOS/android.git -b lineage-21.0 --git-lfs
+</pre>
+<p>（如果已经有从 GitHub 同步的 lineageOS 源代码，可以从这里直接开始）</p>
+<p>打开<code>.repo/manifests/default.xml</code>，将</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="xml">
+  &lt;remote  name="github"
+           fetch=".."
+           review="review.lineageos.org" /&gt;
+</pre>
+<p>改成</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="xml">
+  &lt;remote  name="github"
+           fetch="https://github.com/" /&gt;
+
+  &lt;remote  name="lineage"
+           fetch="{{endpoint}}/"
+           review="review.lineageos.org" /&gt;
+</pre>
+<p>替换 AOSP 请参考 <a href="../AOSP/">AOSP 帮助</a> 中「LineageOS 中对于 AOSP 的替换」一节</p>
+<p>将</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="xml">
+  &lt;default revision="..."
+           remote="github"
+</pre>
+<p>改成</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="xml">
+  &lt;default revision="..."
+           remote="lineage"
+</pre>
+<p>同步源码树（以后只需执行这条命令来同步）：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+repo sync
+</pre>
+<h3>异常处理</h3>
+<ol>
+<li>部分仓库例如 <code>Lineage_framework_base</code> 同步的时候会出现 bundle 错误，这时候可以使用命令 <code>repo sync --no-clone-bundle</code> 进行同步。</li>
+</ol><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkxpbmVhZ2VPUyBcdTZlOTBcdTc4MDFcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImxpbmVhZ2VPUyJdLCAiZ2l0IjogdHJ1ZSwgImlucHV0Ijoge30sICJuYW1lIjogImxpbmVhZ2VPUyJ9</script>
+</div>
+
+{% endraw %}

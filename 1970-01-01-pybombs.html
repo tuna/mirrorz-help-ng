@@ -1,0 +1,59 @@
+---
+category: help
+layout: helpz
+mirrorid: "pybombs"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>PyBOMBS 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p><a href="http://gnuradio.org/redmine/projects/pybombs/wiki">PyBOMBS</a> (Python Build Overlay Managed Bundle System) 是 <a href="http://gnuradio.org/">GNU Radio</a> 的包管理系统。</p>
+<p>本镜像使用 http://github.com/scateu/pybombs-mirror 脚本进行构建。</p>
+<h3>使用示例</h3>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}pip3 install pybombs
+rm -rf ~/.pybombs
+pybombs recipes add gr-recipes git+{{endpoint}}/recipes/gr-recipes.git
+pybombs recipes add gr-etcetera git+{{endpoint}}/recipes/gr-etcetera.git
+mkdir gnuradio-prefix
+cd gnuradio-prefix
+pybombs prefix init
+pybombs install gnuradio
+. ./setup_env.sh
+gnuradio-companion
+
+pybombs install rtl-sdr hackrf bladeRF gr-osmosdr gr-bluetooth gr-ieee-80211
+</pre>
+<h3>更新</h3>
+<p>由于 PyBOMBS 的 recipes 只能通过 git 仓库进行发布。而我们暂时不想维护一个复杂的 git 分支合并历史。所以更新时，需要将 recipe 仓库删除，然后再重新添加回来。(见<a href="http://lists.gnu.org/archive/html/discuss-gnuradio/2016-06/msg00170.html">讨论</a>)</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pybombs recipes remove gr-recipes
+pybombs recipes remove gr-etcetera
+pybombs recipes add gr-recipes git+{{endpoint}}/recipes/gr-recipes.git
+pybombs recipes add gr-etcetera git+{{endpoint}}/recipes/gr-etcetera.git
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlB5Qk9NQlMgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJweWJvbWJzIl0sICJmaWx0ZXIiOiB7InNjaGVtZSI6ICJodHRwcyJ9LCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicHlib21icyJ9</script>
+</div>
+
+{% endraw %}

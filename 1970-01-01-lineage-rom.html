@@ -1,0 +1,44 @@
+---
+category: help
+layout: helpz
+mirrorid: "lineage-rom"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Lineage ROM</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>Lineage 介绍</h2>
+<p>Lineage OS 是全球最大的 Android 发行版之一，前身是 Cyanogenmod。</p>
+<h2>Lineage ROM 镜像使用帮助</h2>
+<p>正常情况下，Lineage 会根据你的地址来定向请求到最近的镜像站，因此通常情况下不需要手动选择镜像站进行下载，直接前往官方的下载网站下载即可。</p>
+<p>但是如果你希望一定从所选择的镜像站下载 Lineage 的 ROM，可以直接访问以下链接</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
+{{endpoint}}/full/
+</pre>
+<p>选择设备代码及时间进行下载，或者在 <a href="https://mirrorz.org/os/LineageOS">MirrorZ 主页</a> 找到最新的 ROM 进行下载。</p>
+<p>zip 文件的使用方式请参考 lineage 的官方文档或自行搜索。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkxpbmVhZ2UgUk9NIiwgImJsb2NrIjogWyJsaW5lYWdlLXJvbSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAibGluZWFnZS1yb20ifQ==</script>
+</div>
+
+{% endraw %}

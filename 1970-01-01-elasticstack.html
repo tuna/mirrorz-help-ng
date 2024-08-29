@@ -38,7 +38,7 @@ excerpt_separator: ""
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | {{sudo}}gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] {{endpoint}}/{{version}}/apt/ stable main" | {{sudo}}tee /etc/apt/sources.list.d/elastic-{{version}}.list
 {{sudo}}apt-get update &amp;&amp; {{sudo}}apt-get install elasticsearch
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVsYXN0aWMgU3RhY2sgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7InZlcnNpb24iOiB7Il8iOiAiXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiOC54IjogbnVsbCwgIjcueCI6IG51bGwsICI2LngiOiBudWxsfX19LCAicGVybWFsaW5rIjogImVsYXN0aWNzZWFyY2giLCAibmFtZSI6ICJlbGFzdGljc3RhY2sifQ==</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkVsYXN0aWMgU3RhY2sgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7InZlcnNpb24iOiB7Il8iOiAiXHU3MjQ4XHU2NzJjIiwgIm9wdGlvbiI6IHsiOC54IjogbnVsbCwgIjcueCI6IG51bGwsICI2LngiOiBudWxsfX19LCAibmFtZSI6ICJlbGFzdGljc3RhY2sifQ==</script>
 </div>
 
 {% endraw %}
