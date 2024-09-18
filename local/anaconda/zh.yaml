@@ -13,12 +13,10 @@ input:
       fastai:
       fermi:
       idaholab:
-      intel:
       matsci:
       menpo:
       MindSpore:
       mordred-descriptor:
-      msys2:
       numba:
       ohmeta:
       omnia:
