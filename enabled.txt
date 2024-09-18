@@ -115,3 +115,4 @@ ubuntu-ports
 virtualbox
 voidlinux
 wine-builds
+xanmod
