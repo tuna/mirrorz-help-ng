@@ -28,7 +28,23 @@ excerpt_separator: ""
     </form>
 </div>
 {% raw %}
-<div class="z-help"><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlhhbk1vZCBcdTUxODVcdTY4MzggQVBUIFx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsieGFubW9kIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJ4YW5tb2QifQ==</script>
+<div class="z-help">
+<p><a href="https://xanmod.org/">XanMod</a> 是带有自定义设置和新功能的通用 Linux 内核，旨在提供稳定、流畅、可靠的系统体验。</p>
+<p>本镜像为 amd64 架构的 APT 仓库，可供类 Debian 发行版使用。</p>
+<h2>使用方法</h2>
+<p>首先添加上游公钥：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+wget -qO - https://dl.xanmod.org/archive.key | {{sudo}}gpg --dearmor -vo /usr/share/keyrings/xanmod-archive-keyring.gpg
+</pre>
+<p>新增 APT 源配置：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apt/sources.list.d/xanmod-release.list">
+deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] {{endpoint}} releases main
+</pre>
+<p>更新缓存并安装 XanMod 内核（根据自身需要选择不同包名，详见官网）：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}apt update
+{{sudo}}apt install --install-recommends linux-xanmod-x64v3
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlhhbk1vZCBcdTUxODVcdTY4MzggQVBUIFx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsieGFubW9kIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJ4YW5tb2QifQ==</script>
 </div>
 
 {% endraw %}
