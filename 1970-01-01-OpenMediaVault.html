@@ -53,7 +53,7 @@ omv-salt stage run all
 <h3>首次部署 Open Media Vault</h3>
 <p>首次部署操作步骤可参考 <a href="https://openmediavault.readthedocs.io/en/latest/installation/on_debian.html">https://openmediavault.readthedocs.io/en/latest/installation/on_debian.html</a>。</p>
 <p>我们仅对 <strong>Add the package repositories</strong> 段落做出如下调整</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="xjjvxXdU" title="">版本</label><select id="xjjvxXdU" name="release" title=""><option value="shaitan">6.0 (shaitan)</option><option value="usul">5.0 (usul)</option></select></div><div><input id="aKdKxhEO" name="proposed" title="" type="checkbox"/><label for="aKdKxhEO" title="">启用 proposed</label></div><div><input id="TbhESeLO" name="partner" title="" type="checkbox"/><label for="TbhESeLO" title="">启用 partner</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release proposed partner" z-path="/etc/apt/sources.list.d/openmediavault.list">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="xjjvxXdU" title="">版本</label><select id="xjjvxXdU" name="release" title=""><option value="sandworm">7.0 (sandworm)</option><option value="shaitan">6.0 (shaitan)</option><option value="usul">5.0 (usul)</option></select></div><div><input id="aKdKxhEO" name="proposed" title="" type="checkbox"/><label for="aKdKxhEO" title="">启用 proposed</label></div><div><input id="TbhESeLO" name="partner" title="" type="checkbox"/><label for="TbhESeLO" title="">启用 partner</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release proposed partner" z-path="/etc/apt/sources.list.d/openmediavault.list">
 deb {{endpoint}}/public {{release}} main
 deb {{endpoint}}/packages {{release}} main
 ## Uncomment the following line to add software from the proposed repository.
@@ -63,7 +63,7 @@ deb {{endpoint}}/packages {{release}} main
 ## developers as a service to OpenMediaVault users.
 {{partner}}deb {{endpoint}}/public {{release}} partner
 {{partner}}deb {{endpoint}}/packages {{release}} partner
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5NZWRpYVZhdWx0IFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsiT3Blbk1lZGlhVmF1bHQiXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7InNoYWl0YW4iOiB7Il8iOiAiNi4wIChzaGFpdGFuKSJ9LCAidXN1bCI6IHsiXyI6ICI1LjAgKHVzdWwpIn19fSwgInByb3Bvc2VkIjogeyJfIjogIlx1NTQyZlx1NzUyOCBwcm9wb3NlZCIsICJ0cnVlIjogIiIsICJmYWxzZSI6ICIjICJ9LCAicGFydG5lciI6IHsiXyI6ICJcdTU0MmZcdTc1MjggcGFydG5lciIsICJ0cnVlIjogIiIsICJmYWxzZSI6ICIjICJ9fSwgIm5hbWUiOiAiT3Blbk1lZGlhVmF1bHQifQ==</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5NZWRpYVZhdWx0IFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsiT3Blbk1lZGlhVmF1bHQiXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7InNhbmR3b3JtIjogeyJfIjogIjcuMCAoc2FuZHdvcm0pIn0sICJzaGFpdGFuIjogeyJfIjogIjYuMCAoc2hhaXRhbikifSwgInVzdWwiOiB7Il8iOiAiNS4wICh1c3VsKSJ9fX0sICJwcm9wb3NlZCI6IHsiXyI6ICJcdTU0MmZcdTc1MjggcHJvcG9zZWQiLCAidHJ1ZSI6ICIiLCAiZmFsc2UiOiAiIyAifSwgInBhcnRuZXIiOiB7Il8iOiAiXHU1NDJmXHU3NTI4IHBhcnRuZXIiLCAidHJ1ZSI6ICIiLCAiZmFsc2UiOiAiIyAifX0sICJuYW1lIjogIk9wZW5NZWRpYVZhdWx0In0=</script>
 </div>
 
 {% endraw %}
