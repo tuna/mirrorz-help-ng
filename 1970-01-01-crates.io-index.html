@@ -30,7 +30,7 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h2>使用方法</h2>
-<p>编辑 <code>$CARGO_HOME/config</code> 文件，添加以下内容：</p>
+<p>编辑 <code>$CARGO_HOME/config.toml</code> 文件，添加以下内容：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="toml">
 [source.crates-io]
 replace-with = 'mirror'
@@ -39,12 +39,13 @@ replace-with = 'mirror'
 registry = "sparse+{{endpoint}}/"
 </pre>
 <p>注：<code>sparse+</code> 表示在使用稀疏索引，链接末尾的 <code>/</code> 不能缺少。</p>
-<p>注：<code>$CARGO_HOME</code>：在 Windows 系统默认为：<code>%USERPROFILE%\.cargo</code>，在类 Unix 系统默认为：<code>$HOME/.cargo</code></p>
+<p>注：<code>$CARGO_HOME</code>：在 Windows 系统默认为：<code>%USERPROFILE%\.cargo</code>，在类 Unix 系统默认为：<code>$HOME/.cargo</code>。</p>
+<p>注：cargo 仍会尝试读取不带 <code>.toml</code> 扩展名的配置文件（即 <code>$CARGO_HOME/config</code>），但从 1.39 版本起，cargo 引入了对 <code>.toml</code> 扩展名的支持，并将其设为首选格式。请根据使用的 cargo 版本选择适当的配置文件名。</p>
 <p>在 Linux 环境可以使用下面的命令完成：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 mkdir -vp ${CARGO_HOME:-$HOME/.cargo}
 
-cat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config
+cat &lt;&lt; EOF | tee -a ${CARGO_HOME:-$HOME/.cargo}/config.toml
 [source.crates-io]
 replace-with = 'mirror'
 
