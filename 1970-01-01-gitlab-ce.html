@@ -34,11 +34,11 @@ excerpt_separator: ""
 <h2>Debian/Ubuntu 用户</h2>
 <p>首先信任 GitLab 的 GPG 公钥：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | {{sudo}}apt-key add - &amp;&gt;/dev/null
+curl -fsSL https://packages.gitlab.com/gpg.key | {{sudo}}gpg --dearmor &gt; /usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg
 </pre>
 <p>再选择你的 Debian/Ubuntu 版本，将下方内容写入 <code>/etc/apt/sources.list.d/gitlab-ce.list</code></p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="yeOaAKRb" title="">操作系统版本</label><select id="yeOaAKRb" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/gitlab-ce.list">
-deb {{endpoint}}/{{os}} {{release}} main
+deb [signed-by=/usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg] {{endpoint}}/{{os}} {{release}} main
 </pre>
 <p>安装 gitlab-ce:</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
