@@ -30,8 +30,8 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h2>收录范围</h2>
-<p>Fedora 29 及更旧版本已不再受官方支持，Fedora 官方已将 Fedora 29 及更旧版本的软件仓库从主镜像中移除，并转移至了 archive 镜像中。</p>
-<p>故 Fedora 29 及更旧版本无法使用所选择的镜像。请使用默认配置文件，以使 <code>yum</code> / <code>dnf</code> 自动获取可用的镜像源。</p>
+<p>Fedora 38 及更旧版本已不再受官方支持，Fedora 官方已将 Fedora 38 及更旧版本的软件仓库从主镜像中移除，并转移至了 archive 镜像中。</p>
+<p>故 Fedora 38 及更旧版本无法使用所选择的镜像。请使用默认配置文件，以使 <code>yum</code> / <code>dnf</code> 自动获取可用的镜像源。</p>
 <h2>使用方法</h2>
 <p>Fedora 默认使用 <a href="https://zh.fedoracommunity.org/2018/04/05/fedora-secures-package-delivery.html">Metalink</a> 给出推荐的镜像列表，保证用户使用的镜像仓库足够新，并且能够尽快拿到安全更新，从而提供更好的安全性。所以通常情况下使用默认配置即可，无需更改配置文件。</p>
 <p>由于 Metalink 需要从国外的 Fedora 项目服务器上获取元信息，所以对于校园内网、无国外访问等特殊情况，metalink 并不适用，此时可以如下修改配置文件。</p>
@@ -48,18 +48,20 @@ excerpt_separator: ""
     -e 's|^#baseurl=http://download.example/pub/fedora/linux|baseurl={{endpoint}}|g' \
     -i.bak \
     /etc/yum.repos.d/fedora.repo \
-    /etc/yum.repos.d/fedora-modular.repo \
-    /etc/yum.repos.d/fedora-updates.repo \
-    /etc/yum.repos.d/fedora-updates-modular.repo
+    /etc/yum.repos.d/fedora-updates.repo
 </pre>
 <h3>手动替换</h3>
 <p><strong><code>fedora</code> 仓库 (/etc/yum.repos.d/fedora.repo)</strong></p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
 [fedora]
 name=Fedora $releasever - $basearch
-failovermethod=priority
 baseurl={{endpoint}}/releases/$releasever/Everything/$basearch/os/
-metadata_expire=28d
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&amp;arch=$basearch
+enabled=1
+countme=1
+metadata_expire=7d
+repo_gpgcheck=0
+type=rpm
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
@@ -68,33 +70,12 @@ skip_if_unavailable=False
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
 [updates]
 name=Fedora $releasever - $basearch - Updates
-failovermethod=priority
 baseurl={{endpoint}}/updates/$releasever/Everything/$basearch/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&amp;arch=$basearch
 enabled=1
-gpgcheck=1
-metadata_expire=6h
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-skip_if_unavailable=False
-</pre>
-<p><strong><code>fedora-modular</code> 仓库 (/etc/yum.repos.d/fedora-modular.repo)</strong></p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
-[fedora-modular]
-name=Fedora Modular $releasever - $basearch
-failovermethod=priority
-baseurl={{endpoint}}/releases/$releasever/Modular/$basearch/os/
-enabled=1
-metadata_expire=7d
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-skip_if_unavailable=False
-</pre>
-<p><strong><code>updates-modular</code> 仓库 (/etc/yum.repos.d/fedora-updates-modular.repo)</strong></p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="ini">
-[updates-modular]
-name=Fedora Modular $releasever - $basearch - Updates
-failovermethod=priority
-baseurl={{endpoint}}/updates/$releasever/Modular/$basearch/
-enabled=1
+countme=1
+repo_gpgcheck=0
+type=rpm
 gpgcheck=1
 metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
