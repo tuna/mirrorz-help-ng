@@ -27,8 +27,6 @@ ENV JENKINS_UC_DOWNLOAD {{endpoint}}
 ENV JENKINS_PLUGIN_INFO {{endpoint}}/updates/current/plugin-versions.json
 </tmpl>
 
-注意 TUNA 源的布局与官方源不同，因此若保留默认的 `JENKINS_UC_DOWNLOAD=$JENKINS_UC/download` 会导致插件下载失败。
-
-注意这只会影响 Docker 构建时的插件更新，不会影响 Jenkins 运行时的插件更新。
+注意，Jenkins 官方镜像源 `mirrors.jenkins-ci.org` 与官方更新中心 `updates.jenkins.io` 路径布局有差异，若保留默认的 `JENKINS_UC_DOWNLOAD=$JENKINS_UC/download` 会导致插件下载失败，因此所有 Jenkins 镜像使用者都需要配置 `JENKINS_UC_DOWNLOAD`。此外，环境变量只会影响 Docker 构建时的插件更新，不会影响 Jenkins 运行时的插件更新。
 
 参考文档：https://github.com/jenkinsci/docker/?tab=readme-ov-file#setting-update-centers
