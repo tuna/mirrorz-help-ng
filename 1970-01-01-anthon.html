@@ -6,7 +6,7 @@ excerpt_separator: ""
 ---
 
 <!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
-{% raw %}<h1>Anthon 软件仓库</h1>{% endraw %}
+{% raw %}<h1>安同 OS 软件仓库</h1>{% endraw %}
 <div class="z-wrap">
     <form class="z-form z-global">
         <div>
@@ -30,30 +30,20 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h2>项目简介</h2>
-<p>AOSC OS 是一个由<a href="https://aosc.io">安同开源社区</a> 开发的半滚动 Linux 发行版，支持多种处理器架构。</p>
+<p>安同 OS 是一个由<a href="https://aosc.io">安同开源社区</a>开发的半滚动 Linux 发行版，支持多种处理器架构。</p>
 <h2>使用方法</h2>
 <h3>自动替换</h3>
-<p>AOSC OS 内置 <code>apt-gen-list</code> 工具来切换社区提供的可用镜像源。</p>
-<p>列出可用镜像源，执行：</p>
+<p>请使用以下命令交互式开启/关闭镜像源，输入镜像源名称并使用空格启用/禁用镜像源（请注意：<code>oma mirror</code> 允许指定多个镜像源，请注意禁用不需要使用的镜像源）：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}apt-gen-list list-mirrors
+{{sudo}}oma mirror
 </pre>
-<p>要启用某一镜像源，执行：</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}apt-gen-list add-mirror &lt;mirror&gt;
-</pre>
-<p>其中 <code>&lt;mirror&gt;</code> 替换为所列出的简称。</p>
-<p>要仅启用某一源，执行：</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}apt-gen-list set-mirror &lt;mirror&gt;
-</pre>
-<p>其中 <code>&lt;mirror&gt;</code> 替换为所列出的简称。</p>
-<p>关于 <code>apt-gen-list</code> 的语义和详细用法，请执行 <code>apt-gen-list help</code> 查看帮助。</p>
-<h3>手动修改</h3>
-<p>修改 <code>/etc/apt/sources.list</code>，内容为</p>
+<p>关于 <code>oma mirror</code> 的更多详细命令和用法，请参考 <a href="https://github.com/AOSC-Dev/oma?tab=readme-ov-file#command-reference">oma 的 GitHub 页面</a>。</p>
+<h3>手动修改（不推荐）</h3>
+<p>安同 OS 推荐使用 <code>oma</code> 完成对软件源配置的修改，不推荐手动编辑配置文件。</p>
+<p>如确实有相关需求，请按下例编辑 <code>/etc/apt/sources.list</code> 的内容：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apt/sources.list">
 deb {{endpoint}}/debs stable main
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFudGhvbiBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJhbnRob24ifQ==</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlx1NWI4OVx1NTQwYyBPUyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJhbnRob24ifQ==</script>
 </div>
 
 {% endraw %}
