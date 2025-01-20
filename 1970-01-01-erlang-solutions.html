@@ -43,7 +43,7 @@ excerpt_separator: ""
 <p>首先信任来自 <a href="https://www.erlang-solutions.com/downloads/">Erlang Solutions</a> 的 PGP 公钥：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}mkdir -m 0755 -p /etc/apt/keyrings/
-curl -s https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc | gpg --dearmor | {{sudo}}tee /etc/apt/keyrings/erlang-solutions-archive_compat.gpg &gt; /dev/null
+curl -s https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc | {{sudo}}gpg --dearmor -o /etc/apt/keyrings/erlang-solutions-archive_compat.gpg
 </pre>
 <p>新建 <code>/etc/apt/sources.list.d/erlang-solutions.list</code>，填入下列内容（可根据需要选择）：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apt/sources.list.d/erlang-solutions.list">

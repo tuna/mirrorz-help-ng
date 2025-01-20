@@ -33,8 +33,7 @@ excerpt_separator: ""
 <p>使用以下命令启用 bazel-apt 仓库</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}apt install apt-transport-https curl gnupg
-curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor &gt;bazel-archive-keyring.gpg
-{{sudo}}mv bazel-archive-keyring.gpg /usr/share/keyrings
+curl -fsSL https://bazel.build/bazel-release.pub.gpg | {{sudo}}gpg --dearmor -o /usr/share/keyrings/bazel-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] {{endpoint}} stable jdk1.8" | {{sudo}}tee /etc/apt/sources.list.d/bazel.list
 </pre>
 <p>使用以下命令安装 bazel</p>
