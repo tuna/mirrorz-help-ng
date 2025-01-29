@@ -46,7 +46,7 @@ deb [arch={{arch}} signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] {{endpo
 <p>如有需要，配置 APT 优先级：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-path="/etc/apt/preferences.d/mozilla">
 Package: *
-Pin: origin packages.mozilla.org
+Pin: release a=mozilla
 Pin-Priority: 1000
 </pre>
 <p>更新 APT 缓存并安装：</p>
