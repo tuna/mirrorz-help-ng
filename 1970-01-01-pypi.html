@@ -79,6 +79,14 @@ poetry source add --priority=supplemental mirrors {{endpoint}}/web/simple/
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 poetry config experimental.new-installer false
 </pre>
+<h3>Astral uv</h3>
+<p>在 <code>~/.config/uv/uv.toml</code> 或者 <code>/etc/uv/uv.toml</code> 填写下面的内容：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="toml">
+[[index]]
+url = "{{endpoint}}/web/simple/"
+default = true
+</pre>
+<p>详情参考<a href="https://docs.astral.sh/uv/configuration/files/">官方配置文件文档</a>。</p>
 <h2>Homebrew</h2>
 <p>本节主要供 <a href="../homebrew/">Homebrew 帮助</a>使用。</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">

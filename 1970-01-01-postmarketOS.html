@@ -30,21 +30,19 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h3>pmbootstrap</h3>
-<p>需要在每个 <code>pmbootstrap</code> 命令中都指定镜像</p>
+<p>通过 <code>pmbootstrap config</code> 更新镜像配置。</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-pmbootstrap --mirror-pmOS={{endpoint}}/ --mirror-alpine=http://mirror/alpine/ init
-pmbootstrap --mirror-pmOS={{endpoint}}/ --mirror-alpine=http://mirror/alpine/ install
+pmbootstrap config mirrors.alpine {{scheme}}://{{host}}/alpine/
+pmbootstrap config mirrors.pmaports {{endpoint}}/
+pmbootstrap config mirrors.systemd {{endpoint}}/extra-repos/systemd/
 </pre>
-<p>其中 <code>mirror-alpine</code> 部分需要前往 <a href="../alpine/">Alpine 帮助</a>构造。</p>
-<h3>安装后的 postmarketOS</h3>
-<p>将 <code>/etc/apk/repositories</code> 替换为以下的内容</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
-{{endpoint}}/master
-http://mirror/alpine/edge/main
-http://mirror/alpine/edge/community
-</pre>
-<p>其中 alpine 部分需要前往 <a href="../alpine/">Alpine 帮助</a>构造。</p>
-<p>可以按照需要使用不同的 channel，例如 <code>postmarketOS/v21.12</code>，<code>alpine/v3.15/main</code></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogInBvc3RtYXJrZXRPUyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInBvc3RtYXJrZXRPUyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicG9zdG1hcmtldE9TIn0=</script>
+<p>其中 <code>mirrors.alpine</code> 部分也可前往 <a href="../alpine/">Alpine 帮助</a> 选择其他的镜像站。</p>
+<h3>移除镜像配置</h3>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+pmbootstrap config -r mirrors.alpine
+pmbootstrap config -r mirrors.pmaports
+pmbootstrap config -r mirrors.systemd
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogInBvc3RtYXJrZXRPUyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbInBvc3RtYXJrZXRPUyJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAicG9zdG1hcmtldE9TIn0=</script>
 </div>
 
 {% endraw %}
