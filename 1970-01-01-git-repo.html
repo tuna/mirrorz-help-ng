@@ -36,7 +36,7 @@ excerpt_separator: ""
 <p>当前 repo 主要用于同步 AOSP、chromium 及 chromium OS。</p>
 <h2>下载</h2>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-curl {{endpoint}} -o repo
+curl -L {{endpoint}} -o repo
 chmod +x repo
 </pre>
 <p>为了方便可以将其拷贝到你的<code>PATH</code>里。</p>

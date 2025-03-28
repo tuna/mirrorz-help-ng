@@ -36,7 +36,7 @@ excerpt_separator: ""
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 # 手动模拟 rosdep init
 {{sudo}}mkdir -p /etc/ros/rosdep/sources.list.d/
-{{sudo}}curl -o /etc/ros/rosdep/sources.list.d/20-default.list {{endpoint}}/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
+{{sudo}}curl -o /etc/ros/rosdep/sources.list.d/20-default.list -L {{endpoint}}/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
 </pre>
 <h3>stackage global-hints-cache.yaml</h3>
 <p>主内容在 <a href="../stackage/">Stackage 帮助</a> 中。</p>

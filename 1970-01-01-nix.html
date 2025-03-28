@@ -38,13 +38,13 @@ excerpt_separator: ""
 <li>
 <p>单用户安装<br/>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash"><br/>
-sh &lt;(curl {{endpoint}}/latest/install)<br/>
+sh &lt;(curl -L {{endpoint}}/latest/install)<br/>
 </pre></p>
 </li>
 <li>
 <p>多用户安装：<br/>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash"><br/>
-sh &lt;(curl {{endpoint}}/latest/install) --daemon<br/>
+sh &lt;(curl -L {{endpoint}}/latest/install) --daemon<br/>
 </pre></p>
 </li>
 </ul>
