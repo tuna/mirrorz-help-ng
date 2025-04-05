@@ -36,11 +36,11 @@ excerpt_separator: ""
 <div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="VMmLakrr" title="">MongoDB 版本号</label><select id="VMmLakrr" name="version" title=""><option value="7.0">7.0</option><option value="6.0">6.0</option><option value="5.0">5.0</option><option value="4.4">4.4</option><option value="4.2">4.2</option></select></div></form></div>
 <p>信任 MongoDB 的 GPG 公钥：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-wget -qO - https://www.mongodb.org/static/pgp/server-{{version}}.asc | {{sudo}}apt-key add -
+wget -qO - https://www.mongodb.org/static/pgp/server-{{version}}.asc | {{sudo}}gpg -o /etc/apt/keyrings/mongodb-server-{{version}}.gpg --dearmor
 </pre>
 <p>再选择你的 Debian / Ubuntu 版本，文本框中内容写进 <code>/etc/apt/sources.list.d/mongodb.list</code></p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="vzUysDVj" title="">发行版</label><select id="vzUysDVj" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/mongodb.list">
-deb {{endpoint}}/apt/{{os}} {{release}}/mongodb-org/{{version}} {{repo}}
+deb [signed-by=/etc/apt/keyrings/mongodb-server-{{version}}.gpg] {{endpoint}}/apt/{{os}} {{release}}/mongodb-org/{{version}} {{repo}}
 </pre>
 <p>安装 <code>mongodb-org</code> 即可</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">

@@ -38,8 +38,8 @@ excerpt_separator: ""
 </pre>
 <p>以 Debian Buster 为例，举例如下：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-wget -q -O- 'https://download.ceph.com/keys/release.asc' | {{sudo}}apt-key add -
-{{sudo}}apt-add-repository 'deb {{endpoint}}/debian-octopus/ buster main'
+wget -q -O- 'https://download.ceph.com/keys/release.asc' | {{sudo}}gpg -o /etc/apt/keyrings/ceph.gpg --dearmor
+{{sudo}}apt-add-repository 'deb [signed-by=/etc/apt/keyrings/ceph.gpg] {{endpoint}}/debian-octopus/ buster main'
 {{sudo}}apt update
 </pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkNlcGggXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJ1c2FnZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiY2VwaCJ9</script>
 </div>
