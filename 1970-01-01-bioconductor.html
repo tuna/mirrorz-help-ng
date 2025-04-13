@@ -30,9 +30,12 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <h2>项目简介</h2>
-<p>Bioconductor 为高通量基因组数据的分析和可视化提供开源工具。Bioconductor 多数软件包采用 R 统计编程语言开发。Bioconductor 每年释出两个版本，并有活跃的用户社区。</p>
+<p><a href="https://www.bioconductor.org">Bioconductor</a> 为高通量基因组数据的分析和可视化提供开源工具。Bioconductor 多数软件包采用 R 统计编程语言开发。Bioconductor 每年释出两个版本，并有活跃的用户社区。</p>
+<h2>版本说明</h2>
+<p>由于 Bioconductor 的 rsync 上游会自行删除非最新的版本，大部分镜像站仅提供 Bioconductor 的当前最新版本和开发版本，只有少量镜像站点会保留过时的版本。目前已知<a href="https://mirrors.westlake.edu.cn/">西湖大学镜像站</a>提供了历史版本的镜像。</p>
+<p>详细讨论参见 <a href="https://github.com/tuna/issues/issues/1969">tuna/issues #1969</a>。</p>
 <h2>使用方法</h2>
-<p><a href="https://www.bioconductor.org">Bioconductor</a> 镜像源配置文件之一是 <code>.Rprofile</code>（linux 下位于 <code>~/.Rprofile</code>, Windows 下位于 <code>~\library\base\R\Rprofile</code>）。</p>
+<p>Bioconductor 镜像源配置文件之一是 <code>~/.Rprofile</code>（linux 下位于 <code>~/.Rprofile</code>, Windows 下位于 <code>~\library\base\R\Rprofile</code>）。</p>
 <p>在文末添加如下语句或在 R/RStudio 终端下键入：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-lang="r" z-path="~/.Rprofile">
 options(BioC_mirror="{{endpoint}}")
@@ -51,7 +54,7 @@ BiocManager::install("$package")
 options(
     BIOCONDUCTOR_CONFIG_FILE = "file:///path/to/config.yaml"  # config.yaml 所在的路径
 )
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkJpb2NvbmR1Y3RvciBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIiwgIm9mZmxpbmUiXSwgImlucHV0Ijoge30sICJuYW1lIjogImJpb2NvbmR1Y3RvciJ9</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkJpb2NvbmR1Y3RvciBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInZlcnNpb24iLCAidXNhZ2UiLCAib2ZmbGluZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiYmlvY29uZHVjdG9yIn0=</script>
 </div>
 
 {% endraw %}
