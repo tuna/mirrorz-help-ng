@@ -1,0 +1,57 @@
+---
+category: help
+layout: helpz
+mirrorid: "aosp-monthly"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>AOSP Monthly</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>使用每月更新的初始化包</h2>
+<p>本节供 <a href="../AOSP/">AOSP 帮助</a>使用。</p>
+<p>由于首次同步需要下载约 60GB 数据，过程中任何网络故障都可能造成同步失败，我们强烈建议您使用初始化包进行初始化。</p>
+<p>由于初始包较大，需要注意磁盘格式是否支持大文件。初始化包方法支持断点续传。</p>
+<p>下载 <code>aosp-monthly/aosp-latest.tar</code> 并校验 checksum。</p>
+<p>由于所有代码都是从隐藏的 <code>.repo</code> 目录中 checkout 出来的，所以我们只保留了 <code>.repo</code> 目录，下载后解压<br/>
+再 <code>repo sync</code> 一遍即可得到完整的目录。</p>
+<p>使用方法如下：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><input checked="checked" id="KTweaRtz" name="checksum" title="" type="checkbox"/><label for="KTweaRtz" title="">检查校验和</label></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="checksum" z-lang="bash">
+# 包含断点续传
+curl -LOC - {{endpoint}}/aosp-latest.tar # 下载初始化包
+{{#checksum}}
+md5sum aosp-latest.tar
+curl -Lq {{endpoint}}/aosp-latest.tar.md5
+{{/checksum}}
+tar xf aosp-latest.tar
+cd AOSP   # 解压得到的 AOSP 工程目录
+# 这时 ls 的话什么也看不到，因为只有一个隐藏的 .repo 目录
+repo sync # 正常同步一遍即可得到完整目录
+# 或 repo sync -l 仅 checkout 代码
+</pre>
+<p>此后，每次只需运行 <code>repo sync</code> 即可保持同步。</p>
+<p><strong>我们强烈建议您保持每天同步，并尽量选择凌晨等低峰时间</strong></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkFPU1AgTW9udGhseSIsICJibG9jayI6IFsiYW9zcC1tb250aGx5Il0sICJpbnB1dCI6IHsiY2hlY2tzdW0iOiB7Il8iOiAiXHU2OGMwXHU2N2U1XHU2ODIxXHU5YThjXHU1NDhjIiwgImRlZmF1bHQiOiB0cnVlLCAidHJ1ZSI6IG51bGx9fSwgIm5hbWUiOiAiYW9zcC1tb250aGx5In0=</script>
+</div>
+
+{% endraw %}
