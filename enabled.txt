@@ -3,6 +3,7 @@ Adoptium
 alpine
 anaconda
 anthon
+aosp-monthly
 arch4edu
 archlinux
 archlinuxarm
