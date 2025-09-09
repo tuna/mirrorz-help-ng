@@ -1,0 +1,52 @@
+---
+category: help
+layout: helpz
+mirrorid: "gentoo"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>Gentoo 软件仓库</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<h2>项目简介</h2>
+<p>本仓库是 Gentoo 的 Stage 3 镜像。</p>
+<h2>Distfiles 配置</h2>
+<p>在 <code>/etc/portage/make.conf</code> 中加入：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-append="" z-path="/etc/portage/make.conf">
+GENTOO_MIRRORS="{{endpoint}}"
+</pre>
+<p>关于 Portage 配置可以参考 <a href="../gentoo-portage/">Gentoo Portage 镜像</a>。</p>
+<p>配置好 Portage 与 Distfiles 后，执行 <code>emerge --sync</code> 进行更新。</p>
+<h2>Gentoo Prefix Bootstrap 镜像配置</h2>
+<p>在运行 Bootstrap 脚本之前，可通过设置以下环境变量选择 Bootstrap 过程中使用的镜像。</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+export GENTOO_MIRRORS="{{endpoint}}"
+export SNAPSHOT_URL="{{endpoint}}/snapshots"
+# export GNU_URL="http://mirror/gnu"
+</pre>
+<p><code>GNU_URL</code> 的具体设置可以参考 <a href="../gnu/">GNU 帮助</a>。</p>
+<p>Bootstrap 成功后，若对 Gentoo Portage 和 Distfiles 换源，可参照以上几节，只需将 <code>/etc</code> 换成 <code>$EPREFIX/etc</code></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdlbnRvbyBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImludHJvIiwgInVzYWdlIl0sICJpbnB1dCI6IHt9LCAibmFtZSI6ICJnZW50b28ifQ==</script>
+</div>
+
+{% endraw %}
