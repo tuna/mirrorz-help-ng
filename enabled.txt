@@ -43,6 +43,7 @@ fedora
 flutter
 flutter-sdk.git
 gcc.git
+gentoo
 gentoo-portage
 gentoo-portage.git
 gentoo-portage-prefix
