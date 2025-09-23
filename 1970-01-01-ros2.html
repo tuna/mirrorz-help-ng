@@ -34,14 +34,14 @@ excerpt_separator: ""
 {{sudo}}apt install curl gnupg2
 {{sudo}}curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
 </pre>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="aTqsWALf" title="">发行版</label><select id="aTqsWALf" name="release" title=""><option value="noble">Ubuntu 24.04 LTS (noble)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-lang="bash">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="aTqsWALf" title="">发行版</label><select id="aTqsWALf" name="release" title=""><option value="noble">Ubuntu 24.04 LTS</option><option value="jammy">Ubuntu 22.04 LTS</option><option value="trixie">Debian 13</option><option value="bookworm">Debian 12</option><option value="bullseye">Debian 11</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-lang="bash">
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] {{endpoint}}/ubuntu {{release}} main" | {{sudo}}tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null
 
 {{sudo}}apt update
 </pre>
 <p>Reference: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html</p>
 <h3>rosdep</h3>
-<p>参考 <a href="../rosdistro/">ROS Distro 帮助</a></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJPUzIgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJyb3MyIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJub2JsZSI6IHsiXyI6ICJVYnVudHUgMjQuMDQgTFRTIChub2JsZSkifSwgImphbW15IjogeyJfIjogIlVidW50dSAyMi4wNCBMVFMgKGphbW15KSJ9LCAiZm9jYWwiOiB7Il8iOiAiVWJ1bnR1IDIwLjA0IExUUyAoZm9jYWwpIn0sICJiaW9uaWMiOiB7Il8iOiAiVWJ1bnR1IDE4LjA0IExUUyAoYmlvbmljKSJ9LCAiYm9va3dvcm0iOiB7Il8iOiAiRGViaWFuIDEyIChib29rd29ybSkifSwgImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSAoYnVsbHNleWUpIn19fX0sICJuYW1lIjogInJvczIifQ==</script>
+<p>参考 <a href="../rosdistro/">ROS Distro 帮助</a></p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIlJPUzIgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJyb3MyIl0sICJpbnB1dCI6IHsicmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJub2JsZSI6IHsiXyI6ICJVYnVudHUgMjQuMDQgTFRTIn0sICJqYW1teSI6IHsiXyI6ICJVYnVudHUgMjIuMDQgTFRTIn0sICJ0cml4aWUiOiB7Il8iOiAiRGViaWFuIDEzIn0sICJib29rd29ybSI6IHsiXyI6ICJEZWJpYW4gMTIifSwgImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSJ9fX19LCAibmFtZSI6ICJyb3MyIn0=</script>
 </div>
 
 {% endraw %}

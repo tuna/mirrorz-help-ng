@@ -37,7 +37,7 @@ excerpt_separator: ""
 curl -fsSL https://packages.gitlab.com/gpg.key | {{sudo}}gpg --dearmor -o /usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg
 </pre>
 <p>再选择你的 Debian/Ubuntu 版本，将下方内容写入 <code>/etc/apt/sources.list.d/gitlab-ce.list</code></p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="yeOaAKRb" title="">操作系统版本</label><select id="yeOaAKRb" name="release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/gitlab-ce.list">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="yeOaAKRb" title="">操作系统版本</label><select id="yeOaAKRb" name="release" title=""><option value="trixie">Debian 13</option><option value="bookworm">Debian 12</option><option value="bullseye">Debian 11</option><option value="noble">Ubuntu 24.04 LTS</option><option value="jammy">Ubuntu 22.04 LTS</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/gitlab-ce.list">
 deb [signed-by=/usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg] {{endpoint}}/{{os}} {{release}} main
 </pre>
 <p>安装 gitlab-ce:</p>
@@ -58,7 +58,7 @@ enabled=1
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}yum makecache
 {{sudo}}yum install gitlab-ce
-</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdExhYiBDRSBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImNvdmVyIiwgImRlYiIsICJycG0iXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NjRjZFx1NGY1Y1x1N2NmYlx1N2VkZlx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7ImJvb2t3b3JtIjogeyJfIjogIkRlYmlhbiAxMiAoYm9va3dvcm0pIiwgIm9zIjogImRlYmlhbiJ9LCAiYnVsbHNleWUiOiB7Il8iOiAiRGViaWFuIDExIChidWxsc2V5ZSkiLCAib3MiOiAiZGViaWFuIn0sICJmb2NhbCI6IHsiXyI6ICJVYnVudHUgMjAuMDQgTFRTIChmb2NhbCkiLCAib3MiOiAidWJ1bnR1In0sICJiaW9uaWMiOiB7Il8iOiAiVWJ1bnR1IDE4LjA0IExUUyAoYmlvbmljKSIsICJvcyI6ICJ1YnVudHUifSwgInhlbmlhbCI6IHsiXyI6ICJVYnVudHUgMTYuMDQgTFRTICh4ZW5pYWwpIChFT0wpIiwgIm9zIjogInVidW50dSJ9fX19LCAibmFtZSI6ICJnaXRsYWItY2UifQ==</script>
+</pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdExhYiBDRSBcdThmNmZcdTRlZjZcdTRlZDNcdTVlOTMiLCAiYmxvY2siOiBbImNvdmVyIiwgImRlYiIsICJycG0iXSwgImlucHV0IjogeyJyZWxlYXNlIjogeyJfIjogIlx1NjRjZFx1NGY1Y1x1N2NmYlx1N2VkZlx1NzI0OFx1NjcyYyIsICJvcHRpb24iOiB7InRyaXhpZSI6IHsiXyI6ICJEZWJpYW4gMTMiLCAib3MiOiAiZGViaWFuIn0sICJib29rd29ybSI6IHsiXyI6ICJEZWJpYW4gMTIiLCAib3MiOiAiZGViaWFuIn0sICJidWxsc2V5ZSI6IHsiXyI6ICJEZWJpYW4gMTEiLCAib3MiOiAiZGViaWFuIn0sICJub2JsZSI6IHsiXyI6ICJVYnVudHUgMjQuMDQgTFRTIiwgIm9zIjogInVidW50dSJ9LCAiamFtbXkiOiB7Il8iOiAiVWJ1bnR1IDIyLjA0IExUUyIsICJvcyI6ICJ1YnVudHUifX19fSwgIm5hbWUiOiAiZ2l0bGFiLWNlIn0=</script>
 </div>
 
 {% endraw %}

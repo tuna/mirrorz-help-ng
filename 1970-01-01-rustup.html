@@ -49,8 +49,8 @@ env RUSTUP_DIST_SERVER={{endpoint}} rustup install nightly-YYYY-mm-dd
 <p>若要长期启用镜像源，执行：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 # for bash
-echo 'export RUSTUP_UPDATE_ROOT={{endpoint}}/rustup' &gt;&gt; ~/.bash_profile
-echo 'export RUSTUP_DIST_SERVER={{endpoint}}' &gt;&gt; ~/.bash_profile
+echo 'export RUSTUP_UPDATE_ROOT={{endpoint}}/rustup' &gt;&gt; ~/.bashrc
+echo 'export RUSTUP_DIST_SERVER={{endpoint}}' &gt;&gt; ~/.bashrc
 # for fish
 echo 'set -x RUSTUP_UPDATE_ROOT {{endpoint}}/rustup' &gt;&gt; ~/.config/fish/config.fish
 echo 'set -x RUSTUP_DIST_SERVER {{endpoint}}' &gt;&gt; ~/.config/fish/config.fish

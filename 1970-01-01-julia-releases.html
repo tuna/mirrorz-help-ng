@@ -34,23 +34,17 @@ excerpt_separator: ""
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
 {{endpoint}}/bin/
 </pre>
-<p>这里仅镜像 <a href="https://julialang.org/downloads/">JuliaLang Downloads</a> 中提供的稳定发行版以及 rc 版本。每日构建的测试版 (nightlies) 以及  <a href="http://junolab.org/">Juno</a>/<a href="https://juliacomputing.com/products/juliapro">Julia Pro</a>等 IDE 版本不包括在内。</p>
+<p>这里仅镜像 <a href="https://julialang.org/downloads/">JuliaLang Downloads</a> 中提供的稳定发行版以及 rc 版本。每日构建的测试版 (nightlies) 不包括在内。</p>
 <p>尽管一些包管理工具（例如 <code>apt</code>, <code>pacman</code>, <code>conda</code>, <code>choco</code>) 中提供有 Julia，但是这些工具或多或少都存在一些由二进制 依赖导致的问题，因此官方推荐的方式是根据自己的使用平台下载相应的二进制程序，然后通过解压的方式进行手动安装。</p>
-<h2>Julia 一键安装</h2>
-<p>对于习惯命令行的用户而言，<a href="https://github.com/johnnychen94/jill.py">jill.py</a> 是一个社区维护的全平台下一键安装 Julia 的命令行工具。</p>
-<p>安装/更新 <code>jill</code>： <code>pip install jill --user -U</code> (需要 Python <code>3.6</code> 或更新的版本)</p>
-<ul>
-<li>安装 Julia：<code>jill install [VERSION] [--upstream UPSTREAM] [--confirm]</code></li>
-<li><code>jill install</code>：最新的 <code>x.y.z</code> 版本</li>
-<li><code>jill install --confirm</code>：无需交互确认直接安装</li>
-<li><code>jill install --upstream BFSU</code>：从北外镜像下载并安装</li>
-<li><code>jill install 1.4</code>：安装最新的 <code>1.4.z</code> 版本</li>
-<li>查询现存的上游镜像：<code>jill upstream</code></li>
-<li>帮助文档：<code>jill [COMMAND] --help</code></li>
-<li><code>jill --help</code>：查询存在的 <code>jill</code> 命令</li>
-<li><code>jill install --help</code>：查询 <code>install</code> 命令的使用方式</li>
-</ul>
-<p>利用 <code>jill</code> 安装完成后即可通过在命令行执行 <code>julia</code>/<code>julia-1</code>/<code>julia-1.4</code> 来启动不同版本的 Julia.</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkp1bGlhIFJlbGVhc2VzIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsianVsaWEtcmVsZWFzZXMiXSwgImlucHV0Ijoge30sICJuYW1lIjogImp1bGlhLXJlbGVhc2VzIn0=</script>
+<h2>juliaup 使用说明</h2>
+<p><a href="https://github.com/JuliaLang/juliaup">juliaup</a> 是现在 Julia 社区默认推荐的安装方式，通过设置环境变量 <code>JULIAUP_SERVER</code> 的地址为 <span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}</pre> 后，即可正常使用镜像站来下载 Julia 程序。</p>
+<p>以下是 juliaup 官方的标准安装方式：</p>
+<p>Windows:</p>
+<pre><code class="language-powershell">winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore
+</code></pre>
+<p>Mac, Linux, and FreeBSD:</p>
+<pre><code class="language-shell">curl -fsSL https://install.julialang.org | sh
+</code></pre><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkp1bGlhIFJlbGVhc2VzIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsianVsaWEtcmVsZWFzZXMiXSwgImlucHV0Ijoge30sICJuYW1lIjogImp1bGlhLXJlbGVhc2VzIn0=</script>
 </div>
 
 {% endraw %}
