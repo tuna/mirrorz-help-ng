@@ -107,11 +107,15 @@ git config --global url.{{endpoint}}/.insteadof https://android.googlesource.com
 <ol>
 <li>本仓库镜像的是 AOSP 的 git 仓库，不是系统镜像或者开发工具下载。</li>
 <li>Android 版本列表：<a href="https://source.android.com/source/build-numbers.html#source-code-tags-and-builds">https://source.android.com/source/build-numbers.html#source-code-tags-and-builds</a> 或 <a href="https://source.android.google.cn/source/build-numbers#source-code-tags-and-builds">https://source.android.google.cn/source/build-numbers#source-code-tags-and-builds</a>。</li>
-<li>出现 <code>curl: (22) The requested URL returned error: 404 Not Found Server does not provide clone.bundle; ignoring.</code> 怎么办？</li>
+<li>出现 <code>curl: (22) The requested URL returned error: 404 Not Found Server does not provide clone.bundle; ignoring.</code> 怎么办？<ul>
 <li>无视即可，参见 <a href="https://github.com/tuna/issues/issues/936">https://github.com/tuna/issues/issues/936</a>。</li>
-<li>为何不能通过浏览器访问？</li>
+</ul>
+</li>
+<li>为何不能通过浏览器访问？<ul>
 <li>镜像站没有 gitweb, 并且提供的是 git bare 仓库，没有可以直接看到的内容。</li>
-<li>建议访问 <a href="https://cs.android.com">https://cs.android.com</a> 或 <a href="https://github.com/aosp-mirror">https://github.com/aosp-mirror</a> 在线搜索及浏览 AOSP 源码。</li>
+<li>建议访问 <a href="https://cs.android.com">https://cs.android.com</a> 在线搜索及浏览 AOSP 源码。</li>
+</ul>
+</li>
 </ol>
 <h2>LineageOS 中对于 AOSP 的替换</h2>
 <p>打开<code>.repo/manifests/default.xml</code>，将</p>
