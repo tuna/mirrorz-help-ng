@@ -49,6 +49,7 @@ gentoo-portage.git
 gentoo-portage-prefix
 git-repo
 github-raw
+github-release
 gitlab-ce
 gitlab-runner
 glibc.git
