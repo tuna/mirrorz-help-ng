@@ -29,36 +29,69 @@ excerpt_separator: ""
 </div>
 {% raw %}
 <div class="z-help">
-<p>openSUSE 项目是一个由 Novell 赞助的社区项目。该项目旨在推进 Linux 的广泛应用，提供自由、易于入手和美观实用的 openSUSE Linux 发行版。openSUSE 使用 <code>zypper</code> 作为包管理器。</p>
-<p>openSUSE 默认使用 <a href="https://zh.opensuse.org/MirrorBrain">MirrorBrain</a> 技术统一镜像入口，通过在下载时自动分配镜像站点，从而给用户提供更好的安全性，通常情况下使用默认配置即可。</p>
-<p>由于使用 MirrorBrain 需要从位于德国的 openSUSE 主服务器上获取元信息，所以若在使用默认软件源时获取元信息较慢，可以使用镜像软件源替换默认软件源。</p>
+<p>openSUSE 项目是一个由 SUSE 赞助的社区项目。该项目旨在推进 Linux 的广泛应用，提供自由、易于入手和美观实用的 openSUSE Linux 发行版。openSUSE 使用 <code>zypper</code> 作为包管理器，与 SUSE Linux Enterprise 保持了一致。</p>
+<p>此发行版现在默认提供包括 <a href="https://get.opensuse.org/leap/">Leap</a>，<a href="https://get.opensuse.org/tumbleweed/">Tumbleweed</a>，<a href="https://en.opensuse.org/openSUSE:Slowroll">Slowroll</a>，<a href="https://get.opensuse.org/leapmicro">leap micro</a> 和 <a href="https://get.opensuse.org/microos/">Micro OS</a> 在内的五个发行版变体。</p>
+<p>openSUSE 默认使用 <a href="https://zh.opensuse.org/MirrorCache">MirrorCache</a> 替换旧的 <a href="https://zh.opensuse.org/MirrorBrain">MirrorBrain</a> 作为技术统一镜像入口进行镜像站点的监测和管理以及下载时的镜像源分配服务，免去用户需要手动更换镜像的不确定性和困难，并从 2023.07 开始一并使用 fastly CDN (cdn.opensuse.org) 进行分发，从而给用户提供更好的便利性和安全性，通常情况下使用默认配置即可。MirrorBrain 和 MirrorCache 的具体区别可参见此<a href="https://opensuse.github.io/MirrorCache/mb_compare/">链接</a>。</p>
+<h3>关于统一镜像分发</h3>
+<p>openSUSE 默认启用了 <a href="https://en.opensuse.org/openSUSE:Standards_Repository_Index_Service">RIS</a> 和 MirrorCache 技术用于统一分发软件仓库更改和镜像，通常情况下<strong>无需更改镜像</strong>，但可以通过禁用官方源并启用更高优先级的其他镜像来实现更换镜像源的操作。</p>
+<p>由于 RIS 的存在，手工关闭单个官方源仓库的刷新，将在下次执行更新操作时被重新启用，在执行更新时 <code>zypper</code> 仍需要和官方源（download.opensuse.org）进行同步，因此在不更改 <code>openSUSE</code> 服务的前提下，所有针对官方源的修改将在下次仓库或软件更新时被覆盖或重置。</p>
+<p>下面提供了三种方法以供用户选择来保留或使用 RIS。无论是否禁用 RIS，都可以使用高优先级的软件源替代官方源进行使用。</p>
+<h4>1 完全启用 RIS</h4>
+<p>在此目标下，通常无需对系统软件源进行任何更改，更新时会被自动分流至任意<a href="https://mirrors.opensuse.org">注册到 MirrorCache</a> 的镜像站。这也是官方最推荐的做法。</p>
+<h4>2 临时禁用 RIS</h4>
+<p>下面流程提供了一种通过修改配置文件半永久性禁用 RIS 的方法，但同时保留了 <code>zypper</code> 的 <code>RIS</code> 特性满足官方的推荐更新方式，来实现临时禁用 RIS 自动刷新。</p>
+<ol>
+<li>使用任意编辑器打开并编辑文件 <code>/etc/zypp/services.d/openSUSE.service</code>;</li>
+<li>修改 <code>enabled</code> 值为 <code>0</code>;</li>
+<li>修改 <code>autorefresh</code> 值为 <code>0</code>;</li>
+<li>保存并退出;</li>
+</ol>
+<p>更改后可以指定更高优先级的软件源，并同时可以免去使用第三方软件源但仍和官方服务器通信的不便。</p>
+<p>请注意：这种方法的更改会在软件包 <code>openSUSE-repos-*</code> 所包含的多个软件包更新后被覆盖，需要重新执行更改。对于希望方便维护系统，但又不需要定期和官方主服务器通信的用户，我们推荐这种方式。</p>
+<h4>3 完全禁用 RIS</h4>
+<p>完全禁用 RIS 意味着用户需要手工管理软件源，除非清楚这么做的目的和意义，否则通常情况下不推荐此方法。</p>
+<p>如需还原为传统镜像源管理方式，确保在 <code>bash</code> 或 <code>zsh</code> 下执行：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}zypper remove openSUSE-repos-*
+</pre>
+<p>请注意，这可能会移除安装的包含 NVIDIA 等相关的使用 RIS 管理的第三方软件源。</p>
+<p>查看需要恢复的 repo 文件：</p>
+<pre><code class="language-shell">ls -la /etc/zypp/repos.d/*.rpmsave 
+</code></pre>
+<p>还原 repo 文件：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}for file in /etc/zypp/repos.d/*.rpmsave; do mv $file `echo $file | sed -s "s/\.rpmsave//"`; done
+</pre>
+<p>执行后需要刷新缓存。</p>
+<p>请注意：该方法目前仍然可以使用，但如果官方给出了明确的路线图认为不再需要此种方法管理镜像源，则该方法失效。目前暂不明确不再提供还原的时间表。</p>
 <h3>openSUSE Leap 15.2 或更新版本使用方法</h3>
 <p>禁用官方软件源</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}zypper mr -da
 </pre>
-<p>添加镜像源</p>
+<p>添加镜像源，并启用更高优先级用以覆盖官方镜像（可更改 <code>98</code> 为更小的数字，越小优先级越高）</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}zypper ar -cfg '{{endpoint}}/distribution/leap/$releasever/repo/oss/' mirror-oss
-{{sudo}}zypper ar -cfg '{{endpoint}}/distribution/leap/$releasever/repo/non-oss/' mirror-non-oss
-{{sudo}}zypper ar -cfg '{{endpoint}}/update/leap/$releasever/oss/' mirror-update
-{{sudo}}zypper ar -cfg '{{endpoint}}/update/leap/$releasever/non-oss/' mirror-update-non-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/distribution/leap/$releasever/repo/oss/' mirror-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/distribution/leap/$releasever/repo/non-oss/' mirror-non-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/update/leap/$releasever/oss/' mirror-update
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/update/leap/$releasever/non-oss/' mirror-update-non-oss
 </pre>
-<p>Leap 15.3 用户还需添加 sle 和 backports 源</p>
+<p>Leap 15.3 或更新版本还需添加 sle 和 backports 源</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}zypper ar -cfg '{{endpoint}}/update/leap/$releasever/sle/' mirror-sle-update
-{{sudo}}zypper ar -cfg '{{endpoint}}/update/leap/$releasever/backports/' mirror-backports-update
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/update/leap/$releasever/sle/' mirror-sle-update
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/update/leap/$releasever/backports/' mirror-backports-update
 </pre>
-<p>Leap 15.3 注：若在安装时<strong>没有</strong>启用在线软件源，sle 源和 backports 源将在系统首次更新后引入，请确保系统在更新后仅启用了<strong>六个</strong>所需软件源。可使用 <code>zypper lr</code> 检查软件源状态，并使用 <code>zypper mr -d</code> 禁用多余的软件源。</p>
+<p>Leap 15.3 或更新版本注：若在安装时<strong>没有</strong>启用在线软件源，sle 源和 backports 源将在系统首次更新后引入，请确保系统在更新后仅启用了<strong>六个</strong>所需软件源。可使用 <code>zypper lr</code> 检查软件源状态，并使用 <code>zypper mr -d</code> 禁用多余的软件源。</p>
 <h3>openSUSE Tumbleweed 使用方法</h3>
 <p>禁用官方软件源</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}zypper mr -da
 </pre>
-<p>添加镜像源</p>
+<p>添加镜像源，并启用更高优先级用以覆盖官方镜像（可更改 <code>98</code> 为更小的数字，越小优先级越高）</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}zypper ar -cfg '{{endpoint}}/tumbleweed/repo/oss/' mirror-oss
-{{sudo}}zypper ar -cfg '{{endpoint}}/tumbleweed/repo/non-oss/' mirror-non-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/tumbleweed/repo/oss/' mirror-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/tumbleweed/repo/non-oss/' mirror-non-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/update/tumbleweed/' mirror-factory-update
 </pre>
 <p>刷新软件源</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
@@ -66,17 +99,125 @@ excerpt_separator: ""
 </pre>
 <p>Tumbleweed 注：Tumbleweed 安装后默认会启用 oss, non-oss, update, 3 个官方软件源，<br/>
 其中 oss 及 non-oss 源用于发布 Tumbleweed 的每日构建快照，快照中已包含系统所需的全部软件包及更新。<br/>
-update 源仅用于推送临时安全补丁，如当日快照已发布但仍有临时安全补丁时，会首先推送至 update 源，并在次日合入下一版快照。<br/>
-由于 update 源存在较强的时效性，上游镜像并未同步 update 源，镜像源亦无法提供该源的镜像。<br/>
-禁用 update 源并不会使系统缺失任何功能或安全更新，仅会导致极少数更新晚些推送，如有需求可以重新启用官方 update 源。</p>
+update 源用于推送工厂源 <a href="https://build.opensuse.org/project/show/openSUSE:Factory">Factory</a> 中安全和紧急更新，通常情况下分发 opensuse 镜像会完整同步该仓库。<br/>
+禁用 update 源并不会使系统缺失任何功能，仅会导致极少数更新晚些推送，如有需求可以重新启用 update 源。</p>
+<h3>openSUSE Slowroll 使用方法</h3>
+<p>Slowroll 目前仍未正式发行，此发行版以 Tumbleweed 作为基础，但不可混用软件源。</p>
+<p>部分镜像站可能并未同步或排除了此发行版。</p>
+<p>禁用官方软件源</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}zypper mr -da
+</pre>
+<p>添加镜像源，并启用更高优先级用以覆盖官方镜像（可更改 <code>98</code> 为更小的数字，越小优先级越高）</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/slowroll/repo/oss/' mirror-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/slowroll/repo/non-oss/' mirror-non-oss
+{{sudo}}zypper ar -p 98 -cfg '{{endpoint}}/update/slowroll/repo/oss/' mirror-oss-factory-update
+</pre>
+<p>刷新软件源</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
+{{sudo}}zypper ref
+</pre>
 <h2>图形界面下配置方法</h2>
-<p>以 openSUSE Leap 15.3 为例：</p>
+<p>以 openSUSE Leap 15.5 为例：</p>
 <ol>
-<li>打开 YaST；</li>
-<li>点击 Software 分组中的 Software Repositories；</li>
-<li>在打开的窗口上方的列表中点击 Main Repository，点击 Edit；</li>
-<li>将 download.opensuse.org 替换为 <span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{host}}{{path}}</pre> 点 OK；</li>
-<li>再用同样的方法编辑 Non-OSS Repository, Main Update Repository, Update Repository (Non-Oss) 和 Update repository with updates from SUSE Linux Enterprise 15。</li>
+<li>打开 <code>YaST控制中心</code>；</li>
+<li>点击 <code>软件</code>（Software）分组中的 <code>软件源</code>（Software Repositories）；</li>
+<li>在打开的窗口中找到 <code>服务</code>（Service）列为 <code>openSUSE</code> 的条目，选择并取消勾选 <code>已启用(E)</code>（enabled(E)）。此流程需要保留 <code>名称</code>（Name）列为 <code>repo-openh264</code> 的仓库保持勾选;</li>
+<li>点击 <code>添加(A)</code>（Add(A)），类型选择为 <code>指定 URL</code>，并点击下一步;</li>
+<li>
+<p><code>软件源名称</code>（Repository Name）和 <code>URL</code> 填写为上文 Leap 或 Tumbleweed 中的仓库和对应连接，如：</p>
+<ul>
+<li><code>软件源名称</code>（Repository Name）：<code>mirror-oss</code></li>
+<li><code>URL</code>：<code>{{endpoint}}/distribution/leap/15.5/repo/oss/</code></li>
+</ul>
+<p>点击 <code>下一步</code> 保存并刷新仓库缓存。</p>
+<p>此处给出通常情况下需要手工添加的仓库和发行版分支对应关系：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">发行版</th>
+<th style="text-align: center;">仓库名称</th>
+<th style="text-align: center;">URL</th>
+<th style="text-align: center;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Leap</td>
+<td style="text-align: center;">OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/distribution/leap/$releasever/repo/oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Leap</td>
+<td style="text-align: center;">NON-OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/distribution/leap/$releasever/repo/non-oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Leap</td>
+<td style="text-align: center;">UPDATE</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/update/leap/$releasever/oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Leap</td>
+<td style="text-align: center;">UPDATE-NON-OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/update/leap/$releasever/non-oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Leap</td>
+<td style="text-align: center;">SLE-UPDATE</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/update/leap/$releasever/sle/</pre></td>
+<td style="text-align: center;">仅使用 Backport 时需要添加</td>
+</tr>
+<tr>
+<td style="text-align: center;">Leap</td>
+<td style="text-align: center;">SLE-BACKPORT-UPDATE</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/update/leap/$releasever/backports/</pre></td>
+<td style="text-align: center;">仅使用 Backport 时需要添加</td>
+</tr>
+<tr>
+<td style="text-align: center;">Tumbleweed</td>
+<td style="text-align: center;">OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/tumbleweed/repo/oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Tumbleweed</td>
+<td style="text-align: center;">NON-OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/tumbleweed/repo/non-oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Tumbleweed</td>
+<td style="text-align: center;">UPDATE</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/update/tumbleweed/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Slowroll</td>
+<td style="text-align: center;">OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/slowroll/repo/oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Slowroll</td>
+<td style="text-align: center;">NON-OSS</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/slowroll/repo/non-oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Slowroll</td>
+<td style="text-align: center;">UPDATE</td>
+<td style="text-align: center;"><span class="z-wrap"><code class="z-code"></code></span><pre class="z-tmpl" z-inline="">{{endpoint}}/update/slowroll/repo/oss/</pre></td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+</li>
 </ol><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIm9wZW5TVVNFIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsib3BlbnN1c2UiXSwgImlucHV0Ijoge30sICJuYW1lIjogIm9wZW5zdXNlIn0=</script>
 </div>
 
