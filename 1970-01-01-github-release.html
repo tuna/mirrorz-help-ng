@@ -1,0 +1,42 @@
+---
+category: help
+layout: helpz
+mirrorid: "github-release"
+excerpt_separator: ""
+---
+
+<!-- 本页面从 tuna/mirrorz-help-ng 自动生成，如需修改请参阅该仓库 -->
+{% raw %}<h1>GitHub Release</h1>{% endraw %}
+<div class="z-wrap">
+    <form class="z-form z-global">
+        <div>
+            <label for="e0a5cecb">线路选择</label>
+            <select id="e0a5cecb" name="host">
+                <option selected="selected" value="{{ site.url }}">自动</option>
+                <option value="{{ site.urlv4 }}">IPv4</option>
+                <option value="{{ site.urlv6 }}">IPv6</option>
+            </select>
+        </div>
+        <div>
+            <input id="a44d763c" name="_scheme" type="checkbox" checked>
+            <label for="a44d763c">是否使用 HTTPS</label>
+        </div>
+        <div>
+            <input id="a659e7da" name="_sudo" type="checkbox">
+            <label for="a659e7da">是否使用 sudo</label>
+        </div>
+    </form>
+</div>
+{% raw %}
+<div class="z-help">
+<p>本目录中提供了若干常用 GitHub 项目发布的 Release 文件镜像（注：通常为二进制文件，而没有源码）。</p>
+<p>各镜像站的内容很可能不同，并存在两种目录格式：</p>
+<ol>
+<li><code>&lt;owner&gt;/&lt;project&gt;/&lt;release_name&gt;/</code>，每个版本有独立文件夹，并由 <code>LatestRelease</code> 指向最新的版本。适用于每个版本发布文件较多的软件。</li>
+<li><code>&lt;owner&gt;/&lt;project&gt;/</code>，所有发布文件被展平于一个目录中。适用于发布较为简单的软件（如每个版本只发布一个 <code>vX.Y.Z.zip</code>）。</li>
+</ol>
+<h2>特别提示</h2>
+<p><code>llvm/llvm-project</code> 项目（如本站提供此镜像）的 Release 中仅包含源代码，请使用 <a href="../llvm-apt/"><code>llvm-apt</code></a> 镜像获取二进制文件。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIkdpdEh1YiBSZWxlYXNlIiwgImJsb2NrIjogWyJnaXRodWItcmVsZWFzZSJdLCAiaW5wdXQiOiB7fSwgIm5hbWUiOiAiZ2l0aHViLXJlbGVhc2UifQ==</script>
+</div>
+
+{% endraw %}

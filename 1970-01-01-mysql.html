@@ -30,39 +30,44 @@ excerpt_separator: ""
 {% raw %}
 <div class="z-help">
 <p>首先选择要安装的版本：</p>
-<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="OMmwRbxJ" title="">MySQL 版本号</label><select id="OMmwRbxJ" name="version" title=""><option value="8.0">8.0</option><option value="5.7">5.7</option></select></div></form></div>
+<div class="z-wrap"><form class="z-form z-global" onsubmit="return false"><div><label for="OMmwRbxJ" title="">MySQL 版本号</label><select id="OMmwRbxJ" name="version" title=""><option value="8.4">8.4</option></select></div></form></div>
 <h3>Debian/Ubuntu 用户</h3>
 <p>再选择你的 Debian/Ubuntu 版本，文本框中内容写进 <code>/etc/apt/sources.list.d/mysql-community.list</code></p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="qNLQsghA" title="">发行版</label><select id="qNLQsghA" name="deb_release" title=""><option value="bookworm">Debian 12 (bookworm)</option><option value="bullseye">Debian 11 (bullseye)</option><option value="buster">Debian 10 (buster)</option><option value="stretch">Debian 9 (stretch) (EOL)</option><option value="jessie">Debian 8 (jessie) (EOL)</option><option value="jammy">Ubuntu 22.04 LTS (jammy)</option><option value="focal">Ubuntu 20.04 LTS (focal)</option><option value="bionic">Ubuntu 18.04 LTS (bionic)</option><option value="xenial">Ubuntu 16.04 LTS (xenial) (EOL)</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="deb_release" z-path="/etc/apt/sources.list.d/mysql-community.list">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="qNLQsghA" title="">发行版</label><select id="qNLQsghA" name="deb_release" title=""><option value="trixie">Debian 13</option><option value="bookworm">Debian 12</option><option value="noble">Ubuntu 24.04 LTS</option><option value="jammy">Ubuntu 22.04 LTS</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="deb_release" z-path="/etc/apt/sources.list.d/mysql-community.list">
 deb {{endpoint}}/apt/{{os}} {{deb_release}} mysql-{{version}} mysql-tools
 </pre>
 <p>参考文档：https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/</p>
 <h3>RHEL/CentOS 用户</h3>
 <p>新建 <code>/etc/yum.repos.d/mysql-community.repo</code>，内容如下：</p>
-<p>注：<code>mysql-8.0</code>, <code>mysql-connectors</code> 和 <code>mysql-tools</code> 在 RHEL 7/8 上还提供了 <code>aarch64</code> 版本。</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="wqMBwLLU" title="">发行版</label><select id="wqMBwLLU" name="rh_release" title=""><option value="el7">CentOS/RHEL 7</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="rh_release" z-lang="ini" z-path="/etc/yum.repos.d/mysql-community.repo">
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="wqMBwLLU" title="">发行版</label><select id="wqMBwLLU" name="rh_release" title=""><option value="el9">RHEL 9</option><option value="el10">RHEL 10</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="rh_release" z-lang="ini" z-path="/etc/yum.repos.d/mysql-community.repo">
 [mysql-connectors-community]
 name=MySQL Connectors Community
 baseurl={{endpoint}}/yum/mysql-connectors-community-{{rh_release}}-$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql
+       https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+       https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 [mysql-tools-community]
 name=MySQL Tools Community
 baseurl={{endpoint}}/yum/mysql-tools-community-{{rh_release}}-$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql
+       https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+       https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 [mysql-{{version}}-community]
 name=MySQL {{version}} Community Server
 baseurl={{endpoint}}/yum/mysql-{{version}}-community-{{rh_release}}-$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+gpgkey=https://repo.mysql.com/RPM-GPG-KEY-mysql
+       https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+       https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 </pre>
-<p>参考文档：https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk15U1FMIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsibXlzcWwiXSwgImlucHV0IjogeyJkZWJfcmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJib29rd29ybSI6IHsiXyI6ICJEZWJpYW4gMTIgKGJvb2t3b3JtKSIsICJvcyI6ICJkZWJpYW4ifSwgImJ1bGxzZXllIjogeyJfIjogIkRlYmlhbiAxMSAoYnVsbHNleWUpIiwgIm9zIjogImRlYmlhbiJ9LCAiYnVzdGVyIjogeyJfIjogIkRlYmlhbiAxMCAoYnVzdGVyKSIsICJvcyI6ICJkZWJpYW4ifSwgInN0cmV0Y2giOiB7Il8iOiAiRGViaWFuIDkgKHN0cmV0Y2gpIChFT0wpIiwgIm9zIjogImRlYmlhbiJ9LCAiamVzc2llIjogeyJfIjogIkRlYmlhbiA4IChqZXNzaWUpIChFT0wpIiwgIm9zIjogImRlYmlhbiJ9LCAiamFtbXkiOiB7Il8iOiAiVWJ1bnR1IDIyLjA0IExUUyAoamFtbXkpIiwgIm9zIjogInVidW50dSJ9LCAiZm9jYWwiOiB7Il8iOiAiVWJ1bnR1IDIwLjA0IExUUyAoZm9jYWwpIiwgIm9zIjogInVidW50dSJ9LCAiYmlvbmljIjogeyJfIjogIlVidW50dSAxOC4wNCBMVFMgKGJpb25pYykiLCAib3MiOiAidWJ1bnR1In0sICJ4ZW5pYWwiOiB7Il8iOiAiVWJ1bnR1IDE2LjA0IExUUyAoeGVuaWFsKSAoRU9MKSIsICJvcyI6ICJ1YnVudHUifX19LCAidmVyc2lvbiI6IHsiXyI6ICJNeVNRTCBcdTcyNDhcdTY3MmNcdTUzZjciLCAib3B0aW9uIjogeyI4LjAiOiBudWxsLCAiNS43IjogbnVsbH19LCAicmhfcmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJlbDciOiB7Il8iOiAiQ2VudE9TL1JIRUwgNyJ9fX19LCAibmFtZSI6ICJteXNxbCJ9</script>
+<p>参考文档：https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk15U1FMIFx1OGY2Zlx1NGVmNlx1NGVkM1x1NWU5MyIsICJibG9jayI6IFsibXlzcWwiXSwgImlucHV0IjogeyJkZWJfcmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJ0cml4aWUiOiB7Il8iOiAiRGViaWFuIDEzIiwgIm9zIjogImRlYmlhbiJ9LCAiYm9va3dvcm0iOiB7Il8iOiAiRGViaWFuIDEyIiwgIm9zIjogImRlYmlhbiJ9LCAibm9ibGUiOiB7Il8iOiAiVWJ1bnR1IDI0LjA0IExUUyIsICJvcyI6ICJ1YnVudHUifSwgImphbW15IjogeyJfIjogIlVidW50dSAyMi4wNCBMVFMiLCAib3MiOiAidWJ1bnR1In19fSwgInZlcnNpb24iOiB7Il8iOiAiTXlTUUwgXHU3MjQ4XHU2NzJjXHU1M2Y3IiwgIm9wdGlvbiI6IHsiOC40IjogbnVsbH19LCAicmhfcmVsZWFzZSI6IHsiXyI6ICJcdTUzZDFcdTg4NGNcdTcyNDgiLCAib3B0aW9uIjogeyJlbDkiOiB7Il8iOiAiUkhFTCA5In0sICJlbDEwIjogeyJfIjogIlJIRUwgMTAifX19fSwgIm5hbWUiOiAibXlzcWwifQ==</script>
 </div>
 
 {% endraw %}
