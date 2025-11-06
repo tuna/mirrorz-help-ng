@@ -94,6 +94,7 @@ pkgsrc.git
 postmarketOS
 pybombs
 pypi
+python
 proxmox
 qemu.git
 qt
