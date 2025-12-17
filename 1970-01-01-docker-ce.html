@@ -50,22 +50,25 @@ wget -O- https://raw.githubusercontent.com/docker/docker-install/master/install.
 <p>以下内容根据 <a href="https://docs.docker.com/engine/install/debian/">官方文档</a> 修改而来。</p>
 <p>如果你过去安装过 docker，先删掉：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do {{sudo}}apt-get remove $pkg; done
+{{sudo}}apt remove $(dpkg --get-selections docker.io docker-compose docker-doc podman-docker containerd runc | cut -f1)
 </pre>
 <p>首先安装依赖：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}apt-get update
-{{sudo}}apt-get install ca-certificates curl gnupg
+{{sudo}}apt-get install ca-certificates curl
 </pre>
 <p>信任 Docker 的 GPG 公钥并添加仓库：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="UUlMxFiV" title="">发行版</label><select id="UUlMxFiV" name="deb_release" title=""><option value="debian">Debian</option><option value="ubuntu">Ubuntu</option><option value="raspbian">Raspbian</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="deb_release" z-lang="bash">
 {{sudo}}install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/{{deb_release}}/gpg | {{sudo}}gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] {{endpoint}}/linux/{{deb_release}} \
-  "$(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME")" stable" | \
-  {{sudo}}tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+{{sudo}}curl -fsSL https://download.docker.com/linux/{{deb_release}}/gpg -o /etc/apt/keyrings/docker.asc
+{{sudo}}chmod a+r /etc/apt/keyrings/docker.asc
+{{sudo}}tee /etc/apt/sources.list.d/docker.sources &lt;&lt;EOF
+Types: deb
+URIs: {{endpoint}}/linux/{{deb_release}}
+Suites: $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 </pre>
 <p>最后安装</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
@@ -74,7 +77,7 @@ echo \
 </pre>
 <h3>Fedora</h3>
 <p>以下内容根据 <a href="https://docs.docker.com/engine/install/fedora/">官方文档</a> 修改而来。</p>
-<p>如果你之前安装过 docker，请先删掉</p>
+<p>如果你之前安装过 docker，请先删掉：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
 {{sudo}}dnf remove docker \
                   docker-client \
@@ -89,8 +92,7 @@ echo \
 </pre>
 <p>安装依赖，下载 repo 文件，并把软件仓库地址替换为镜像站：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}dnf -y install dnf-plugins-core
-{{sudo}}dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+{{sudo}}dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 {{sudo}}sed -i 's+https://download.docker.com+{{endpoint}}+' /etc/yum.repos.d/docker-ce.repo
 </pre>
 <p>最后安装：</p>
@@ -101,7 +103,7 @@ echo \
 <p>以下内容根据 <a href="https://docs.docker.com/engine/install/centos/">官方文档</a> 修改而来。</p>
 <p>如果你之前安装过 docker，请先删掉</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-{{sudo}}yum remove docker \
+{{sudo}}dnf remove docker \
                   docker-client \
                   docker-client-latest \
                   docker-common \
@@ -112,9 +114,8 @@ echo \
 </pre>
 <p>安装依赖，下载 repo 文件，并把软件仓库地址替换为镜像站：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="WpmmcDgN" title="">发行版</label><select id="WpmmcDgN" name="rh_release" title=""><option value="centos">CentOS</option><option value="rhel">RHEL</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="rh_release" z-lang="bash">
-
-{{sudo}} yum install -y yum-utils
-yum-config-manager --add-repo https://download.docker.com/linux/{{rh_release}}/docker-ce.repo
+{{sudo}}dnf -y install dnf-plugins-core
+{{sudo}}dnf config-manager --add-repo https://download.docker.com/linux/{{rh_release}}/docker-ce.repo
 {{sudo}}sed -i 's+https://download.docker.com+{{endpoint}}+' /etc/yum.repos.d/docker-ce.repo
 </pre>
 <p>最后安装：</p>
