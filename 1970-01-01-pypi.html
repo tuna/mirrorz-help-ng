@@ -80,7 +80,11 @@ poetry source add --priority=supplemental mirrors {{endpoint}}/web/simple/
 poetry config experimental.new-installer false
 </pre>
 <h3>Astral uv</h3>
-<p>在 <code>~/.config/uv/uv.toml</code> 或者 <code>/etc/uv/uv.toml</code> 填写下面的内容：</p>
+<ul>
+<li>Linux/Unix：在 <code>~/.config/uv/uv.toml</code> 或者 <code>/etc/uv/uv.toml</code></li>
+<li>Windows：在 <code>%AppData%\uv\uv.toml</code> 或者 <code>%ProgramData%\uv\uv.toml</code></li>
+</ul>
+<p>填写下面的内容：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="toml">
 [[index]]
 url = "{{endpoint}}/web/simple/"
