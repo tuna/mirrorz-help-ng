@@ -38,7 +38,7 @@ curl -fsSL https://packages.gitlab.com/gpg.key | {{sudo}}gpg --dearmor -o /usr/s
 </pre>
 <p>再选择你的 Debian/Ubuntu 版本，将下方内容写入 <code>/etc/apt/sources.list.d/gitlab-ce.list</code></p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="yeOaAKRb" title="">操作系统版本</label><select id="yeOaAKRb" name="release" title=""><option value="trixie">Debian 13</option><option value="bookworm">Debian 12</option><option value="bullseye">Debian 11</option><option value="noble">Ubuntu 24.04 LTS</option><option value="jammy">Ubuntu 22.04 LTS</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="release" z-path="/etc/apt/sources.list.d/gitlab-ce.list">
-deb [signed-by=/usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg] {{endpoint}}/{{os}} {{release}} main
+deb [signed-by=/usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg] {{endpoint}}/{{os}}/{{release}} {{release}} main
 </pre>
 <p>安装 gitlab-ce:</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
