@@ -31,18 +31,20 @@ excerpt_separator: ""
 <div class="z-help">
 <p>OpenWRT（曾用名 LEDE）是一款广泛应用于路由器的嵌入式操作系统。本站提供 OpenWRT 的包管理器 <code>opkg</code> 的 release 部分镜像。</p>
 <p>本站不包含 snapshots 镜像，如果需要 snapshots，可以前往<a href="https://mirrors.cernet.edu.cn/list/openwrt">校园网联合镜像站</a>寻找替代。</p>
+<p>从 OpenWrt 25.12 开始，包管理器由 <code>opkg</code> 改为 <code>apk</code> (Alpine Package Keeper)，默认软件源的配置文件路径由 <code>/etc/opkg/distfeeds.conf</code> 改为 <code>/etc/apk/repositories.d/distfeeds.list</code>。</p>
+<h3>自动替换</h3>
+<p>对于 OpenWrt 25.12 及以上版本，需选择 <code>APK</code>；对于 OpenWrt 24.10 及以下版本，需选择 <code>OPKG</code>。</p>
+<p>执行如下命令自动替换：</p>
+<div class="z-wrap"><form class="z-form" onsubmit="return false"><div><label for="IwlIyPpf" title="">选择包管理器</label><select id="IwlIyPpf" name="packagemanager" title=""><option value="apk">APK</option><option value="opkg">OPKG</option></select></div></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-input="packagemanager" z-lang="bash">
+sed -i 's_https\?://downloads.openwrt.org_{{endpoint}}_' {{filepath}}
+</pre>
+<p>注：使用 HTTPS 可以有效避免国内运营商的缓存劫持，但需要另行安装 <code>libustream-openssl ca-bundle ca-certificates</code>。</p>
 <h3>手工替换</h3>
-<p>登录到路由器，并编辑 <code>/etc/opkg/distfeeds.conf</code> 文件，将其中的 <code>http://downloads.openwrt.org</code> 替换为</p>
+<p>登录到路由器，根据版本或包管理器选择编辑 <code>/etc/apk/repositories.d/distfeeds.list</code> 或 <code>/etc/opkg/distfeeds.conf</code> 文件，将其中的 <code>http://downloads.openwrt.org</code> 替换为：</p>
 <div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl">
 {{endpoint}}
 </pre>
-<p>即可。</p>
-<h3>自动替换</h3>
-<p>执行如下命令自动替换</p>
-<div class="z-wrap"><form class="z-form" onsubmit="return false"></form><pre class="z-code"></pre></div><pre class="z-tmpl" z-lang="bash">
-sed -i 's_https\?://downloads.openwrt.org_{{endpoint}}_' /etc/opkg/distfeeds.conf
-</pre>
-<p>注：使用 HTTPS 可以有效避免国内运营商的缓存劫持，但需要另行安装 <code>libustream-openssl ca-bundle ca-certificates</code> 。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5XUlQgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJvcGVud3J0Il0sICJpbnB1dCI6IHsicGFja2FnZW1hbmFnZXIiOiB7Il8iOiAiXHU5MDA5XHU2MmU5XHU1MzA1XHU3YmExXHU3NDA2XHU1NjY4IiwgIm9wdGlvbiI6IHsiYXBrIjogeyJfIjogIkFQSyIsICJmaWxlcGF0aCI6ICIvZXRjL2Fway9yZXBvc2l0b3JpZXMuZC9kaXN0ZmVlZHMubGlzdCJ9LCAib3BrZyI6IHsiXyI6ICJPUEtHIiwgImZpbGVwYXRoIjogIi9ldGMvb3BrZy9kaXN0ZmVlZHMuY29uZiJ9fX19LCAibmFtZSI6ICJvcGVud3J0In0=</script>
+<p>即可。</p><script id="z-config" type="application/x-mirrorz-help">eyJfIjogIk9wZW5XUlQgXHU4ZjZmXHU0ZWY2XHU0ZWQzXHU1ZTkzIiwgImJsb2NrIjogWyJpbnRybyIsICJzbmFwc2hvdCIsICJvcGVud3J0Il0sICJpbnB1dCI6IHsicGFja2FnZW1hbmFnZXIiOiB7Il8iOiAiXHU5MDA5XHU2MmU5XHU1MzA1XHU3YmExXHU3NDA2XHU1NjY4IiwgIm9wdGlvbiI6IHsiYXBrIjogeyJfIjogIkFQSyIsICJmaWxlcGF0aCI6ICIvZXRjL2Fway9yZXBvc2l0b3JpZXMuZC9kaXN0ZmVlZHMubGlzdCJ9LCAib3BrZyI6IHsiXyI6ICJPUEtHIiwgImZpbGVwYXRoIjogIi9ldGMvb3BrZy9kaXN0ZmVlZHMuY29uZiJ9fX19LCAibmFtZSI6ICJvcGVud3J0In0=</script>
 </div>
 
 {% endraw %}
